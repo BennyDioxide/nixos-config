@@ -28,6 +28,7 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
+    extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
     loader = {
       efi = {
         canTouchEfiVariables = true;
@@ -164,8 +165,12 @@
 
   hardware.opengl = {
     enable = true;
-    driSupport = true;
+    # driSupport = true;
     driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
   };
 
   # Load Nvidia driver for XOrg and Wayland
