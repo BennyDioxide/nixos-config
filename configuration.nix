@@ -40,6 +40,7 @@
         useOSProber = true;
       };
     };
+    supportedFilesystems = [ "ntfs" ];
   };
 
   # networking.hostName = "nixos"; # Define your hostname.
