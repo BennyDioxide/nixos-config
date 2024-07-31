@@ -5,6 +5,7 @@
     ./font.nix
     ./kitty.nix
     ./cava.nix
+    ./vscode.nix
     ./gtk.nix
   ];
 
