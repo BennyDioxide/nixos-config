@@ -245,6 +245,24 @@
     enableNushellIntegration = true;
   };
 
+  qt = {
+    enable = true;
+    style = {
+      name = "breeze";
+      package =
+        with pkgs;
+        (with libsForQt5; [
+          breeze-qt5
+          breeze-icons
+        ])
+        ++ (with kdePackages; [
+          (hiPrio kdePackages.breeze)
+          (hiPrio breeze-icons)
+        ]);
+    };
+    platformTheme = "qtct";
+  };
+
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
 }
