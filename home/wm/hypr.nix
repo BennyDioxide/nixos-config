@@ -38,6 +38,8 @@
           "WLR_NO_HARDWARE_CURSORS,1"
 
           # "XDG_CURRENT_DESKTOP,KDE"
+          "QT_QPA_PLATFORM,wayland"
+          "QT_QPA_PLATFORMTHEME,qt5ct" # Hyprland doesn't load ~/.config/environment.d/ for some reason
           "XCURSOR_SIZE,24"
           "LC_ALL,zh_TW.UTF-8"
           "LANG,zh_TW.UTF-8"
