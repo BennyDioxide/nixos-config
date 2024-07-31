@@ -4,6 +4,7 @@
   imports = [
     ./font.nix
     ./cava.nix
+    ./gtk.nix
   ];
 
   home.username = "benny";
