@@ -99,6 +99,14 @@
     inputs.anyrun.packages.${system}.anyrun
   ];
 
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox-bin;
+    preferences = {
+      "widget.use-xdg-desktop-portal.file-picker" = 1;
+    };
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
