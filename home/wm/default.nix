@@ -3,6 +3,7 @@
 {
   imports = [
     ./hypr.nix
+    ./niri.nix
     inputs.ags.homeManagerModules.default
   ];
 
