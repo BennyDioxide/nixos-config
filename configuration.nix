@@ -85,6 +85,8 @@
     jack.enable = true;
   };
 
+  programs.adb.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.benny = {
     isNormalUser = true;
@@ -93,6 +95,7 @@
       "wheel" # Enable ‘sudo’ for the user.
       "network"
       "kvm" # Hardware accelerated vm
+      "adbusers" # Use adb without privileges
     ];
   };
 
