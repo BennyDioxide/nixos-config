@@ -99,6 +99,19 @@
     inputs.anyrun.packages.${system}.anyrun
   ];
 
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5 = {
+      addons = with pkgs; [
+        fcitx5-rime
+        fcitx5-mozc
+        fcitx5-lua
+        lua53Packages.luasocket # For ~/.config/fcitx5/addon/kanata/lib.lua
+      ];
+      waylandFrontend = true;
+    };
+  };
+
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-bin;
