@@ -145,6 +145,23 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+
+  services.xserver = {
+    enable = true;
+    excludePackages = with pkgs; [ xterm ];
+  };
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
+
+  services.desktopManager.plasma6.enable = true;
+
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    oxygen
+    elisa
+  ];
+
   hardware.opengl = {
     enable = true;
     driSupport = true;
