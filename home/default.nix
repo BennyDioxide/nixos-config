@@ -14,6 +14,18 @@
     enable = true;
     userName = "BennyDioxide";
     userEmail = "bennystyang@proton.me";
+    extraConfig = {
+      core.editor = "hx";
+      core.autocrlf = "input";
+      credential.helper = "store";
+      color.ui = "auto";
+      filter.lfs = {
+        smudge = "git-lfs smudge -- %f";
+        process = "git-lfs filter-process";
+        required = true;
+        clean = "git-lfs clean -- %f";
+      };
+    };
   };
 
   systemd.user.sessionVariables = {
