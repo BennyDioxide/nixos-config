@@ -88,8 +88,12 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.benny = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "network" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.nushell;
+    extraGroups = [
+      "wheel" # Enable ‘sudo’ for the user.
+      "network"
+      "kvm" # Hardware accelerated vm
+    ];
   };
 
   # List packages installed in system profile. To search, run:
