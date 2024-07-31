@@ -270,6 +270,11 @@
     platformTheme = "qtct";
   };
 
+  services.kdeconnect = {
+    enable = true;
+    indicator = true;
+  };
+
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
 }
