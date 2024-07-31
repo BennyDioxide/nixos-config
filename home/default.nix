@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./font.nix
     ./cava.nix
   ];
 
