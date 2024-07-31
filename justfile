@@ -13,16 +13,16 @@ alias optimize := optimise
 default: switch-home
 
 switch:
-	nh os switch .?submodules=1 --ask
+	nh os switch . --ask
 # sudo nixos-rebuild switch --flake .#benny-nixos
 
 switch-home:
-	nh home switch .?submodules=1 --ask
+	nh home switch . --ask
 # home-manager switch --flake .#benny
 #...(if {{ backup }} { [-b backup] } else { [] })
 
 boot:
-	sudo nixos-rebuild boot --flake .#benny-nixos
+	nh os boot
 
 update-all-inputs:
 	nix flake update
@@ -59,4 +59,4 @@ expire-week:
 	home-manager expire-generations 7
 
 reinstall-hm:
-	nix run home-manager/master -- switch --flake .?submodules=1#benny
+	nix run home-manager/master -- switch --flake .
