@@ -52,7 +52,13 @@
   time.timeZone = "Asia/Taipei";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_GB.UTF-8";
+  i18n.supportedLocales = [
+    "en_GB.UTF-8/UTF-8"
+    "en_US.UTF-8/UTF-8"
+    "zh_TW.UTF-8/UTF-8"
+    "ja_JP.UTF-8/UTF-8"
+  ];
   console = {
     font = "Lat2-Terminus16";
     # disabled because of kanata
