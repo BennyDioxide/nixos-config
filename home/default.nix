@@ -3,6 +3,7 @@
 {
   imports = [
     ./font.nix
+    ./kitty.nix
     ./cava.nix
     ./gtk.nix
   ];
