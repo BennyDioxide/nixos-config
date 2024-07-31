@@ -2,6 +2,8 @@
 
 {
   imports = [
+    ./xdg
+    ./wm
     ./font.nix
     ./kitty.nix
     ./cava.nix

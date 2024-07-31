@@ -1,6 +1,15 @@
 {
   description = "Benny's NixOS configuration";
 
+  nixConfig = {
+    builders-use-substitutes = true;
+    trusted-substituters = [
+      "https://hyprland.cachix.org"
+    trusted-public-keys = [
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+    ];
+  };
+
   inputs = {
     nixpkgs.url =
       "nixpkgs/nixos-unstable";
@@ -15,6 +24,10 @@
     };
     helix.url = "helix/24.03";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    end-4_dots-hyprland = {
+      url = "github:BennyDioxide/dots-hyprland";
+      flake = false;
+    };
   };
 
   outputs =
