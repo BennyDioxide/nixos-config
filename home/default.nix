@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    ./cava.nix
+  ];
+
   home.username = "benny";
   home.homeDirectory = "/home/benny";
 
