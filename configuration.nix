@@ -118,11 +118,6 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-  };
-
   hardware.opengl = {
     enable = true;
     driSupport = true;
