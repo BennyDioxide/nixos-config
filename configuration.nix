@@ -130,7 +130,7 @@
   };
 
   # Load Nvidia driver for XOrg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -138,9 +138,11 @@
     # Nvidia Open Source driver. False is recommanded
     open = false;
   
+
     nvidiaSettings = true;
 
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    # package = pkgs.linuxPackages.nvidiaPackages.beta;
+    package = pkgs.linuxKernel.packages.linux_zen.nvidia_x11_beta;
   };
 
   # This option defines the first version of NixOS you have installed on this particular machine,
