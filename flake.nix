@@ -23,6 +23,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     helix.url = "helix/24.03";
+    rust-overlay.url = "github:oxalica/rust-overlay";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     end-4_dots-hyprland = {
       url = "github:BennyDioxide/dots-hyprland";
@@ -34,6 +35,7 @@
     inputs@{ nixpkgs
     , nixpkgs-master
     , home-manager
+    , rust-overlay
     , ...
     }:
     let
@@ -61,6 +63,12 @@
         inherit extraSpecialArgs;
         modules = [
           ./home
+          ({ pkgs, ... }: {
+            nixpkgs.overlays = [
+              rust-overlay.overlays.default
+            ];
+            home.packages = [ pkgs.rust-bin.stable.latest.default ];
+          })
         ];
         pkgs = nixpkgs.legacyPackages.${system};
       };

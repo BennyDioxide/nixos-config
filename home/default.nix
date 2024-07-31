@@ -40,6 +40,10 @@
     NIXPKGS_ALLOW_UNFREE = 1;
   };
 
+  home.file.".cargo/config.toml".source = (pkgs.formats.toml { }).generate "cargo-config" {
+    # build."rustc-wrapper" = "${pkgs.sccache}/bin/sccache";
+  };
+
   home.packages =
     with pkgs;
     [
