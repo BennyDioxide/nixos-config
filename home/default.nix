@@ -3,6 +3,7 @@
 {
   imports = [
     ./xdg
+    ./nu
     ./wm
     ./font.nix
     ./kitty.nix
