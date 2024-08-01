@@ -11,6 +11,7 @@
     ./syncthing.nix
     ./helix.nix
     ./vscode.nix
+    ./java.nix
     ./gtk.nix
   ];
 
