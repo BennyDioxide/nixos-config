@@ -280,6 +280,9 @@
     indicator = true;
   };
 
+  # Enables xembed system tray available on Wayland
+  services.xembed-sni-proxy.enable = true;
+
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
 }
