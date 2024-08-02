@@ -43,7 +43,7 @@
           "XCURSOR_SIZE,24"
           "LC_ALL,zh_TW.UTF-8"
           "LANG,zh_TW.UTF-8"
-          # "SDL_VIDEODRIVER=wayland"
+          "SDL_VIDEODRIVER=wayland"
           "GTK_IM_MODULE=wayland"
           # "QT_IM_MODULE=fcitx"
           "XIM_MODULE=@im=fcitx"
