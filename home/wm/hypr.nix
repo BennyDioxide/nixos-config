@@ -126,6 +126,10 @@
         # Example windowrule v2
         # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
         # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
+        windowrulev2 = [
+          "fullscreen,class:^(osu!)$,title:^(osu!)$"
+          "fullscreen,class:^(fl64.exe)$,initialTitle:^(FL Studio)$"
+        ];
 
         # See https://wiki.hyprland.org/Configuring/Keywords/ for more
         "$mainMod" = "SUPER";
