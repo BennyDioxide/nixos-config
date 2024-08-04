@@ -109,7 +109,8 @@
       # wine
       # wineWowPackages.waylandFull
       # wineWowPackages.stable
-      wineWowPackages.stableFull
+      # wineWowPackages.stableFull
+      wineWowPackages.stagingFull
       bottles
 
       obs-studio
