@@ -91,6 +91,7 @@
       aria2
       yt-dlp
       ffmpeg
+      mpv
       vlc
       # spotify
       # spotifyd
