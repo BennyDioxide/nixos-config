@@ -99,6 +99,7 @@
       "network"
       "kvm" # Hardware accelerated vm
       "adbusers" # Use adb without privileges
+      "audio" # Musnix
     ];
   };
 
