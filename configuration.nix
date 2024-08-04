@@ -85,6 +85,9 @@
     jack.enable = true;
   };
 
+  # Musnix
+  musnix.enable = true;
+
   programs.adb.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
