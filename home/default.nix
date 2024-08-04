@@ -200,13 +200,7 @@
       mangohud
       gamescope
       ferium
-      # (callPackage appimageTools.wrapType2 {
-      #   name = "modrinth-app";
-      #   src = fetchurl {
-      #     url = "https://launcher-files.modrinth.com/versions/0.6.3/linux/modrinth-app_0.6.3_amd64.AppImage";
-      #     sha256 = "sha256-MlYU3I4syM199J6zW+WeLBnMowUdf09KqPJAE1sY7kU=";
-      #   };
-      # })
+      modrinth-app
 
       musescore
       ardour
