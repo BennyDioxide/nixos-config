@@ -152,6 +152,7 @@
           ++ [
             "$mainMod, P, pseudo," # dwindle
             "$mainMod, J, togglesplit," # dwindle
+            "$mainMod, F, fullscreen,"
             "$mainMod, L, exec, wlogout"
             ", Print, exec, nu -c \"grim -g (slurp) - | wl-copy\""
             # Move focus with mainMod + arrow keys
