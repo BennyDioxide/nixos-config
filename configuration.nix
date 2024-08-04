@@ -194,6 +194,9 @@
     elisa
   ];
 
+  # Enable Hyprland in sddm
+  programs.hyprland.enable = true;
+
   hardware.opengl = {
     enable = true;
     # driSupport = true;
