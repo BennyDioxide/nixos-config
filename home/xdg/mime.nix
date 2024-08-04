@@ -32,6 +32,7 @@
         "x-scheme-handler/logseq" = [ "logseq.desktop" ];
         "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
         "x-scheme-handler/vlc" = [ "vlc.desktop" ];
+        "x-scheme-handler/mpv" = [ "mpv.desktop" ];
       };
   };
 }
