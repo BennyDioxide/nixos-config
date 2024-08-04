@@ -31,6 +31,7 @@
         "x-scheme-handler/jetbrains" = [ "jetbrains-toolbox.desktop" ];
         "x-scheme-handler/logseq" = [ "logseq.desktop" ];
         "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
+        "x-scheme-handler/vlc" = [ "vlc.desktop" ];
       };
   };
 }
