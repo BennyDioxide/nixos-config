@@ -117,7 +117,8 @@
   ];
 
   i18n.inputMethod = {
-    enabled = "fcitx5";
+    enable = true;
+    type = "fcitx5";
     fcitx5 = {
       addons = with pkgs; [
         fcitx5-rime
@@ -200,10 +201,9 @@
   # Enable Hyprland in sddm
   programs.hyprland.enable = true;
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    # driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
     extraPackages = with pkgs; [
       vaapiVdpau
       libvdpau-va-gl
