@@ -187,13 +187,18 @@
     enable = true;
     excludePackages = with pkgs; [ xterm ];
   };
+
+  services.displayManager = {
+    defaultSession = "hyprland";
+    autoLogin = {
+      enable = true;
+      user = "benny";
+    };
+  };
+
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
-    settings.Autologin = {
-      Session = "hyprland.desktop";
-      User = "benny";
-    };
   };
 
   services.desktopManager.plasma6.enable = true;
