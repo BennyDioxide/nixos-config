@@ -13,6 +13,7 @@
     ./vscode.nix
     ./java.nix
     ./gtk.nix
+    ../modules/home
   ];
 
   home.username = "benny";
@@ -254,6 +255,10 @@
   programs.yazi = {
     enable = true;
     enableNushellIntegration = true;
+  };
+
+  programs.mpv-handler = {
+    enable = true;
   };
 
   qt = {
