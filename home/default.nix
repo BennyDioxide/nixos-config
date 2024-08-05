@@ -62,6 +62,7 @@
       nixpkgs-fmt
       nvd
       nix-tree
+      nix-init
       file
       gojq
       inshellisense
