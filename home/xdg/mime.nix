@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
   xdg.mimeApps = {
@@ -11,27 +11,45 @@
 
     defaultApplications =
       let
+        genAttrs' =
+          list: namef: attrf:
+          with lib;
+          listToAttrs (map (item: nameValuePair (namef item) (attrf item)) list);
         # browser = [ "brave-browser.desktop" ];
         browser = [ "firefox.desktop" ];
         osuLazer = "osu!.desktop";
       in
       {
-        "x-scheme-handler/about" = browser;
-        "x-scheme-handler/ftp" = browser;
-        "x-scheme-handler/http" = browser;
-        "x-scheme-handler/https" = browser;
+        "text/html" = browser;
+        "application/xhtml+xml" = browser;
 
-        "application/x-osu-beatmap-archive" = osuLazer;
-        "application/x-osu-skin-archive" = osuLazer;
-        "application/x-osu-beatmap" = osuLazer;
-        "application/x-osu-storyboard" = osuLazer;
-        "application/x-osu-replay" = osuLazer;
-
-        "x-scheme-handler/discord" = [ "discord.desktop" ];
         "x-scheme-handler/jetbrains" = [ "jetbrains-toolbox.desktop" ];
-        "x-scheme-handler/logseq" = [ "logseq.desktop" ];
         "x-scheme-handler/tg" = [ "org.telegram.desktop.desktop" ];
-        "x-scheme-handler/vlc" = [ "vlc.desktop" ];
-      };
+      }
+      // genAttrs' [
+        "about"
+        "ftp"
+        "http"
+        "https"
+      ] (x: "x-scheme-handler/${x}") (_: browser)
+      // genAttrs' [
+        "htm"
+        "html"
+        "shtml"
+        "xhtml"
+        "xht"
+      ] (x: "application/x-extension-${x}") (_: browser)
+      // genAttrs' [
+        "beatmap-archive"
+        "skin-archive"
+        "beatmap"
+        "storyboard"
+        "replay"
+      ] (x: "application/x-osu-${x}") (_: osuLazer)
+      // genAttrs' [
+        "discord"
+        "logseq"
+        "vlc"
+      ] (x: "x-scheme-handler/${x}") (x: [ "${x}.desktop" ]);
   };
 }
