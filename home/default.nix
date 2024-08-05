@@ -257,9 +257,7 @@
     enableNushellIntegration = true;
   };
 
-  programs.mpv-handler = {
-    enable = true;
-  };
+  programs.mpv-handler.enable = true;
 
   qt = {
     enable = true;
