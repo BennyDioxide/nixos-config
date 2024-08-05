@@ -42,6 +42,7 @@
       pkgs-configuration = {
         inherit system;
         config.allowUnfree = true;
+        overlays = [ (final: prev: import ./pkgs prev) ];
       };
       system = "x86_64-linux";
       extraSpecialArgs = {
@@ -70,7 +71,7 @@
             home.packages = [ pkgs.rust-bin.stable.latest.default ];
           })
         ];
-        pkgs = nixpkgs.legacyPackages.${system};
+        pkgs = import nixpkgs pkgs-configuration;
       };
     };
 }
