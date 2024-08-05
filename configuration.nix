@@ -41,6 +41,7 @@
         useOSProber = true;
       };
     };
+    plymouth.enable = true;
     supportedFilesystems = [ "ntfs" ];
   };
 
