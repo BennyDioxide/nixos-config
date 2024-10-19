@@ -5,6 +5,7 @@
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
+    sarasa-gothic
     (nerdfonts.override {
       fonts = [
         "FiraCode"
@@ -22,7 +23,10 @@
       defaultFonts = {
         sansSerif = [ "Noto Sans CJK JP" ];
         serif = [ "Noto Serif CJK JP" ];
-        monospace = [ "JetBrainsMono Nerd Font" "Noto Sans Mono CJK JP" ];
+        monospace = [
+          "JetBrainsMono Nerd Font"
+          "Sarasa Mono JP"
+        ];
         emoji = [ "Twemoji" ];
       };
     };
