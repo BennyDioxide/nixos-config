@@ -25,7 +25,7 @@
         serif = [ "Noto Serif CJK JP" ];
         monospace = [
           "JetBrainsMono Nerd Font"
-          "Sarasa Mono JP"
+          "Sarasa Mono J"
         ];
         emoji = [ "Twemoji" ];
       };
