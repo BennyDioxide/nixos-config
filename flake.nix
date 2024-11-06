@@ -58,20 +58,34 @@
         modules = [
           ./configuration.nix
 
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = specialArgs;
+              users.benny = import ./home;
+            };
+          }
         ];
       };
-      homeConfigurations.benny = home-manager.lib.homeManagerConfiguration {
-        inherit extraSpecialArgs;
-        modules = [
-          ./home
-          ({ pkgs, ... }: {
-            nixpkgs.overlays = [
-              rust-overlay.overlays.default
-            ];
-            home.packages = [ pkgs.rust-bin.stable.latest.default ];
-          })
-        ];
-        pkgs = import nixpkgs pkgs-configuration;
-      };
+      #   homeConfigurations.benny = home-manager.lib.homeManagerConfiguration {
+      #     inherit extraSpecialArgs;
+      #     modules = [
+      #       ./home
+      #       (
+      #         { pkgs, ... }:
+      #         {
+      #           nixpkgs.overlays = [
+      #             rust-overlay.overlays.default
+      #             # autin.overlays.default
+      #             helix.overlays.default
+      #           ];
+      #           home.packages = [ pkgs.rust-bin.stable.latest.default ];
+      #         }
+      #       )
+      #     ];
+      #     pkgs = import nixpkgs pkgs-configuration;
+      #   };
     };
 }
