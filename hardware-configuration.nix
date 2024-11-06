@@ -8,6 +8,10 @@
   ...
 }:
 
+let
+  persistent = "/nix/persistent";
+  nvme0n1p6 = "/dev/disk/by-uuid/23a8c46d-b26f-4d98-bedd-d659b0c25413";
+in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -26,8 +30,18 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/23a8c46d-b26f-4d98-bedd-d659b0c25413";
+    device = "tmpfs";
+    fsType = "tmpfs";
+    options = [
+      "relatime"
+      "mode=755"
+    ];
+  };
+
+  fileSystems.${persistent} = {
+    device = nvme0n1p6;
     fsType = "btrfs";
+    neededForBoot = true;
     options = [
       "subvol=@nixos"
       "compress=zstd"
@@ -47,10 +61,28 @@
     };
 
   fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/23a8c46d-b26f-4d98-bedd-d659b0c25413";
+    device = nvme0n1p6;
     fsType = "btrfs";
     options = [
       "subvol=@home"
+      "compress=zstd"
+    ];
+  };
+
+  fileSystems."/var/log" = {
+    device = nvme0n1p6;
+    fsType = "btrfs";
+    options = [
+      "subvol=@log"
+      "compress=zstd"
+    ];
+  };
+
+  fileSystems."/var/cache" = {
+    device = nvme0n1p6;
+    fsType = "btrfs";
+    options = [
+      "subvol=@cache"
       "compress=zstd"
     ];
   };
@@ -71,6 +103,36 @@
   };
 
   swapDevices = [ ];
+
+  environment.persistence.${persistent} = {
+    hideMounts = true;
+
+    directories = [
+      "/etc/NetworkManager/system-connections"
+      "/root"
+      "/var"
+    ];
+
+    files = [
+      "/etc/machine-id"
+      # "/etc/ssh/ssh_host_ed25519_key.pub"
+      # "/etc/ssh/ssh_host_ed25519_key"
+      # "/etc/ssh/ssh_host_rsa_key.pub"
+      # "/etc/ssh/ssh_host_rsa_key"
+    ];
+
+    users.benny = {
+
+    };
+  };
+
+  systemd.services.nix-daemon = {
+    environment.TMPDIR = "/var/cache/nix"; # Where Nix Daemon evaluates derivation
+    serviceConfig.CacheDirectory = "nix"; # Automatically create /var/cache/nix when Nix Daemon starts
+  };
+
+  # Forces root user use nix daemon
+  environment.variables.NIX_REMOTE = "daemon";
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

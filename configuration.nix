@@ -102,7 +102,10 @@
       "adbusers" # Use adb without privileges
       "audio" # Musnix
     ];
+    hashedPassword = "$y$j9T$GMklPzea3Rd5zj48qqJEj0$tZ4IoTGPALA8S5HCtVwkuYvVUkOUmKM7jPiim14kg38";
   };
+
+  users.users.root.hashedPassword = "$y$j9T$jrT0uHVlo0mJwIL/2q4sV/$clddNgUJGUqn4md5Og6Oue1xcfuJqa2PO4oha46wxi3";
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
