@@ -27,11 +27,6 @@ $env.NU_PLUGIN_DIRS = [
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
-$env.PNPM_HOME = ($nu.home-path | path join .local/share/pnpm)
-$env.ANDROID_HOME = ($nu.home-path | path join Android/Sdk)
-$env.EDITOR = 'hx'
-# $env.NIX_PROFILES = $"($env.HOME)/.nix-profile"
-
 $env.PATH = ($env.PATH | split row (char esep) | prepend [
     $env.PNPM_HOME
     # ($env.ANDROID_HOME | path join platform-tools)

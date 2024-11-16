@@ -3,7 +3,7 @@
 {
   imports = [
     ./xdg
-    ./nu
+    ./shell
     ./wm
     ./font.nix
     ./kitty.nix
@@ -163,7 +163,6 @@
       # lapce
       # warp-terminal
       # (callPackage ../pkgs/warp-terminal { })
-      zsh
       thefuck
       sheldon # zsh stuff for using warp
       (hiPrio clang)
@@ -225,37 +224,6 @@
       yabridge
       yabridgectl
     ];
-
-  programs.starship = {
-    enable = true;
-    enableNushellIntegration = true;
-    settings = { };
-  };
-
-  programs.carapace = {
-    enable = true;
-    enableNushellIntegration = true;
-  };
-
-  programs.zoxide = {
-    enable = true;
-    enableNushellIntegration = true;
-  };
-
-  programs.atuin = {
-    enable = true;
-    enableNushellIntegration = true;
-  };
-
-  programs.broot = {
-    enable = true;
-    enableNushellIntegration = true;
-  };
-
-  programs.yazi = {
-    enable = true;
-    enableNushellIntegration = true;
-  };
 
   programs.mpv-handler.enable = true;
 
