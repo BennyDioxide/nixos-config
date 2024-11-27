@@ -142,6 +142,8 @@
     package = pkgs.firefox-bin;
     preferences = {
       "widget.use-xdg-desktop-portal.file-picker" = 1;
+      "dom.webgpu.enabled" = true;
+      "gfx.webgpu.force-enabled" = true;
     };
   };
 
