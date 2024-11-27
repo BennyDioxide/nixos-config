@@ -28,6 +28,8 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
+    # Enable suspend/wakeup
+    kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
     extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
     loader = {
       efi = {
@@ -223,7 +225,8 @@
     enable = true;
     enable32Bit = true;
     extraPackages = with pkgs; [
-      vaapiVdpau
+      # vaapiVdpau
+      nvidia-vaapi-driver
       libvdpau-va-gl
     ];
   };
@@ -233,6 +236,8 @@
 
   hardware.nvidia = {
     modesetting.enable = true;
+
+    powerManagement.enable = true;
 
     # Nvidia Open Source driver. False is recommanded
     open = false;

@@ -32,10 +32,8 @@
         env = [
           # Nvidia
           "LIBVA_DRIVER_NAME,nvidia"
-          "XDG_SESSION_TYPE,wayland"
-          "GBM_BACKEND,nvidia-drm"
           "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-          "WLR_NO_HARDWARE_CURSORS,1"
+          "NVD_BACKEND,direct" # nvidia-vaapi-driver
 
           # "XDG_CURRENT_DESKTOP,KDE"
           "QT_QPA_PLATFORM,wayland"
@@ -60,6 +58,9 @@
           sensitivity = 0;
           
           numlock_by_default = true;
+        };
+        cursor = {
+          no_hardware_cursors = true;
         };
         general = {
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
