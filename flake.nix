@@ -66,7 +66,12 @@ rec {
       pkgs-configuration = {
         inherit system;
         config.allowUnfree = true;
-        overlays = [ (final: prev: import ./pkgs prev) ];
+        overlays = [
+          rust-overlay.overlays.default
+          # autin.overlays.default
+          helix.overlays.default
+          (final: prev: import ./pkgs prev)
+        ];
       };
       system = "x86_64-linux";
       extraSpecialArgs = {
