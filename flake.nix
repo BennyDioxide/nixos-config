@@ -61,6 +61,7 @@
           impermanence.nixosModules.impermanence
           ./hardware-configuration.nix
           ./configuration.nix
+          niri.nixosModules.niri
 
           home-manager.nixosModules.home-manager
           {

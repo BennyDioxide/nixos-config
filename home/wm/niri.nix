@@ -6,7 +6,6 @@
 }:
 
 {
-  imports = [ inputs.niri.homeModules.niri ];
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
 
   home.packages = [ pkgs.niri-stable ];
