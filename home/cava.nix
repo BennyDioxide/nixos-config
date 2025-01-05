@@ -37,7 +37,6 @@
         # bar_width = 1
         # bar_spacing = 0
 
-
         # Lower and higher cutoff frequencies for lowest and highest bars
         # the bandwidth of the visualizer.
         # Note: there is a minimum total bandwidth of 43Mhz x number of bars.
@@ -45,12 +44,11 @@
         # lower_cutoff_freq = 50
         # higher_cutoff_freq = 10000
 
-
         # Seconds with no input before cava goes to sleep mode. Cava will not perform FFT or drawing and
         # only check for input once per second. Cava will wake up once input is detected. 0 = disable.
         # sleep_timer = 0
       };
-      
+
       input = {
         # Audio capturing method. Possible methods are: 'pulse', 'alsa', 'fifo', 'sndio' or 'shmem'
         # Defaults to 'pulse', 'pipewire', 'alsa' or 'fifo', in that order, dependent on what support cava was built with.
@@ -177,7 +175,6 @@
         # background = '#111111'
         # foreground = '#33ffff'
 
-
         # Gradient mode, only hex defined colors are supported,
         # background must also be defined in hex or remain commented out. 1 = on, 0 = off.
         # You can define as many as 8 different colors. They range from bottom to top of screen
@@ -207,7 +204,6 @@
         # Accepts only non-negative values. 50 means half gravity, 200 means double. Set to 0 to disable "drop off".
         # DEPRECATED as of 0.8.0, use noise_reduction instead
         # gravity = 100
-
 
         # In bar height, bars that would have been lower that this will not be drawn.
         # DEPRECATED as of 0.8.0
