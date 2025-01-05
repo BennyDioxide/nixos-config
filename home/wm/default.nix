@@ -3,7 +3,7 @@
 {
   imports = [
     ./hypr.nix
-    ./niri.nix
+    # ./niri.nix
     inputs.ags.homeManagerModules.default
   ];
 
@@ -11,7 +11,7 @@
     fuzzel
     swww
     wl-clipboard
-    xwayland-run
+    # xwayland-run
     grim
     slurp
     hyprpicker
