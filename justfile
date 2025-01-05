@@ -2,7 +2,7 @@ set shell := [ "nu", "-c" ]
 
 alias s := switch
 alias sh := switch-home
-alias u := update-nixpkgs
+alias u := update
 alias ua := update-all-inputs
 alias gc := clean
 alias c := clean
@@ -10,10 +10,10 @@ alias ca := clean-all
 alias op := optimise
 alias optimize := optimise
 
-default: switch-home
+default: switch
 
 switch:
-	nh os switch . --ask
+	nh os switch . --ask -- --accept-flake-config
 # sudo nixos-rebuild switch --flake .#benny-nixos
 
 switch-home:
@@ -28,12 +28,12 @@ update-all-inputs:
 	nix flake update
 
 update-nixpkgs:
-    nix flake lock --update-input nixpkgs
-#	nix flake update nixpkgs
+	nix flake update nixpkgs
+#     nix flake lock --update-input nixpkgs
 
 update-nixpkgs-master:
-    nix flake lock --update-input nixpkgs-master
-#	nix flake update nixpkgs-master
+	nix flake update nixpkgs-master
+#    nix flake lock --update-input nixpkgs-master
 
 update: update-nixpkgs switch
 
@@ -44,10 +44,10 @@ clean:
 gc-legacy:
 	sudo nix-collect-garbage -d
 
-_clean-all:
+clean-all:
     nh clean all
 
-clean-all: _clean-all reinstall-hm
+# clean-all: _clean-all switch-home
 
 optimise:
 	nix store optimise
