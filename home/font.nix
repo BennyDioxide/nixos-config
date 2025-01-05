@@ -7,12 +7,16 @@
     noto-fonts-cjk-serif
     noto-fonts-emoji
     sarasa-gothic
-    (nerdfonts.override {
-      fonts = [
-        "FiraCode"
-        "JetBrainsMono"
-      ];
-    })
+    # After 25.05 nerdfonts has been seperated under nerd-fonts namespace
+    # To list all fonts use `builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts)`
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.fira-code
+    # (nerdfonts.override {
+    #   fonts = [
+    #     "FiraCode"
+    #     "JetBrainsMono"
+    #   ];
+    # })
     jetbrains-mono
     fira-math
     twemoji-color-font
