@@ -23,6 +23,8 @@
       url = "github:Kirottu/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    musnix.url = "github:musnix/musnix";
+    musnix.inputs.nixpkgs.follows = "nixpkgs";
     helix.url = "helix/24.03";
     rust-overlay.url = "github:oxalica/rust-overlay";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
@@ -61,6 +63,7 @@
           impermanence.nixosModules.impermanence
           ./hardware-configuration.nix
           ./configuration.nix
+          musnix.nixosModules.musnix
           niri.nixosModules.niri
 
           home-manager.nixosModules.home-manager
