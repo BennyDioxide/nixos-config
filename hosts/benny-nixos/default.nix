@@ -11,7 +11,9 @@
 }:
 
 {
-  nix.settings = {
+  imports = [ ./hardware-configuration.nix ];
+
+  {
     experimental-features = [ "nix-command" "flakes" ];
     auto-optimise-store = true;
   };

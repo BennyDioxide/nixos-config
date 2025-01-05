@@ -103,8 +103,7 @@ rec {
 
         modules = [
           impermanence.nixosModules.impermanence
-          ./hardware-configuration.nix
-          ./configuration.nix
+          ./hosts/benny-nixos
           ./modules
           musnix.nixosModules.musnix
           niri.nixosModules.niri
