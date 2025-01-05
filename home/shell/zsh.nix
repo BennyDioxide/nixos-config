@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs.zsh = {
@@ -6,6 +6,28 @@
     autocd = true;
     enableCompletion = true;
     autosuggestion.enable = true;
+    initExtraFirst = ''
+      autoload -U select-word-style
+      select-word-style bash
+    '';
+    initExtra = ''
+      setopt correct extendedglob
+
+      function mkcd() {
+        mkdir $1 && cd $1
+      }
+
+      # bindkey "^[[1;5C" forward-word # Ctrl+Right
+      # bindkey "^[[31;5D" backward-word # Ctrl+Left
+      # bindkey "^H" backward-kill-word # Ctrl+Backspace
+      # bindkey "^[[3~;5~" kill-word # Ctrl+Delete
+    '';
+    shellAliases = {
+      ls = "eza --icons";
+      la = "ls -a";
+      ll = "ls -al";
+      mpv-pixel = "mpv --really-quiet -vo=tct";
+    };
     plugins = with pkgs; [
       {
         name = "fast-syntax-highlighting";
