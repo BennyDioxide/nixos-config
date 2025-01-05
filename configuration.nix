@@ -2,17 +2,19 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
-  }; 
+    auto-optimise-store = true;
+  };
 
   nixpkgs.config.allowUnfree = true;
 
@@ -31,16 +33,25 @@
         devices = [ "nodev" ];
         efiSupport = true;
         useOSProber = true;
+        theme = pkgs.sleek-grub-theme;
+        configurationLimit = 10;
       };
     };
     plymouth.enable = true;
-    supportedFilesystems = [ "ntfs" ];
+    supportedFilesystems = [
+      "ntfs"
+      "bcachefs"
+    ];
   };
 
-  # networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "benny-nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  # Bluetooth is unusable
+  # hardware.bluetooth.enable = true;
+  # hardware.bluetooth.powerOnBoot = true;
+  # services.blueman.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Taipei";
@@ -83,6 +94,8 @@
   # Musnix
   musnix.enable = true;
 
+  security.polkit.enable = true;
+
   programs.adb.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -107,15 +120,39 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    neovim
     helix
     wget
     git
+    nushell # no dataframe
+    zellij
+    btop
+    bottom
+    # procmon
+    broot
+    yazi
+    nnn
+    eza
+    tealdeer
+    bat
+    ripgrep
+    fd
+    fzf
+    git
+    via
     just
     nh
+    nvtopPackages.nvidia
+    duperemove
+
+    kdePackages.partitionmanager
+  ];
+
+  programs.zsh.enable = true;
+
+  environment.shells = with pkgs; [
     zsh
     nushell
-    # inputs.helix.packages.${system}.helix
-    inputs.anyrun.packages.${system}.anyrun
   ];
 
   i18n.inputMethod = {
@@ -134,13 +171,15 @@
 
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox-bin;
+    package = pkgs.firefox;
     preferences = {
       "widget.use-xdg-desktop-portal.file-picker" = 1;
       "dom.webgpu.enabled" = true;
       "gfx.webgpu.force-enabled" = true;
     };
   };
+
+  programs.wireshark.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -185,6 +224,13 @@
       to = 1764;
     }
   ];
+  # services.aria2.enable = true;
+  # services.aria2.openPorts = true;
+  # services.aria2.rpcSecretFile = "/run/secrets/aria2-rpc-token.txt";
+
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
 
   services.xserver = {
     enable = true;
@@ -192,7 +238,7 @@
   };
 
   services.displayManager = {
-    defaultSession = "hyprland";
+    defaultSession = "plasma"; # "hyprland";
     autoLogin = {
       enable = true;
       user = "benny";
@@ -238,7 +284,6 @@
 
     # Nvidia Open Source driver. False is recommanded
     open = false;
-  
 
     nvidiaSettings = true;
 
@@ -253,6 +298,7 @@
   };
 
   virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.qemu.ovmf.packages = [ pkgs.OVMFFull.fd ];
   programs.virt-manager.enable = true;
 
   virtualisation.docker = {
@@ -265,11 +311,16 @@
     };
   };
 
+  # virtualisation.waydroid.enable = true;
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
+
+  hardware.keyboard.qmk.enable = true;
+  services.udev.packages = [ pkgs.via ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
