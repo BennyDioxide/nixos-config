@@ -103,6 +103,7 @@
       "kvm" # Hardware accelerated vm
       "adbusers" # Use adb without privileges
       "audio" # Musnix
+      "docker"
     ];
     hashedPassword = "$y$j9T$GMklPzea3Rd5zj48qqJEj0$tZ4IoTGPALA8S5HCtVwkuYvVUkOUmKM7jPiim14kg38";
   };
@@ -259,6 +260,16 @@
 
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
+
+  virtualisation.docker = {
+    enable = true;
+    enableNvidia = true;
+    storageDriver = "btrfs";
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
 
   programs.steam = {
     enable = true;
