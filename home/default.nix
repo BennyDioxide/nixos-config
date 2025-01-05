@@ -55,6 +55,12 @@
 
   home.file.".cargo/config.toml".source = (pkgs.formats.toml { }).generate "cargo-config" {
     # build."rustc-wrapper" = "${pkgs.sccache}/bin/sccache";
+    target.wasm32-unknown-unknown.runner = "${pkgs.wasm-pack}/bin/wasm-server-runner";
+    target.x86_64-unknown-linux-gnu.linker = "${pkgs.clang}/bin/clang";
+    target.x86_64-unknown-linux-gnu.rustflags = [
+      "-C"
+      "link-arg=-fuse-ld=${pkgs.mold-wrapped}/bin/mold"
+    ];
   };
 
   home.packages =
