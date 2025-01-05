@@ -41,6 +41,16 @@
 
   systemd.user.sessionVariables = {
     NIXPKGS_ALLOW_UNFREE = 1;
+    PKG_CONFIG_PATH =
+      with pkgs;
+      lib.lists.foldl (a: b: "${a}:${b}/lib/pkgconfig") "~/.nix-profile/lib/pkgconfig" [
+        xdotool
+        (alsa-lib.dev)
+        (udev.dev)
+        (wayland.dev)
+        (libxkbcommon.dev)
+        (openssl.dev)
+      ];
   };
 
   home.file.".cargo/config.toml".source = (pkgs.formats.toml { }).generate "cargo-config" {
