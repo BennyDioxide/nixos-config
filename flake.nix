@@ -66,6 +66,14 @@ rec {
       pkgs-configuration = {
         inherit system;
         config.allowUnfree = true;
+        config.permittedInsecurePackages = [
+          "electron-27.3.11" # EOL
+          "dotnet-sdk-7.0.410" # EOL
+          "dotnet-sdk-wrapped-7.0.410" # EOL
+          "dotnet-runtime-7.0.20" # EOL
+          "dotnet-runtime-wrapped-7.0.20" # EOL
+        ];
+        # config.permittedInsecurePackages = [ "electron-28.3.3" ];
         overlays = [
           rust-overlay.overlays.default
           # autin.overlays.default
