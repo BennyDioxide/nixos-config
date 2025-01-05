@@ -88,7 +88,6 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.benny = {
     isNormalUser = true;
-    shell = pkgs.nushell;
     extraGroups = [
       "wheel" # Enable ‘sudo’ for the user.
       "network"
@@ -97,6 +96,8 @@
       "audio" # Musnix
       "docker"
     ];
+    shell = pkgs.zsh;
+    # shell = pkgs.nushell; # dataframe was gone
     hashedPassword = "$y$j9T$GMklPzea3Rd5zj48qqJEj0$tZ4IoTGPALA8S5HCtVwkuYvVUkOUmKM7jPiim14kg38";
   };
 
@@ -111,6 +112,7 @@
     git
     just
     nh
+    zsh
     nushell
     # inputs.helix.packages.${system}.helix
     inputs.anyrun.packages.${system}.anyrun
