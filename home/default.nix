@@ -1,10 +1,11 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [
     ./xdg
     ./shell
     ./wm
+    ./mpv
     ./font.nix
     ./kitty.nix
     ./cava.nix
@@ -19,7 +20,7 @@
   home.username = "benny";
   home.homeDirectory = "/home/benny";
 
-  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfree = true;
 
   programs.git = {
     enable = true;
@@ -41,6 +42,10 @@
 
   systemd.user.sessionVariables = {
     NIXPKGS_ALLOW_UNFREE = 1;
+    NIX_BUILD_SHELL = "zsh";
+    LIBCLANG_PATH = "${pkgs.libclang.lib}/lib";
+    GTK_USE_PORTAL = 1;
+    # QT_QPA_PLATFORMTHEME = "xdgdesktopportal";
     PKG_CONFIG_PATH =
       with pkgs;
       lib.lists.foldl (a: b: "${a}:${b}/lib/pkgconfig") "~/.nix-profile/lib/pkgconfig" [
@@ -72,6 +77,7 @@
       gnumake
       cmake
       extra-cmake-modules
+      bazel
       ninja
       gettext
       mise
@@ -79,46 +85,62 @@
       nixpkgs-fmt
       nvd
       nix-tree
-      nix-init
+      # nix-init
       file
       gojq
       inshellisense
       appimage-run
       unzip
       p7zip
+      trash-cli
       hyperfine
-      xh
-      manim
+      navi
+      # manim
       # renpy
       # (callPackage ../pkgs/kde-material-you-colors {})
+      python311
+      (hiPrio python3)
       (python3.withPackages (
         py-pkgs: with py-pkgs; [
           ipython
           material-color-utilities
           pywal
           transformers
-          streamlit
+          # streamlit
         ]
       ))
       pipx
       poetry
       qmk
       direnv
-      cargo-sweep
+      # cargo-sweep
+      wasm-pack
+
+      fortune
+      pipes
+      cmatrix
+      cowsay
+      figlet
+      cbonsai
 
       aria2
+      xh
       yt-dlp
+      ytarchive
       ffmpeg
-      mpv
       vlc
+      audacity
       # spotify
       # spotifyd
       # spotify-tui # Removed at Mar 12, 2024, 6:14 PM GMT+8
       qpwgraph
       jamesdsp
       playerctl
+      # davinci-resolve
 
       libreoffice
+      texlive.combined.scheme-full
+      texstudio
       pandoc
 
       wayland-utils
@@ -133,7 +155,6 @@
 
       obs-studio
       dex
-      cava
     ]
     ++ (with libsForQt5; [
       breeze-qt5
@@ -150,16 +171,30 @@
       (discord.override { withVencord = true; })
       kitty
       anki-bin
-      blender
+      # blender
       blockbench
       brave
-      # logseq
+      # (
+      #   let
+      #     pname = "logseq";
+      #     version = "0.10.10-alpha+nightly.20240815";
+      #   in
+      #   (logseq.override { electron = electron_28; }).overrideAttrs {
+      #     inherit pname version;
+      #     src = fetchurl {
+      #       url = "https://github.com/logseq/logseq/releases/download/nightly/logseq-linux-x64-${version}.AppImage";
+      #       hash = "sha256-SeEBS1wGnHH0dJ9h4sMl+zFiTk2GDZXNItqasFFTcIQ=";
+      #       name = "${pname}-${version}.AppImage";
+      #     };
+      #   }
+      # )
+      logseq
       # geogebra
       telegram-desktop
-      element-desktop
+      # element-desktop
       rustdesk
       scrcpy
-      # localsend
+      localsend
       filelight
       # (callPackage appimageTools.wrapType2 {
       #   name = "oxwu";
@@ -175,23 +210,37 @@
       krita
       inkscape
 
+      # Development
+
       jetbrains-toolbox
+      # jetbrains.rust-rover
+      # jetbrains.rider
+      # jetbrains.clion
+      # jetbrains.pycharm-professional
+      # jetbrains.pycharm-community
+      # jetbrains.idea-professional
+      # jetbrains.idea-community
+      # android-studio-full
+      # androidStudioPackages.beta
+
       # lapce
-      # warp-terminal
-      # (callPackage ../pkgs/warp-terminal { })
+      neovide
+      warp-terminal
       thefuck
       sheldon # zsh stuff for using warp
       (hiPrio clang)
-      # libclang
-      # libllvm
       lldb
       gcc
+      clang-tools
+      mold-wrapped # making it able to find libraries
+      vscode-extensions.vadimcn.vscode-lldb
+      # rust-bin
       (hiPrio rustup)
       pkg-config
       libGL
       dioxus-cli
-      # (hiPrio dotnet-sdk)
-      # dotnet-sdk_7
+      (hiPrio dotnet-sdk)
+      dotnet-sdk_7
       nodejs
       yarn
       nodePackages.pnpm
@@ -200,6 +249,8 @@
       haskell-language-server
       nixd
       nil
+      nix-direnv
+      devenv
       gradle
       clojure
       clojure-lsp
@@ -209,7 +260,7 @@
       zls
       bqn
       pyright
-      vscode-langservers-extracted # nodePackages.vscode-json-languageserver-bin
+      # vscode-langservers-extracted # nodePackages.vscode-json-languageserver-bin
       nodePackages.typescript-language-server
       # lua54Packages.luasocket # For ~/.config/fcitx5/addon/kanata/lib.lua
 
@@ -226,15 +277,8 @@
       sunvox
       famistudio
       lmms
-      # (callPackage appimageTools.wrapType2 rec {
-      #   name = "lmms-appimage";
-      #   version = "1.2.2";
-      #   src = fetchurl {
-      #     url = "https://github.com/LMMS/lmms/releases/download/v${version}/lmms-${version}-linux-x86_64.AppImage";
-      #     sha256 = "sha256-bNxFoGmbjNhSlcSbysA/zObz2P/X2iPWRtDLQliGm3Y=";
-      #   };
-      # })
       bespokesynth-with-vst2
+      drumgizmo
       lsp-plugins
       zam-plugins
       yabridge
