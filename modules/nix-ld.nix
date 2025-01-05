@@ -40,6 +40,10 @@
         vulkan-loader
         vips
         xdotool
+        xorg.libX11
+        xorg.libXcursor
+        xorg.libxcb
+        xorg.libXi
         zlib
       ];
     };
