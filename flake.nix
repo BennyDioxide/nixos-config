@@ -31,8 +31,7 @@ rec {
   };
 
   inputs = {
-    nixpkgs.url =
-      "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-master.url = "nixpkgs/master";
     home-manager = {
       url = "home-manager/master";
@@ -40,14 +39,19 @@ rec {
     };
     impermanence.url = "github:nix-community/impermanence";
     anyrun = {
-      url = "github:Kirottu/anyrun";
+      url = "github:anyrun-org/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     musnix.url = "github:musnix/musnix";
     musnix.inputs.nixpkgs.follows = "nixpkgs";
     helix.url = "helix/24.03";
     rust-overlay.url = "github:oxalica/rust-overlay";
+    autin.url = "github:atuinsh/atuin";
+    # hyprland.url = "github:hyprwm/Hyprland";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    stylix.url = "github:danth/stylix";
+    ags.url = "github:Aylur/ags";
+    niri.url = "github:sodiboo/niri-flake";
     end-4_dots-hyprland = {
       url = "github:BennyDioxide/dots-hyprland";
       flake = false;
@@ -55,12 +59,18 @@ rec {
   };
 
   outputs =
-    inputs@{ nixpkgs
-    , nixpkgs-master
-    , home-manager
-    , rust-overlay
-    , ...
+    inputs@{
+      nixpkgs,
+      nixpkgs-master,
       impermanence,
+      home-manager,
+      musnix,
+      rust-overlay,
+      autin,
+      helix,
+      niri,
+      stylix,
+      ...
     }:
     let
       pkgs-configuration = {
@@ -82,22 +92,23 @@ rec {
         ];
       };
       system = "x86_64-linux";
-      extraSpecialArgs = {
+      specialArgs = {
         inherit inputs;
         pkgs-master = import nixpkgs-master pkgs-configuration;
       };
     in
     {
-      nixosConfigurations."benny-nixos" = nixpkgs.lib.nixosSystem rec {
-        inherit system;
+      nixosConfigurations."benny-nixos" = nixpkgs.lib.nixosSystem {
+        inherit system specialArgs;
 
-        specialArgs = extraSpecialArgs;
         modules = [
           impermanence.nixosModules.impermanence
           ./hardware-configuration.nix
           ./configuration.nix
+          ./modules
           musnix.nixosModules.musnix
           niri.nixosModules.niri
+          # stylix.nixosModules.stylix
           (
             { pkgs, ... }:
 
