@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
   programs.helix = {
@@ -10,7 +10,10 @@
         cursorline = true;
         line-number = "relative";
         rulers = [ 80 ];
-        shell = [ "nu" "-c" ];
+        shell = [
+          "nu"
+          "-c"
+        ];
         bufferline = "always";
 
         cursor-shape = {
@@ -24,10 +27,12 @@
 
       };
     };
-    languages.language = [{
-      name = "nix";
-      auto-format = true;
-      formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
-    }];
+    languages.language = [
+      {
+        name = "nix";
+        auto-format = true;
+        formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+      }
+    ];
   };
 }

@@ -4,21 +4,12 @@
 
 {
   config,
-  lib,
   pkgs,
-  inputs,
   ...
 }:
 
 {
   imports = [ ./hardware-configuration.nix ];
-
-  {
-    experimental-features = [ "nix-command" "flakes" ];
-    auto-optimise-store = true;
-  };
-
-  nixpkgs.config.allowUnfree = true;
 
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;

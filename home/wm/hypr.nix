@@ -1,7 +1,8 @@
-{ lib
-, pkgs
-, inputs
-, ...
+{
+  lib,
+  pkgs,
+  inputs,
+  ...
 }:
 
 {
@@ -56,7 +57,7 @@
 
           touchpad.natural_scroll = false;
           sensitivity = 0;
-          
+
           numlock_by_default = true;
         };
         cursor = {
@@ -163,20 +164,18 @@
             "$mainMod, down, movefocus, d"
           ]
           ++ flatten (
-            map
-              (
-                ws:
-                let
-                  key = toString (lib.trivial.mod ws 10);
-                in
-                [
-                  # Switch workspaces with mainMod + [0-9]
-                  "$mainMod, ${key}, workspace, ${toString ws}"
-                  # Move active window to a workspace with mainMod + SHIFT + [0-9]
-                  "$mainMod SHIFT, ${key}, movetoworkspace, ${toString ws}"
-                ]
-              )
-              (range 1 10)
+            map (
+              ws:
+              let
+                key = toString (lib.trivial.mod ws 10);
+              in
+              [
+                # Switch workspaces with mainMod + [0-9]
+                "$mainMod, ${key}, workspace, ${toString ws}"
+                # Move active window to a workspace with mainMod + SHIFT + [0-9]
+                "$mainMod SHIFT, ${key}, movetoworkspace, ${toString ws}"
+              ]
+            ) (range 1 10)
           )
           ++ [
             # Scroll through existing workspaces with mainMod + scroll

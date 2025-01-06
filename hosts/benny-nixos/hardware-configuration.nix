@@ -121,9 +121,7 @@ in
       # "/etc/ssh/ssh_host_rsa_key"
     ];
 
-    users.benny = {
-
-    };
+    users.benny = { };
   };
 
   systemd.services.nix-daemon = {

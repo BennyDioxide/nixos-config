@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   xdg.portal =
@@ -17,10 +17,16 @@
       configPackages = portals;
       config = {
         common = {
-          default = [ "kde" "gtk" ];
+          default = [
+            "kde"
+            "gtk"
+          ];
         };
         hyprland = {
-          default = [ "hyprland" "gtk" ];
+          default = [
+            "hyprland"
+            "gtk"
+          ];
           "org.freedesktop.impl.portal.FileChooser" = kde;
           "org.freedesktop.impl.portal.AppChooser" = kde;
           "org.freedesktop.impl.portal.ScreenCast" = kde;

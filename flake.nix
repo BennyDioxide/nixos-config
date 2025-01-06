@@ -33,6 +33,8 @@ rec {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-master.url = "nixpkgs/master";
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager = {
       url = "home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -62,6 +64,7 @@ rec {
     inputs@{
       nixpkgs,
       nixpkgs-master,
+      nix-darwin,
       impermanence,
       home-manager,
       musnix,
@@ -73,8 +76,8 @@ rec {
       ...
     }:
     let
-      pkgs-configuration = {
-        inherit system;
+      pkgs-configuration = isDarwin: {
+        system = system isDarwin;
         config.allowUnfree = true;
         config.permittedInsecurePackages = [
           "electron-27.3.11" # EOL
@@ -91,16 +94,36 @@ rec {
           (final: prev: import ./pkgs prev)
         ];
       };
-      system = "x86_64-linux";
-      specialArgs = {
-        inherit inputs;
-        pkgs-master = import nixpkgs-master pkgs-configuration;
+      system = isDarwin: if isDarwin then "aarch64-darwin" else "x86_64-linux";
+      specialArgs = isDarwin: {
+        inherit inputs isDarwin;
+        pkgs-master = import nixpkgs-master (pkgs-configuration isDarwin);
       };
+      nixSettings =
+        user: isDarwin:
+        { pkgs, ... }:
+
+        {
+          nix.settings = {
+            inherit (nixConfig) builders-use-substitutes trusted-public-keys;
+            substituters = nixConfig.trusted-substituters;
+            trusted-users = [ user ];
+
+            experimental-features = [
+              "nix-command"
+              "flakes"
+            ];
+            # auto-optimise-store = true; # known to corrupt the store
+          };
+          # optimise.automatic = true;
+          nixpkgs = pkgs-configuration isDarwin;
+        };
     in
     {
       nixosConfigurations."benny-nixos" = nixpkgs.lib.nixosSystem {
-        inherit system specialArgs;
+        specialArgs = specialArgs false;
 
+        system = "x86_64-linux";
         modules = [
           impermanence.nixosModules.impermanence
           ./hosts/benny-nixos
@@ -108,46 +131,30 @@ rec {
           musnix.nixosModules.musnix
           niri.nixosModules.niri
           # stylix.nixosModules.stylix
-          (
-            { pkgs, ... }:
-
-            {
-              nix.settings = {
-                inherit (nixConfig) builders-use-substitutes trusted-public-keys;
-                substituters = nixConfig.trusted-substituters;
-                trusted-users = [ "benny" ];
-              };
-              nixpkgs = pkgs-configuration;
-            }
-          )
+          (nixSettings "benny" false)
           home-manager.nixosModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = specialArgs;
+              extraSpecialArgs = specialArgs false;
               users.benny = import ./home;
             };
           }
         ];
       };
-      #   homeConfigurations.benny = home-manager.lib.homeManagerConfiguration {
-      #     inherit extraSpecialArgs;
-      #     modules = [
-      #       ./home
-      #       (
-      #         { pkgs, ... }:
-      #         {
-      #           nixpkgs.overlays = [
-      #             rust-overlay.overlays.default
-      #             # autin.overlays.default
-      #             helix.overlays.default
-      #           ];
-      #           home.packages = [ pkgs.rust-bin.stable.latest.default ];
-      #         }
-      #       )
-      #     ];
-      #     pkgs = import nixpkgs pkgs-configuration;
-      #   };
+      darwinConfigurations."yangshitings-MacBook-Air" = nix-darwin.lib.darwinSystem {
+        modules = [
+          ./hosts/air-m3.nix
+          (nixSettings "bennyyang" true)
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = specialArgs true;
+            home-manager.users.bennyyang = import ./home;
+          }
+        ];
+      };
     };
 }

@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   programs.tmux = {
     enable = true;
-    plugins = with pkgs; [
+    plugins = [
       {
         plugin = (import ../pkgs/tmux-plugins).pomodoro-plus;
         extraConfig = ''

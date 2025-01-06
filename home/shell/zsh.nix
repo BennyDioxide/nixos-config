@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  lib,
+  pkgs,
+  isDarwin,
+  ...
+}:
 
 {
   programs.zsh = {
@@ -21,6 +26,7 @@
       # bindkey "^[[31;5D" backward-word # Ctrl+Left
       # bindkey "^H" backward-kill-word # Ctrl+Backspace
       # bindkey "^[[3~;5~" kill-word # Ctrl+Delete
+      ${if isDarwin then "eval \"$(/opt/homebrew/bin/brew shellenv)\"" else ""}
     '';
     shellAliases = {
       ls = "eza --icons";

@@ -1,24 +1,37 @@
-{ lib, pkgs, ... }:
-
 {
-  imports = [
-    ./xdg
-    ./shell
-    ./wm
-    ./mpv
-    ./font.nix
-    ./kitty.nix
-    ./cava.nix
-    ./syncthing.nix
-    ./helix.nix
-    ./vscode.nix
-    ./java.nix
-    ./gtk.nix
-    ../modules/home
-  ];
+  lib,
+  pkgs,
+  isDarwin ? false,
+  ...
+}:
 
-  home.username = "benny";
-  home.homeDirectory = "/home/benny";
+let
+  username = if isDarwin then "bennyyang" else "benny";
+  homeDirectory = if isDarwin then "/Users/${username}" else "/home/${username}";
+in
+{
+  imports =
+    [
+      ./shell
+      ./mpv
+      ./kitty.nix
+      ./font.nix
+      ./cava.nix
+      ./syncthing.nix
+      ./helix.nix
+      ./java.nix
+    ]
+    ++ lib.optionals (!isDarwin) [
+      ./vscode.nix
+      ../modules/home
+
+      ./xdg
+      ./wm
+      ./gtk.nix
+    ];
+
+  home.username = username;
+  home.homeDirectory = homeDirectory;
 
   # nixpkgs.config.allowUnfree = true;
 
@@ -40,7 +53,7 @@
     };
   };
 
-  systemd.user.sessionVariables = {
+  systemd.user.sessionVariables = lib.mkIf (!isDarwin) {
     NIXPKGS_ALLOW_UNFREE = 1;
     NIX_BUILD_SHELL = "zsh";
     LIBCLANG_PATH = "${pkgs.libclang.lib}/lib";
@@ -75,26 +88,36 @@
       gh
       # gitbutler
       gnumake
+      xmake
       cmake
       extra-cmake-modules
       bazel
       ninja
       gettext
       mise
+      just
       dust
-      nixpkgs-fmt
+      nixfmt-rfc-style
       nvd
       nix-tree
       # nix-init
       file
       gojq
       inshellisense
-      appimage-run
       unzip
       p7zip
       trash-cli
       hyperfine
       navi
+      xh
+      neovim
+      eza
+      ripgrep
+      fd
+      bat
+      tealdeer
+      btop
+      bottom
       # manim
       # renpy
       # (callPackage ../pkgs/kde-material-you-colors {})
@@ -115,7 +138,8 @@
       direnv
       # cargo-sweep
       wasm-pack
-
+    ]
+    ++ lib.optionals (!isDarwin) [
       fortune
       pipes
       cmatrix
@@ -133,9 +157,6 @@
       # spotify
       # spotifyd
       # spotify-tui # Removed at Mar 12, 2024, 6:14 PM GMT+8
-      qpwgraph
-      jamesdsp
-      playerctl
       # davinci-resolve
 
       libreoffice
@@ -143,59 +164,42 @@
       texstudio
       pandoc
 
-      wayland-utils
-      vulkan-tools
-      glxinfo
       # wine
       # wineWowPackages.waylandFull
       # wineWowPackages.stable
       # wineWowPackages.stableFull
       wineWowPackages.stagingFull
-      bottles
 
       obs-studio
       dex
     ]
-    ++ (with libsForQt5; [
-      breeze-qt5
-      breeze-icons
-    ])
-    ++ (with kdePackages; [
-      (hiPrio kdePackages.breeze)
-      (hiPrio breeze-icons)
-    ])
+    ++ lib.optionals (!isDarwin) (
+      with libsForQt5;
+      [
+        breeze-qt5
+        breeze-icons
+      ]
+    )
+    ++ lib.optionals (!isDarwin) (
+      with kdePackages;
+      [
+        (hiPrio kdePackages.breeze)
+        (hiPrio breeze-icons)
+      ]
+    )
     ++ [
-      ydotool
       # d-spy
       # dfeet
-      (discord.override { withVencord = true; })
       kitty
       anki-bin
       # blender
       blockbench
       brave
-      # (
-      #   let
-      #     pname = "logseq";
-      #     version = "0.10.10-alpha+nightly.20240815";
-      #   in
-      #   (logseq.override { electron = electron_28; }).overrideAttrs {
-      #     inherit pname version;
-      #     src = fetchurl {
-      #       url = "https://github.com/logseq/logseq/releases/download/nightly/logseq-linux-x64-${version}.AppImage";
-      #       hash = "sha256-SeEBS1wGnHH0dJ9h4sMl+zFiTk2GDZXNItqasFFTcIQ=";
-      #       name = "${pname}-${version}.AppImage";
-      #     };
-      #   }
-      # )
-      logseq
       # geogebra
       telegram-desktop
       # element-desktop
-      rustdesk
       scrcpy
       localsend
-      filelight
       # (callPackage appimageTools.wrapType2 {
       #   name = "oxwu";
       #   src = fetchurl {
@@ -207,12 +211,10 @@
       # Zed editor
       zed-editor
 
-      krita
       inkscape
 
       # Development
 
-      jetbrains-toolbox
       # jetbrains.rust-rover
       # jetbrains.rider
       # jetbrains.clion
@@ -264,6 +266,49 @@
       nodePackages.typescript-language-server
       # lua54Packages.luasocket # For ~/.config/fcitx5/addon/kanata/lib.lua
 
+      musescore
+      # (callPackage ../pkgs/pixitracker { })
+      sunvox
+      famistudio
+      bespokesynth-with-vst2
+    ]
+    ++ lib.optionals (!isDarwin) [
+      appimage-run
+
+      # Not providing macOS ver for some reason
+      rustdesk
+      filelight
+      krita
+      jetbrains-toolbox
+
+      # Broken on macOS
+      (discord.override { withVencord = true; })
+      # (
+      #   let
+      #     pname = "logseq";
+      #     version = "0.10.10-alpha+nightly.20240815";
+      #   in
+      #   (logseq.override { electron = electron_28; }).overrideAttrs {
+      #     inherit pname version;
+      #     src = fetchurl {
+      #       url = "https://github.com/logseq/logseq/releases/download/nightly/logseq-linux-x64-${version}.AppImage";
+      #       hash = "sha256-SeEBS1wGnHH0dJ9h4sMl+zFiTk2GDZXNItqasFFTcIQ=";
+      #       name = "${pname}-${version}.AppImage";
+      #     };
+      #   }
+      # )
+      logseq
+
+      qpwgraph
+      jamesdsp
+      playerctl
+
+      wayland-utils
+      ydotool
+      vulkan-tools
+      glxinfo
+      bottles
+
       osu-lazer-bin
       prismlauncher
       mangohud
@@ -271,13 +316,8 @@
       ferium
       modrinth-app
 
-      musescore
       ardour
-      # (callPackage ../pkgs/pixitracker { })
-      sunvox
-      famistudio
       lmms
-      bespokesynth-with-vst2
       drumgizmo
       lsp-plugins
       zam-plugins
@@ -285,20 +325,20 @@
       yabridgectl
     ];
 
-  programs.mpv-handler.enable = true;
+  # programs.mpv-handler.enable = true;
 
-  qt = {
+  qt = lib.mkIf (!isDarwin) {
     enable = true;
     platformTheme.name = "qtct";
   };
 
-  services.kdeconnect = {
+  services.kdeconnect = lib.mkIf (!isDarwin) {
     enable = true;
     indicator = true;
   };
 
   # Enables xembed system tray available on Wayland
-  services.xembed-sni-proxy.enable = true;
+  services.xembed-sni-proxy.enable = !isDarwin;
 
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;

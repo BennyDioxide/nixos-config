@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -17,6 +17,6 @@
   programs.zoxide.enable = true;
   programs.atuin.enable = true;
   programs.atuin.flags = [ "--disable-up-arrow" ];
-  programs.broot.enable = true;
-  # programs.yazi.enable = true;
+  # programs.broot.enable = true;
+  programs.yazi.enable = true;
 }

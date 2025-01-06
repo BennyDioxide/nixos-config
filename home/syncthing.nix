@@ -3,7 +3,7 @@
 {
   services.syncthing = {
     enable = true;
-    extraOptions = [];
+    extraOptions = [ ];
     # tray.enable = true;
   };
 }
