@@ -53,6 +53,11 @@ in
     };
   };
 
+  home.sessionVariables = {
+    EDITOR = "hx";
+    LIBRARY_PATH = lib.mkIf isDarwin "$LIBRARY_PATH:${pkgs.libiconv}/lib";
+  };
+
   systemd.user.sessionVariables = lib.mkIf (!isDarwin) {
     NIXPKGS_ALLOW_UNFREE = 1;
     NIX_BUILD_SHELL = "zsh";
@@ -71,15 +76,20 @@ in
       ];
   };
 
-  home.file.".cargo/config.toml".source = (pkgs.formats.toml { }).generate "cargo-config" {
-    # build."rustc-wrapper" = "${pkgs.sccache}/bin/sccache";
-    target.wasm32-unknown-unknown.runner = "${pkgs.wasm-pack}/bin/wasm-server-runner";
-    target.x86_64-unknown-linux-gnu.linker = "${pkgs.clang}/bin/clang";
-    target.x86_64-unknown-linux-gnu.rustflags = [
-      "-C"
-      "link-arg=-fuse-ld=${pkgs.mold-wrapped}/bin/mold"
-    ];
-  };
+  home.file.".cargo/config.toml".source =
+    let
+      linker = "${pkgs.clang}/bin/clang";
+      rustflags = [
+        "-C"
+        "link-arg=-fuse-ld=${pkgs.mold-wrapped}/bin/mold"
+      ];
+    in
+    (pkgs.formats.toml { }).generate "cargo-config" {
+      # build."rustc-wrapper" = "${pkgs.sccache}/bin/sccache";
+      target.wasm32-unknown-unknown.runner = "${pkgs.wasm-pack}/bin/wasm-server-runner";
+      target.x86_64-unknown-linux-gnu = { inherit linker rustflags; };
+      target.aarch64-apple-darwin = { inherit linker; };
+    };
 
   home.packages =
     with pkgs;
@@ -118,28 +128,18 @@ in
       tealdeer
       btop
       bottom
+
+      android-tools
+
       # manim
       # renpy
       # (callPackage ../pkgs/kde-material-you-colors {})
-      python311
-      (hiPrio python3)
-      (python3.withPackages (
-        py-pkgs: with py-pkgs; [
-          ipython
-          material-color-utilities
-          pywal
-          transformers
-          # streamlit
-        ]
-      ))
       pipx
       poetry
       qmk
       direnv
       # cargo-sweep
       wasm-pack
-    ]
-    ++ lib.optionals (!isDarwin) [
       fortune
       pipes
       cmatrix
@@ -152,18 +152,21 @@ in
       yt-dlp
       ytarchive
       ffmpeg
-      vlc
+      (if isDarwin then vlc-bin else vlc)
       audacity
+      spotube
       # spotify
       # spotifyd
       # spotify-tui # Removed at Mar 12, 2024, 6:14 PM GMT+8
       # davinci-resolve
 
-      libreoffice
+      (if isDarwin then libreoffice-bin else libreoffice)
       texlive.combined.scheme-full
       texstudio
       pandoc
 
+    ]
+    ++ lib.optionals (!isDarwin) [
       # wine
       # wineWowPackages.waylandFull
       # wineWowPackages.stable
@@ -207,6 +210,11 @@ in
       #     sha256 = "sha256-UthNGrFT6G09UkCwirjH9jgd1+ExRmt6KnD43JdkaDE=";
       #   };
       # })
+
+      osu-lazer-bin
+      prismlauncher
+      ferium
+      modrinth-app
 
       # Zed editor
       zed-editor
@@ -298,6 +306,20 @@ in
       #   }
       # )
       logseq
+      lilypond # Broken font
+      # Tk broken
+      python311
+      (hiPrio python3)
+      (python3.withPackages (
+        py-pkgs: with py-pkgs; [
+          tkinter
+          ipython
+          material-color-utilities
+          pywal
+          transformers
+          # streamlit
+        ]
+      ))
 
       qpwgraph
       jamesdsp
@@ -309,12 +331,8 @@ in
       glxinfo
       bottles
 
-      osu-lazer-bin
-      prismlauncher
       mangohud
       gamescope
-      ferium
-      modrinth-app
 
       ardour
       lmms

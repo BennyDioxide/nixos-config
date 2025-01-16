@@ -1,5 +1,5 @@
 {
-  lib,
+  config,
   pkgs,
   isDarwin,
   ...
@@ -7,6 +7,8 @@
 
 {
   programs.zsh = {
+    inherit (config.home) sessionVariables;
+
     enable = true;
     autocd = true;
     enableCompletion = true;
