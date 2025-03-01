@@ -53,6 +53,8 @@ in
     };
   };
 
+  programs.direnv.enable = true;
+
   home.sessionVariables = {
     EDITOR = "hx";
     LIBRARY_PATH = lib.mkIf isDarwin "$LIBRARY_PATH:${pkgs.libiconv}/lib";
@@ -138,7 +140,6 @@ in
       pipx
       poetry
       qmk
-      direnv
       # cargo-sweep
       wasm-pack
       fortune
