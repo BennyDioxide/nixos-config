@@ -100,6 +100,7 @@ in
       gnumake
       xmake
       cmake
+      boost
       extra-cmake-modules
       bazel
       ninja
@@ -147,6 +148,8 @@ in
       figlet
       cbonsai
 
+      imagemagick
+
       aria2
       xh
       yt-dlp
@@ -161,6 +164,7 @@ in
       # davinci-resolve
 
       (if isDarwin then libreoffice-bin else libreoffice)
+      typst
       texlive.combined.scheme-full
       texstudio
       pandoc
