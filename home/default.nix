@@ -85,7 +85,7 @@ in
       ];
     in
     (pkgs.formats.toml { }).generate "cargo-config" {
-      # build."rustc-wrapper" = "${pkgs.sccache}/bin/sccache";
+      build."rustc-wrapper" = "${pkgs.sccache}/bin/sccache";
       target.wasm32-unknown-unknown.runner = "${pkgs.wasm-pack}/bin/wasm-server-runner";
       target.x86_64-unknown-linux-gnu = { inherit linker rustflags; };
       target.aarch64-apple-darwin = { inherit linker; };
