@@ -275,7 +275,7 @@ in
 
       # Not providing macOS ver for some reason
       rustdesk
-      filelight
+      kdePackages.filelight
       krita
       jetbrains-toolbox
 

@@ -26,7 +26,7 @@
           "fcitx5"
           "krunner -d"
           "${pkgs.dex}/bin/dex -as ~/.config/autostart"
-          "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
+          "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
           "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init"
           "${pkgs.swww}/bin/swww-daemon"
         ];
