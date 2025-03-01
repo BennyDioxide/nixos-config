@@ -34,7 +34,7 @@
       ls = "eza --icons";
       la = "ls -a";
       ll = "ls -al";
-      mpv-pixel = "mpv --really-quiet -vo=tct";
+      mpv-pixel = "mpv --vo-set=tct";
     };
     plugins = with pkgs; [
       {
