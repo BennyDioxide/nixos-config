@@ -55,6 +55,19 @@ in
 
   programs.direnv.enable = true;
 
+  programs.senpai = {
+    enable = true;
+    config = {
+      address = "irc.ea.libera.chat";
+      nickname = "BennyDioxide";
+      password-cmd = [
+        "${pkgs.gopass}/bin/gopass"
+        "show"
+        "irc/main"
+      ];
+    };
+  };
+
   home.sessionVariables = {
     EDITOR = "hx";
     LIBRARY_PATH = lib.mkIf isDarwin "$LIBRARY_PATH:${pkgs.libiconv}/lib";
