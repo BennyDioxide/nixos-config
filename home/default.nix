@@ -14,6 +14,7 @@ in
     [
       ./shell
       ./mpv
+      ./productivity
       ./kitty.nix
       ./font.nix
       ./cava.nix
@@ -177,10 +178,6 @@ in
       # spotify-tui # Removed at Mar 12, 2024, 6:14 PM GMT+8
       # davinci-resolve
 
-      (if isDarwin then libreoffice-bin else libreoffice)
-      typst
-      texlive.combined.scheme-full
-      texstudio
       pandoc
 
     ]
