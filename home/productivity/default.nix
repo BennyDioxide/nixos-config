@@ -4,6 +4,7 @@
   imports = [
     ./latex.nix
     ./typst.nix
+    ./zathura.nix
   ];
 
   home.packages = with pkgs; [

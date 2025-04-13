@@ -34,5 +34,35 @@
         formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
       }
     ];
+    languages.language-server = {
+      texlab = {
+        build.executable = "tectonic";
+        build.args = [
+          "-X"
+          "compile"
+          "%f"
+          "--synctex"
+          "--keep-logs"
+          "--keep-intermediates"
+          "--outdir=build"
+          "-Zshell-excape"
+        ];
+        build.onSave = true;
+        build.auxDirectory = "build";
+        build.logDirectory = "build";
+        build.pdfDirectory = "build";
+        build.forwardSearchAfter = true;
+
+        chktex.onOpenAndSave = true;
+        chktex.onEdit = true;
+
+        forwardSearch.executable = "zathura";
+        args = [
+          "--synctex-forward"
+          "%l:%c:%f"
+          "%p"
+        ];
+      };
+    };
   };
 }

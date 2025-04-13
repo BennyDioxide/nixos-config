@@ -1,10 +1,20 @@
 { pkgs, ... }:
 
+let
+  tex = pkgs.texlive.combine {
+    inherit (pkgs.texlive)
+      scheme-basic
+      ctex
+      beamer
+      pgf
+      chktex
+      ;
+  };
+in
 {
-  home.packages = with pkgs.texlivePackages; [
-    pkgs.texlab
-    ctex
-    beamer
-    pgf
+  home.packages = with pkgs; [
+    tectonic
+    texlab
+    tex
   ];
 }
