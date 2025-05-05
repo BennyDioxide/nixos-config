@@ -1,6 +1,6 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
-  services.emacs.enable = true;
+  services.emacs.enable = !pkgs.stdenv.isDarwin;
   programs.emacs.enable = true;
 }
