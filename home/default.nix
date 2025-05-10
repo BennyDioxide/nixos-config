@@ -22,11 +22,11 @@ in
       ./helix.nix
       ./java.nix
       ./irc.nix
+      ./vcs.nix
+      ../modules/home
     ]
     ++ lib.optionals (!isDarwin) [
       ./vscode.nix
-      ../modules/home
-
       ./xdg
       ./wm
       ./gtk.nix
@@ -36,24 +36,6 @@ in
   home.homeDirectory = homeDirectory;
 
   # nixpkgs.config.allowUnfree = true;
-
-  programs.git = {
-    enable = true;
-    userName = "BennyDioxide";
-    userEmail = "bennystyang@proton.me";
-    extraConfig = {
-      core.editor = "hx";
-      core.autocrlf = "input";
-      credential.helper = "store";
-      color.ui = "auto";
-      filter.lfs = {
-        smudge = "git-lfs smudge -- %f";
-        process = "git-lfs filter-process";
-        required = true;
-        clean = "git-lfs clean -- %f";
-      };
-    };
-  };
 
   programs.direnv.enable = true;
 
