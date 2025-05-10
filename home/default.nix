@@ -21,6 +21,7 @@ in
       ./syncthing.nix
       ./helix.nix
       ./java.nix
+      ./irc.nix
     ]
     ++ lib.optionals (!isDarwin) [
       ./vscode.nix
@@ -55,19 +56,6 @@ in
   };
 
   programs.direnv.enable = true;
-
-  programs.senpai = {
-    enable = true;
-    config = {
-      address = "irc.ea.libera.chat";
-      nickname = "BennyDioxide";
-      password-cmd = [
-        "${pkgs.gopass}/bin/gopass"
-        "show"
-        "irc/main"
-      ];
-    };
-  };
 
   home.sessionVariables = {
     EDITOR = "hx";
