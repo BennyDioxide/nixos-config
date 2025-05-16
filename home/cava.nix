@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs.cava = {
@@ -70,7 +70,7 @@
         # method = pulse
         # source = auto
 
-        method = "pipewire";
+        method = if pkgs.stdenv.isDarwin then "portaudio" else "pipewire";
         # source = auto
 
         # method = alsa
