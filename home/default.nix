@@ -97,7 +97,10 @@ in
       nixfmt-rfc-style
       nvd
       nix-tree
+      nix-index
       # nix-init
+      nh
+      comma
       file
       gojq
       inshellisense
