@@ -35,6 +35,7 @@
       la = "ls -a";
       ll = "ls -al";
       mpv-pixel = "mpv --vo-set=tct";
+      spf = "${pkgs.superfile}/bin/superfile";
     };
     plugins = with pkgs; [
       {

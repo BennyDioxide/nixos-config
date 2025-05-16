@@ -118,13 +118,16 @@ in
       tealdeer
       btop
       bottom
+      gopass
+      superfile
 
       android-tools
 
       # manim
-      # renpy
+      renpy
       # (callPackage ../pkgs/kde-material-you-colors {})
       pipx
+      uv
       poetry
       qmk
       # cargo-sweep
@@ -154,6 +157,9 @@ in
       pandoc
 
     ]
+    ++ lib.optionals (isDarwin) [
+      raycast
+    ]
     ++ lib.optionals (!isDarwin) [
       # wine
       # wineWowPackages.waylandFull
@@ -164,13 +170,12 @@ in
       obs-studio
       dex
     ]
-    ++ lib.optionals (!isDarwin)
-      [
-        libsForQt5.breeze-qt5
-        libsForQt5.breeze-icons
-        (hiPrio kdePackages.breeze)
-        (hiPrio kdePackages.breeze-icons)
-      ]
+    ++ lib.optionals (!isDarwin) [
+      libsForQt5.breeze-qt5
+      libsForQt5.breeze-icons
+      (hiPrio kdePackages.breeze)
+      (hiPrio kdePackages.breeze-icons)
+    ]
     ++ [
       # d-spy
       # dfeet
@@ -192,13 +197,9 @@ in
       #   };
       # })
 
-      osu-lazer-bin
-      prismlauncher
+      # prismlauncher
       ferium
-      modrinth-app
-
-      # Zed editor
-      zed-editor
+      # modrinth-app
 
       inkscape
 
@@ -217,16 +218,19 @@ in
       # lapce
       neovide
       warp-terminal
-      thefuck
+      # thefuck
       sheldon # zsh stuff for using warp
+      colima
       (hiPrio clang)
       lldb
       gcc
       clang-tools
       mold-wrapped # making it able to find libraries
       vscode-extensions.vadimcn.vscode-lldb
+      python312Full
       # rust-bin
       (hiPrio rustup)
+      wasm-bindgen-cli
       pkg-config
       libGL
       dioxus-cli
@@ -238,11 +242,13 @@ in
       bun
       ghc
       haskell-language-server
+      elan
       nixd
       nil
       nix-direnv
       devenv
       gradle
+      sbcl
       clojure
       clojure-lsp
       babashka
@@ -259,7 +265,6 @@ in
       # (callPackage ../pkgs/pixitracker { })
       sunvox
       famistudio
-      bespokesynth-with-vst2
     ]
     ++ lib.optionals (!isDarwin) [
       appimage-run
@@ -272,6 +277,7 @@ in
 
       # Broken on macOS
       (discord.override { withVencord = true; })
+      zed-editor
       # (
       #   let
       #     pname = "logseq";
@@ -289,8 +295,8 @@ in
       logseq
       lilypond # Broken font
       # Tk broken
-      python311
-      (hiPrio python3)
+      python311Full
+      (hiPrio python3Full)
       (python3.withPackages (
         py-pkgs: with py-pkgs; [
           tkinter
@@ -301,6 +307,10 @@ in
           # streamlit
         ]
       ))
+      osu-lazer-bin # network issue or smth
+      prismlauncher
+      ferium
+      modrinth-app
 
       qpwgraph
       jamesdsp
@@ -317,6 +327,7 @@ in
 
       ardour
       lmms
+      bespokesynth-with-vst2
       drumgizmo
       lsp-plugins
       zam-plugins
