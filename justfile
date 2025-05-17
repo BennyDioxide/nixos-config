@@ -30,7 +30,7 @@ update-all-inputs:
     nix flake update
 
 update-nixpkgs:
-    nix flake update nixpkgs
+    nix flake update nixpkgs home-manager
 
 #     nix flake lock --update-input nixpkgs
 
