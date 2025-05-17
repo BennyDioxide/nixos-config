@@ -13,11 +13,10 @@
     autocd = true;
     enableCompletion = true;
     autosuggestion.enable = true;
-    initExtraFirst = ''
+    initContent = ''
       autoload -U select-word-style
       select-word-style bash
-    '';
-    initExtra = ''
+
       setopt correct extendedglob
 
       function mkcd() {
