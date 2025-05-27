@@ -75,7 +75,7 @@ rec {
     }:
     let
       pkgs-configuration = isDarwin: {
-        system = system isDarwin;
+        hostPlatform = system isDarwin;
         config.allowUnfree = true;
         config.permittedInsecurePackages = [
           "electron-27.3.11" # EOL
@@ -116,6 +116,13 @@ rec {
           # optimise.automatic = true;
           nixpkgs = pkgs-configuration isDarwin;
         };
+      home = user: isDarwin: {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        extraSpecialArgs = specialArgs isDarwin;
+        users."${user}" = import ./home;
+      };
+
     in
     {
       nixosConfigurations."benny-nixos" = nixpkgs.lib.nixosSystem {
@@ -132,12 +139,7 @@ rec {
           (nixSettings "benny" false)
           home-manager.nixosModules.home-manager
           {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = specialArgs false;
-              users.benny = import ./home;
-            };
+            home-manager = home-manager "benny" false;
           }
         ];
       };
@@ -147,10 +149,7 @@ rec {
           (nixSettings "bennyyang" true)
           home-manager.darwinModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = specialArgs true;
-            home-manager.users.bennyyang = import ./home;
+            home-manager = home "bennyyang" true;
           }
         ];
       };
