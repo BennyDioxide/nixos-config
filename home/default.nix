@@ -120,6 +120,7 @@ in
       fd
       bat
       tealdeer
+      delta
       btop
       bottom
       gopass
