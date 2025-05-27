@@ -65,10 +65,14 @@ in
   home.file.".cargo/config.toml".source =
     let
       linker = "${pkgs.clang}/bin/clang";
-      rustflags = [
-        "-C"
-        "link-arg=-fuse-ld=${pkgs.mold-wrapped}/bin/mold"
-      ];
+      rustflags =
+        if isDarwin then
+          [ ]
+        else
+          [
+            "-C"
+            "link-arg=-fuse-ld=${pkgs.mold-wrapped}/bin/mold"
+          ];
     in
     (pkgs.formats.toml { }).generate "cargo-config" {
       build."rustc-wrapper" = "${pkgs.sccache}/bin/sccache";
@@ -225,14 +229,12 @@ in
       lldb
       gcc
       clang-tools
-      mold-wrapped # making it able to find libraries
       vscode-extensions.vadimcn.vscode-lldb
       python312Full
       # rust-bin
       (hiPrio rustup)
       wasm-bindgen-cli
       pkg-config
-      libGL
       dioxus-cli
       (hiPrio dotnet-sdk)
       dotnet-sdk_7
@@ -294,6 +296,8 @@ in
       # )
       logseq
       lilypond # Broken font
+      mold-wrapped # making it able to find libraries
+      libGL
       # Tk broken
       python311Full
       (hiPrio python3Full)

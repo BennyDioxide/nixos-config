@@ -13,7 +13,7 @@ alias optimize := optimise
 default: switch
 
 switch:
-    {{ if os() == "macos" { "darwin-rebuild switch --flake ." } else { "nh os switch . --ask -- --accept-flake-config" } }}
+    {{ if os() == "macos" { "sudo darwin-rebuild switch --flake ." } else { "nh os switch . --ask -- --accept-flake-config" } }}
 
 # sudo nixos-rebuild switch --flake .#benny-nixos
 
@@ -30,7 +30,7 @@ update-all-inputs:
     nix flake update
 
 update-nixpkgs:
-    nix flake update nixpkgs home-manager
+    nix flake update nixpkgs home-manager nix-darwin
 
 #     nix flake lock --update-input nixpkgs
 
