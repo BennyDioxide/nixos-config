@@ -1,9 +1,9 @@
-{ ... }:
+{ lib, pkgs, ... }:
 
 let
   name = "BennyDioxide";
   email = "bennystyang@proton.me";
-  editor = "helix";
+  editor = lib.getExe pkgs.helix;
 in
 {
   programs.git = {
