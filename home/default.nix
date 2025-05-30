@@ -42,7 +42,7 @@ in
 
   home.sessionVariables = {
     EDITOR = "hx";
-    LIBRARY_PATH = lib.mkIf isDarwin "$LIBRARY_PATH:${pkgs.libiconv}/lib";
+    LIBRARY_PATH = if isDarwin then "$LIBRARY_PATH:${pkgs.libiconv}/lib" else "";
   };
 
   systemd.user.sessionVariables = lib.mkIf (!isDarwin) {
@@ -232,7 +232,8 @@ in
       gcc
       clang-tools
       vscode-extensions.vadimcn.vscode-lldb
-      python312Full
+      python311Full
+      (hiPrio python3Full)
       # rust-bin
       (hiPrio rustup)
       wasm-bindgen-cli
@@ -300,9 +301,6 @@ in
       lilypond # Broken font
       mold-wrapped # making it able to find libraries
       libGL
-      # Tk broken
-      python311Full
-      (hiPrio python3Full)
       (python3.withPackages (
         py-pkgs: with py-pkgs; [
           tkinter

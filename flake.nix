@@ -139,7 +139,7 @@ rec {
           (nixSettings "benny" false)
           home-manager.nixosModules.home-manager
           {
-            home-manager = home-manager "benny" false;
+            home-manager = home "benny" false;
           }
         ];
       };
