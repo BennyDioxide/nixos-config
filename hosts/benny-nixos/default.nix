@@ -9,7 +9,10 @@
 }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./immich.nix
+  ];
 
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
@@ -41,10 +44,15 @@
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  networking.nameservers = [
+    "1.1.1.1"
+    "100.100.100.100"
+  ]; # 100.100.100.100 for Tailscale
   # Bluetooth is unusable
   # hardware.bluetooth.enable = true;
   # hardware.bluetooth.powerOnBoot = true;
   # services.blueman.enable = true;
+  services.tailscale.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Taipei";
@@ -185,7 +193,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
