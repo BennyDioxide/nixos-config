@@ -289,11 +289,13 @@
     nvidiaSettings = true;
 
     # package = pkgs.linuxPackages.nvidiaPackages.beta;
-    package = pkgs.linuxKernel.packages.linux_zen.nvidia_x11_beta;
+    package = config.boot.kernelPackages.nvidia_x11_beta;
   };
 
+  hardware.nvidia-container-toolkit.enable = true;
+
   services.ollama = {
-    enable = true;
+    enable = false;
     acceleration = "cuda";
     models = "/mnt/segate4t/ollama/models";
   };
@@ -304,7 +306,7 @@
 
   virtualisation.docker = {
     enable = true;
-    enableNvidia = true;
+    # enableNvidia = true;
     storageDriver = "btrfs";
     rootless = {
       enable = true;
