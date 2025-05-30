@@ -19,14 +19,15 @@ in
       ./font.nix
       ./cava.nix
       ./syncthing.nix
-      ./helix.nix
+      ./editor/helix.nix
+      ./editor/zed.nix
       ./java.nix
       ./irc.nix
       ./vcs.nix
       ../modules/home
     ]
     ++ lib.optionals (!isDarwin) [
-      ./vscode.nix
+      ./editor/vscode.nix
       ./xdg
       ./wm
       ./gtk.nix
