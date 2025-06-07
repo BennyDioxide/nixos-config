@@ -16,8 +16,6 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
-    # Enable suspend/wakeup
-    kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
     extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
     loader = {
       efi = {
@@ -283,13 +281,11 @@
 
     powerManagement.enable = true;
 
-    # Nvidia Open Source driver. False is recommanded
-    open = false;
+    open = true;
 
     nvidiaSettings = true;
 
-    # package = pkgs.linuxPackages.nvidiaPackages.beta;
-    package = config.boot.kernelPackages.nvidia_x11_beta;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
   hardware.nvidia-container-toolkit.enable = true;
