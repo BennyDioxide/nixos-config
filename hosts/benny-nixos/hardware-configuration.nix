@@ -11,6 +11,7 @@
 let
   persistent = "/nix/persistent";
   nvme0n1p6 = "/dev/disk/by-uuid/23a8c46d-b26f-4d98-bedd-d659b0c25413";
+  swapfile = "/swap/swapfile";
 in
 {
   imports = [
@@ -87,6 +88,25 @@ in
     ];
   };
 
+  fileSystems."/swap" = {
+    device = nvme0n1p6;
+    fsType = "btrfs";
+    options = [
+      "subvol=@swap"
+      "ro"
+    ];
+  };
+
+  fileSystems."${swapfile}" = {
+    depends = [ "/swap" ];
+    device = swapfile;
+    fsType = "none";
+    options = [
+      "bind"
+      "rw"
+    ];
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/2C93-0F4A";
     fsType = "vfat";
@@ -102,7 +122,13 @@ in
     fsType = "ntfs";
   };
 
-  swapDevices = [ ];
+  fileSystems."/vol/games" = {
+    device = "/dev/disk/by-uuid/c0e4678d-4925-43d4-95be-8e258c51ca08";
+    fsType = "btrfs";
+    options = [ "compress=zstd" ];
+  };
+
+  swapDevices = [ { device = swapfile; } ];
 
   environment.persistence.${persistent} = {
     hideMounts = true;
