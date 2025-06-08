@@ -48,6 +48,10 @@
           "XIM_MODULE=@im=fcitx"
         ];
         # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
+
+        debug = {
+          disable_logs = false;
+        };
         input = {
           # See /usr/share/X11/xkb/rules/base.lst
           kb_layout = "us";
@@ -85,10 +89,12 @@
             passes = 1;
           };
 
-          drop_shadow = true;
-          shadow_range = 4;
-          shadow_render_power = 3;
-          "col.shadow" = "rgba(1a1a1aee)";
+          shadow = {
+            enabled = true; # previously `drow_shadow`
+            range = 4;
+            render_power = 3;
+            color = "0xee1a1a1a";
+          };
         };
         animations = {
           enabled = true;
