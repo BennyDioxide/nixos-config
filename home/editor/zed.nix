@@ -22,6 +22,10 @@
         rust-analyzer = {
           binary.path = lib.getExe pkgs.rust-analyzer;
         };
+        hls = {
+          # initialization_options.haskell.formattingProvider = lib.getExe pkgs.ormolu;
+          initialization_options.haskell.formattingProvider = "ormolu";
+        };
         nil = {
           formatting.command = lib.getExe pkgs.nixfmt-rfc-style;
           nix = {
