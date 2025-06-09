@@ -113,6 +113,7 @@ rec {
             ];
             # auto-optimise-store = true; # known to corrupt the store
           };
+          nix.package = pkgs.lix;
           # optimise.automatic = true;
           nixpkgs = pkgs-configuration isDarwin;
         };
