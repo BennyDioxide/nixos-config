@@ -13,7 +13,7 @@ alias optimize := optimise
 default: switch
 
 switch:
-    {{ if os() == "macos" { "sudo darwin-rebuild switch --flake ." } else { "nh os switch . --ask -- --accept-flake-config" } }}
+    nh {{ if os() == "macos" { "darwin" } else { "os" } }} switch . --ask -- --accept-flake-config
 
 # sudo nixos-rebuild switch --flake .#benny-nixos
 
