@@ -18,6 +18,14 @@
       terminal = {
         font_family = "JetBrainsMono Nerd Font";
       };
+      languages = {
+        Rust = {
+          language_servers = [
+            "rust-analyzer"
+            "tailwindcss-language-server"
+          ];
+        };
+      };
       lsp = {
         rust-analyzer = {
           binary.path = lib.getExe pkgs.rust-analyzer;
@@ -33,6 +41,18 @@
             maxMemoryMB = 2048;
             flake.autoArchive = true;
           };
+        };
+        tailwindcss-language-server.settings = {
+          includeLanguages = {
+            rust = "html";
+          };
+          experimental.classRegex = [
+            # Dioxus
+            "class: \"(.*)\""
+            # Tailwind Fuse
+            "#[tw\\\\([^\\]]*class\\s*=\\s*\"([^\"]*)\"\\)]"
+            "\"([^\"]*)\""
+          ];
         };
       };
     };
