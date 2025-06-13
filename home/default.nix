@@ -163,7 +163,7 @@ in
       pandoc
 
     ]
-    ++ lib.optionals (isDarwin) [
+    ++ lib.optionals isDarwin [
       raycast
     ]
     ++ lib.optionals (!isDarwin) [

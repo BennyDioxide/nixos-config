@@ -4,7 +4,16 @@
   programs.zed-editor = {
     enable = true;
     # "auto_install_extensions"
-    extensions = ["nix" "haskell" "clojure" "toml" "html" "latex" "zig" "catppuccin"];
+    extensions = [
+      "nix"
+      "haskell"
+      "clojure"
+      "toml"
+      "html"
+      "latex"
+      "zig"
+      "catppuccin"
+    ];
     userSettings = {
       features.edit_prediction_provider = "zed";
       ui_font_size = 16;
