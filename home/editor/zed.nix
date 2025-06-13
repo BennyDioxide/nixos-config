@@ -19,6 +19,9 @@
         font_family = "JetBrainsMono Nerd Font";
       };
       languages = {
+        Nix = {
+          formatter.external.command = lib.getExe pkgs.nixfmt-rfc-style;
+        };
         Rust = {
           language_servers = [
             "rust-analyzer"
@@ -35,7 +38,6 @@
           initialization_options.haskell.formattingProvider = "ormolu";
         };
         nil = {
-          formatting.command = lib.getExe pkgs.nixfmt-rfc-style;
           nix = {
             binary = lib.getExe pkgs.nix;
             maxMemoryMB = 2048;
