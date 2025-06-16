@@ -37,6 +37,9 @@
             "tailwindcss-language-server"
           ];
         };
+        Haskell = {
+          tab_size = 2;
+        };
       };
       lsp = {
         rust-analyzer = {
