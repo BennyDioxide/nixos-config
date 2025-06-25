@@ -67,4 +67,5 @@ reinstall-hm:
     nix run home-manager/master -- switch --flake .
 
 restart-nix-daemon-darwin:
+    sudo launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist
     sudo launchctl start org.nixos.nix-daemon
