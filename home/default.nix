@@ -227,10 +227,7 @@ in
       # thefuck
       sheldon # zsh stuff for using warp
       colima
-      (hiPrio clang)
       lldb
-      gcc
-      clang-tools
       vscode-extensions.vadimcn.vscode-lldb
       python311Full
       (hiPrio python3Full)
@@ -299,6 +296,10 @@ in
       # )
       logseq
       lilypond # Broken font
+      # macOS framework issues
+      gcc
+      (hiPrio clang)
+      clang-tools
       mold-wrapped # making it able to find libraries
       libGL
       (python3.withPackages (
