@@ -34,7 +34,7 @@ rec {
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager = {
-      url = "home-manager/master";
+      url = "home-manager/951f0b30c535a46817aa5ef4c66ddc4445f3e324";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence.url = "github:nix-community/impermanence";
