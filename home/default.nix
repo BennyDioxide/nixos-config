@@ -130,7 +130,7 @@ in
       android-tools
 
       # manim
-      renpy
+      # renpy
       # (callPackage ../pkgs/kde-material-you-colors {})
       pipx
       uv
@@ -230,7 +230,6 @@ in
       lldb
       vscode-extensions.vadimcn.vscode-lldb
       python311Full
-      (hiPrio python3Full)
       # rust-bin
       (hiPrio rustup)
       wasm-bindgen-cli
@@ -302,13 +301,13 @@ in
       clang-tools
       mold-wrapped # making it able to find libraries
       libGL
-      (python3.withPackages (
+      (python3Full.withPackages (
         py-pkgs: with py-pkgs; [
           tkinter
           ipython
           material-color-utilities
           pywal
-          transformers
+          # transformers
           # streamlit
         ]
       ))
@@ -331,7 +330,7 @@ in
       gamescope
 
       ardour
-      lmms
+      # lmms
       bespokesynth-with-vst2
       drumgizmo
       lsp-plugins
