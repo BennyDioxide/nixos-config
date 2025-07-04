@@ -35,7 +35,7 @@
       pipewire
       stdenv.cc.cc
       systemd
-      webkitgtk
+      webkitgtk_4_0
       webkitgtk_4_1
       vulkan-loader
       vips
