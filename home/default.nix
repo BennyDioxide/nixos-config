@@ -271,7 +271,7 @@ in
       appimage-run
 
       # Not providing macOS ver for some reason
-      rustdesk
+      rustdesk-flutter
       kdePackages.filelight
       krita
       jetbrains-toolbox
