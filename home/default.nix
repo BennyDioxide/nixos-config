@@ -209,6 +209,8 @@ in
 
       inkscape
 
+      kiwix
+
       # Development
 
       # jetbrains.rust-rover
