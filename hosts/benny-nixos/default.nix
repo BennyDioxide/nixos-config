@@ -227,6 +227,7 @@
   # services.aria2.openPorts = true;
   # services.aria2.rpcSecretFile = "/run/secrets/aria2-rpc-token.txt";
 
+  programs.localsend.enable = true;
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
   };
