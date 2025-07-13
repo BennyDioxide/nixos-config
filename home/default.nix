@@ -209,8 +209,6 @@ in
 
       inkscape
 
-      kiwix
-
       # Development
 
       # jetbrains.rust-rover
@@ -281,6 +279,8 @@ in
       # Broken on macOS
       (discord.override { withVencord = true; })
       zed-editor
+      kiwix
+
       # (
       #   let
       #     pname = "logseq";
