@@ -303,15 +303,17 @@ in
       clang-tools
       mold-wrapped # making it able to find libraries
       libGL
-      (python3Full.withPackages (
-        py-pkgs: with py-pkgs; [
-          tkinter
-          ipython
-          material-color-utilities
-          pywal
-          # transformers
-          # streamlit
-        ]
+      (hiPrio (
+        python3Full.withPackages (
+          py-pkgs: with py-pkgs; [
+            tkinter
+            ipython
+            material-color-utilities
+            pywal
+            # transformers
+            # streamlit
+          ]
+        )
       ))
       osu-lazer-bin # network issue or smth
       prismlauncher
