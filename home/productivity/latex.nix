@@ -15,6 +15,6 @@ in
   home.packages = with pkgs; [
     tectonic
     texlab
-    tex
+    # tex
   ];
 }
