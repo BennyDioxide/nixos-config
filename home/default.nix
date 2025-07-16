@@ -42,7 +42,7 @@ in
 
   home.sessionVariables = {
     EDITOR = "hx";
-    LIBRARY_PATH = if isDarwin then "$LIBRARY_PATH:${pkgs.libiconv}/lib" else "";
+    LIBRARY_PATH = if isDarwin then "$LIBRARY_PATH:${pkgs.libiconv}/lib" else "$LIBRARY_PATH";
   };
 
   systemd.user.sessionVariables = lib.mkIf (!isDarwin) {
