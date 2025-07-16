@@ -107,6 +107,7 @@
       "adbusers" # Use adb without privileges
       "audio" # Musnix
       "docker"
+      "samba"
     ];
     shell = pkgs.zsh;
     # shell = pkgs.nushell; # dataframe was gone
@@ -228,9 +229,20 @@
       to = 1764;
     }
   ];
+  networking.firewall.allowPing = true;
   # services.aria2.enable = true;
   # services.aria2.openPorts = true;
   # services.aria2.rpcSecretFile = "/run/secrets/aria2-rpc-token.txt";
+  services.samba = {
+    enable = true;
+    settings.global.security = "user";
+    openFirewall = true;
+    usershares.enable = true;
+  };
+  services.samba-wsdd = {
+    enable = true;
+    openFirewall = true;
+  };
 
   programs.localsend.enable = true;
   environment.sessionVariables = {
