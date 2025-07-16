@@ -159,7 +159,12 @@
     type = "fcitx5";
     fcitx5 = {
       addons = with pkgs; [
-        fcitx5-rime
+        (fcitx5-rime.override {
+          rimeDataPkgs = [
+            rime-data
+            rime-yuhao-star
+          ];
+        })
         fcitx5-mozc
         fcitx5-lua
         lua53Packages.luasocket # For ~/.config/fcitx5/addon/kanata/lib.lua
