@@ -106,7 +106,6 @@
       "kvm" # Hardware accelerated vm
       "adbusers" # Use adb without privileges
       "audio" # Musnix
-      "docker"
       "samba"
     ];
     shell = pkgs.zsh;
@@ -317,16 +316,6 @@
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemu.ovmf.packages = [ pkgs.OVMFFull.fd ];
   programs.virt-manager.enable = true;
-
-  virtualisation.docker = {
-    enable = true;
-    # enableNvidia = true;
-    storageDriver = "btrfs";
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
-  };
 
   # virtualisation.waydroid.enable = true;
 
