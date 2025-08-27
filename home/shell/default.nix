@@ -19,4 +19,5 @@
   programs.atuin.flags = [ "--disable-up-arrow" ];
   # programs.broot.enable = true;
   programs.yazi.enable = true;
+  programs.nix-index.enable = true;
 }
