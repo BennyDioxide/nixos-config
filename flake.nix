@@ -110,7 +110,6 @@ rec {
             experimental-features = [
               "nix-command"
               "flakes"
-              "repl-flake"
             ];
             # auto-optimise-store = true; # known to corrupt the store
           };
