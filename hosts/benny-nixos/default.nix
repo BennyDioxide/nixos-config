@@ -320,6 +320,9 @@
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
+  services.sunshine.enable = true;
+  services.sunshine.capSysAdmin = true;
+
   hardware.keyboard.qmk.enable = true;
   services.udev.packages = [ pkgs.via ];
 
