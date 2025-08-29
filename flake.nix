@@ -89,7 +89,7 @@ rec {
           rust-overlay.overlays.default
           # autin.overlays.default
           helix.overlays.default
-          (final: prev: import ./pkgs prev)
+          (import ./pkgs)
         ];
       };
       system = isDarwin: if isDarwin then "aarch64-darwin" else "x86_64-linux";
