@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   programs.helix = {
@@ -32,6 +32,15 @@
         name = "nix";
         auto-format = true;
         formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+      }
+      {
+        name = "markdown";
+        scope = "source.markdown";
+        file-types = [
+          "md"
+          "markdown"
+        ];
+        language-servers = [ "rime-ls" ];
       }
     ];
     languages.language-server = {

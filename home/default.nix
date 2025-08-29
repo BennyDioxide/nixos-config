@@ -10,28 +10,25 @@ let
   homeDirectory = if isDarwin then "/Users/${username}" else "/home/${username}";
 in
 {
-  imports =
-    [
-      ./shell
-      ./mpv
-      ./productivity
-      ./kitty.nix
-      ./font.nix
-      ./cava.nix
-      ./syncthing.nix
-      ./editor/helix.nix
-      ./editor/zed.nix
-      ./java.nix
-      ./irc.nix
-      ./vcs.nix
-      ../modules/home
-    ]
-    ++ lib.optionals (!isDarwin) [
-      ./editor/vscode.nix
-      ./xdg
-      ./wm
-      ./gtk.nix
-    ];
+  imports = [
+    ./shell
+    ./mpv
+    ./productivity
+    ./kitty.nix
+    ./font.nix
+    ./cava.nix
+    ./syncthing.nix
+    ./editor
+    ./java.nix
+    ./irc.nix
+    ./vcs.nix
+    ../modules/home
+  ]
+  ++ lib.optionals (!isDarwin) [
+    ./xdg
+    ./wm
+    ./gtk.nix
+  ];
 
   home.username = username;
   home.homeDirectory = homeDirectory;
