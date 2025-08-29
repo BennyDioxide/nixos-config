@@ -10,7 +10,7 @@
   ];
 
   programs.rime-ls = {
-    enable = true;
+    enable = !isDarwin;
     settings = {
       max_tokens = 4;
       always_incomplete = true;
