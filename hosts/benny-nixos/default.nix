@@ -165,7 +165,7 @@
             rime-yuhao-star
           ];
         })
-        fcitx5-mozc
+        fcitx5-mozc-ut
         fcitx5-lua
         lua53Packages.luasocket # For ~/.config/fcitx5/addon/kanata/lib.lua
       ];
