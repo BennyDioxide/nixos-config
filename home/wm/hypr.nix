@@ -8,10 +8,6 @@
 {
   imports = [ inputs.hyprland.homeManagerModules.default ];
 
-  nixpkgs.overlays = [
-    # hyprland.overlays.default
-  ];
-
   wayland.windowManager.hyprland = {
     enable = true;
     settings =

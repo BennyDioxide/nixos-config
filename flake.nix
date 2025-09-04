@@ -69,13 +69,14 @@ rec {
       rust-overlay,
       autin,
       helix,
+      hyprland,
       niri,
       stylix,
       ...
     }:
     let
       pkgs-configuration = isDarwin: {
-        hostPlatform = system isDarwin;
+        hostPlatform = if isDarwin then "aarch64-darwin" else "x86_64-linux";
         config.allowUnfree = true;
         config.permittedInsecurePackages = [
           "electron-27.3.11" # EOL
@@ -89,10 +90,11 @@ rec {
           rust-overlay.overlays.default
           # autin.overlays.default
           helix.overlays.default
+          # hyprland.overlays.default
+          niri.overlays.niri
           (import ./pkgs)
         ];
       };
-      system = isDarwin: if isDarwin then "aarch64-darwin" else "x86_64-linux";
       specialArgs = isDarwin: {
         inherit inputs isDarwin;
         pkgs-master = import nixpkgs-master (pkgs-configuration isDarwin);

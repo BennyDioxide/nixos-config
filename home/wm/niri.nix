@@ -1,14 +1,10 @@
 {
-  inputs,
   config,
   pkgs,
   ...
 }:
 
 {
-  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
-
-  home.packages = [ pkgs.niri-stable ];
   programs.niri.package = pkgs.niri-stable;
   programs.niri.settings = {
     environment = {
