@@ -11,10 +11,7 @@
 
     defaultApplications =
       let
-        genAttrs' =
-          list: namef: attrf:
-          with lib;
-          listToAttrs (map (item: nameValuePair (namef item) (attrf item)) list);
+        inherit (lib) genAttrs' nameValuePair;
         # browser = [ "brave-browser.desktop" ];
         browser = [ "firefox.desktop" ];
         osuLazer = "osu!.desktop";
@@ -31,25 +28,25 @@
         "ftp"
         "http"
         "https"
-      ] (x: "x-scheme-handler/${x}") (_: browser)
+      ] (s: nameValuePair "x-scheme-handler/${s}" browser)
       // genAttrs' [
         "htm"
         "html"
         "shtml"
         "xhtml"
         "xht"
-      ] (x: "application/x-extension-${x}") (_: browser)
+      ] (s: nameValuePair "application/x-extension-${s}" browser)
       // genAttrs' [
         "beatmap-archive"
         "skin-archive"
         "beatmap"
         "storyboard"
         "replay"
-      ] (x: "application/x-osu-${x}") (_: osuLazer)
+      ] (s: nameValuePair "application/x-osu-${s}" osuLazer)
       // genAttrs' [
         "discord"
         "logseq"
         "vlc"
-      ] (x: "x-scheme-handler/${x}") (x: [ "${x}.desktop" ]);
+      ] (s: nameValuePair "x-scheme-handler/${s}" [ "${s}.desktop" ]);
   };
 }
