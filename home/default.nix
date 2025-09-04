@@ -162,12 +162,8 @@ in
 
       obs-studio
       dex
-    ]
-    ++ lib.optionals (!isDarwin) [
-      libsForQt5.breeze-qt5
-      libsForQt5.breeze-icons
-      (hiPrio kdePackages.breeze)
-      (hiPrio kdePackages.breeze-icons)
+      kdePackages.breeze
+      kdePackages.breeze-icons
     ]
     ++ [
       # d-spy
