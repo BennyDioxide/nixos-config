@@ -8,6 +8,36 @@
 {
   imports = [ inputs.hyprland.homeManagerModules.default ];
 
+  home.packages = with pkgs; [
+    hyprland-qtutils
+    hyprland-qt-support
+    hyprcursor
+    hyprpicker
+    hyprutils
+    hyprwayland-scanner
+  ];
+
+  services.hypridle.enable = true;
+  services.hyprsunset.enable = true;
+  programs.hyprlock.enable = true;
+
+  xdg.configFile =
+    lib.genAttrs'
+      [
+        "hypridle.conf"
+        "hyprlock.conf"
+        "hyprlock/check-capslock.sh"
+        "hyprlock/colors.conf"
+        "hyprlock/status.sh"
+      ]
+      (
+        s:
+        let
+          file = "hypr/${s}";
+        in
+        lib.nameValuePair file { source = "${inputs.end-4_dots-hyprland}/.config/${file}"; }
+      );
+
   wayland.windowManager.hyprland = {
     enable = true;
     settings =
