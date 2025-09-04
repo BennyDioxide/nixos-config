@@ -18,7 +18,7 @@
         # See https://wiki.hyprland.org/Configuring/Monitors/
         monitor = ",preferred,auto,auto,bitdepth,10";
         exec-once = [
-          "ags"
+          "${lib.getExe pkgs.quickshell} --config end4-ii"
           "fcitx5"
           "krunner -d"
           "${pkgs.dex}/bin/dex -as ~/.config/autostart"

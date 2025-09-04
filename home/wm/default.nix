@@ -1,10 +1,10 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
+    ./quickshell.nix
     ./hypr.nix
     # ./niri.nix
-    inputs.ags.homeManagerModules.default
   ];
 
   home.packages = with pkgs; [
@@ -24,13 +24,4 @@
     gnome-usage
     brightnessctl
   ];
-
-  programs.ags = {
-    enable = true;
-    configDir = "${inputs.end-4_dots-hyprland}/.config/ags";
-    extraPackages = with pkgs; [
-      gtksourceview
-      gtksourceview4
-    ];
-  };
 }
