@@ -48,16 +48,6 @@ in
     LIBCLANG_PATH = "${pkgs.libclang.lib}/lib";
     GTK_USE_PORTAL = 1;
     # QT_QPA_PLATFORMTHEME = "xdgdesktopportal";
-    PKG_CONFIG_PATH =
-      with pkgs;
-      lib.lists.foldl (a: b: "${a}:${b}/lib/pkgconfig") "~/.nix-profile/lib/pkgconfig" [
-        xdotool
-        (alsa-lib.dev)
-        (udev.dev)
-        (wayland.dev)
-        (libxkbcommon.dev)
-        (openssl.dev)
-      ];
   };
 
   home.file.".cargo/config.toml".source =
