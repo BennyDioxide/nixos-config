@@ -52,16 +52,18 @@ in
 
   home.file.".cargo/config.toml".source =
     let
-      # linker = "${pkgs.clang}/bin/clang";
+      # linker = lib.getExe pkgs.clang;
       # rustflags = lib.optionals (!isDarwin) [
       #   "-C"
-      #   "link-arg=-fuse-ld=${pkgs.mold-wrapped}/bin/mold"
+      #   "link-arg=-fuse-ld=${lib.getExe pkgs.mold-wrapped}"
       # ];
       format = pkgs.formats.toml { };
     in
     format.generate "cargo-config" {
-      # build."rustc-wrapper" = "${pkgs.sccache}/bin/sccache";
-      target.wasm32-unknown-unknown.runner = "${pkgs.wasm-pack}/bin/wasm-server-runner";
+      # build."rustc-wrapper" = lib.getExe pkgs.sccache;
+
+      # non-existant wasm-pack/bin/wasm-server-runner
+      # target.wasm32-unknown-unknown.runner = lib.getExe' pkgs.wasm-pack "wasm-server-runner";
       # target.x86_64-unknown-linux-gnu = { inherit linker rustflags; };
       # target.aarch64-apple-darwin = { inherit linker; };
     };

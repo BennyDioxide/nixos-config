@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   isDarwin,
   ...
@@ -33,8 +34,8 @@
       ls = "eza --icons";
       la = "ls -a";
       ll = "ls -al";
-      mpv-pixel = "mpv --vo-set=tct";
-      spf = "${pkgs.superfile}/bin/superfile";
+      mpv-pixel = "mpv --vo-set=tct --quiet";
+      spf = lib.getExe pkgs.superfile;
     };
     plugins = with pkgs; [
       {

@@ -1,11 +1,11 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 let
   libera = {
     address = "irc.ea.libera.chat";
     nickname = "BennyDioxide";
     password-cmd = [
-      "${pkgs.gopass}/bin/gopass"
+      (lib.getExe pkgs.gopass)
       "show"
       "irc/main"
     ];

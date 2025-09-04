@@ -42,19 +42,19 @@
     enable = true;
     settings =
       let
-        wpctl = pkgs.wpctl;
+        inherit (lib) getExe getExe';
       in
       {
         # See https://wiki.hyprland.org/Configuring/Monitors/
         monitor = ",preferred,auto,auto,bitdepth,10";
         exec-once = [
-          "${lib.getExe pkgs.quickshell} --config end4-ii"
-          "fcitx5"
+          "${getExe pkgs.quickshell} --config end4-ii"
+          (getExe pkgs.fcitx5)
           "krunner -d"
-          "${pkgs.dex}/bin/dex -as ~/.config/autostart"
+          "${getExe pkgs.dex} -as ~/.config/autostart"
           "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
           "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init"
-          "${pkgs.swww}/bin/swww-daemon"
+          (getExe' pkgs.swww "swww-daemon")
         ];
         env = [
           # Nvidia

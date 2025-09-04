@@ -1,9 +1,15 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }:
 
+let
+  inherit (lib) getExe;
+
+  wpctl = lib.getExe' pkgs.wireplumber "wpctl";
+in
 {
   programs.niri.package = pkgs.niri-stable;
   programs.niri.settings = {
@@ -15,30 +21,30 @@
     };
     spawn-at-startup = [
       # { command = [ "krunner" "-d" ]; }
-      { command = [ "fcitx5" ]; }
+      { command = [ (getExe pkgs.fcitx5) ]; }
     ];
     binds = with config.lib.niri.actions; {
       "Mod+Shift+Slash".action = show-hotkey-overlay;
 
-      "Mod+T".action = spawn "${pkgs.kitty}/bin/kitty";
-      "Mod+D".action = spawn "${pkgs.fuzzel}/bin/fuzzel"; # "krunner";
-      "Super+Alt+L".action = spawn "${pkgs.swaylock}/bin/swaylock";
+      "Mod+T".action = spawn (getExe pkgs.kitty);
+      "Mod+D".action = spawn (getExe pkgs.fuzzel); # "krunner";
+      "Super+Alt+L".action = spawn (getExe pkgs.swaylock);
 
       "XF86AudioRaiseVolume".action.spawn = [
-        "wpctl"
+        wpctl
         "set-volume"
         "@DEFAULT_AUDIO_SINK@"
         "0.02+"
       ];
       "XF86AudioLowerVolume".action.spawn = [
-        "wpctl"
+        wpctl
         "set-volume"
         "@DEFAULT_AUDIO_SINK@"
         "0.02-"
       ];
       "XF86AudioMute".allow-when-locked = true;
       "XF86AudioMute".action.spawn = [
-        "wpctl"
+        wpctl
         "set-mute"
         "@DEFAULT_AUDIO_SINK@"
         "toggle"
