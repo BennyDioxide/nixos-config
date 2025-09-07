@@ -197,23 +197,9 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
 
-  ];
-  # KDE Connect
-  # https://userbase.kde.org/KDEConnect
-  networking.firewall.allowedTCPPortRanges = [
-    {
-      from = 1714;
-      to = 1764;
-    }
-  ];
-  networking.firewall.allowedUDPPortRanges = [
-    {
-      from = 1714;
-      to = 1764;
-    }
-  ];
   services.syncthing.enable = true;
   services.syncthing.openDefaultPorts = true;
+  programs.kdeconnect.enable = true;
   networking.firewall.allowPing = true;
   # services.aria2.enable = true;
   # services.aria2.openPorts = true;

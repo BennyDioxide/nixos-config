@@ -331,11 +331,6 @@ in
     platformTheme.name = "qtct";
   };
 
-  services.kdeconnect = lib.mkIf (!isDarwin) {
-    enable = true;
-    indicator = true;
-  };
-
   # Enables xembed system tray available on Wayland
   services.xembed-sni-proxy.enable = !isDarwin;
 
