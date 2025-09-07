@@ -50,7 +50,7 @@
         exec-once = [
           "${getExe pkgs.quickshell} --config end4-ii"
           (getExe pkgs.fcitx5)
-          "krunner -d"
+          # "krunner -d"
           "${getExe pkgs.dex} -as ~/.config/autostart"
           "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
           "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init"
@@ -177,7 +177,7 @@
           ]
           ++ flatten (
             # map (key: "${key}, exec, nu -c \"GTK_IM_MODULE=fcitx anyrun\"") [
-            map (key: "${key}, exec, krunner") [
+            map (key: "${key}, exec, ${getExe pkgs.fuzzel}") [
               "$mainMod, R"
               "ALT, space"
             ]
