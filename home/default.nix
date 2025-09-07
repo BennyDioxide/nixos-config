@@ -17,7 +17,6 @@ in
     ./kitty.nix
     ./font.nix
     ./cava.nix
-    ./syncthing.nix
     ./editor
     ./java.nix
     ./irc.nix
