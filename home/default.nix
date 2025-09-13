@@ -14,12 +14,12 @@ in
     ./shell
     ./mpv
     ./productivity
+    ./networking
     ./kitty.nix
     ./font.nix
     ./cava.nix
     ./editor
     ./java.nix
-    ./irc.nix
     ./vcs.nix
     ../modules/home
   ]
@@ -258,7 +258,6 @@ in
       jetbrains-toolbox
 
       # Broken on macOS
-      (discord.override { withVencord = true; })
       zed-editor
       kiwix
 
