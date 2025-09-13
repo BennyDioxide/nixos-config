@@ -210,7 +210,16 @@ in
       colima
       lldb
       vscode-extensions.vadimcn.vscode-lldb
-      python311Full
+      (python3.withPackages (
+        py-pkgs: with py-pkgs; [
+          tkinter
+          # ipython
+          material-color-utilities
+          pywal
+          # transformers
+          # streamlit
+        ]
+      ))
       # rust-bin
       (hiPrio rustup)
       wasm-bindgen-cli
@@ -283,18 +292,6 @@ in
       clang-tools
       mold-wrapped # making it able to find libraries
       libGL
-      (hiPrio (
-        python3Full.withPackages (
-          py-pkgs: with py-pkgs; [
-            tkinter
-            ipython
-            material-color-utilities
-            pywal
-            # transformers
-            # streamlit
-          ]
-        )
-      ))
       osu-lazer-bin # network issue or smth
       prismlauncher
       ferium

@@ -46,10 +46,6 @@
     "1.1.1.1"
     "100.100.100.100"
   ]; # 100.100.100.100 for Tailscale
-  # Bluetooth is unusable
-  # hardware.bluetooth.enable = true;
-  # hardware.bluetooth.powerOnBoot = true;
-  # services.blueman.enable = true;
   services.tailscale.enable = true;
 
   # Set your time zone.
