@@ -5,6 +5,7 @@
     ./quickshell.nix
     ./hypr.nix
     # ./niri.nix
+    ./flameshot.nix
   ];
 
   home.packages = with pkgs; [

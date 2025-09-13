@@ -154,14 +154,15 @@
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
         };
 
-        # Example windowrule v1
-        # windowrule = float, ^(kitty)$
-        # Example windowrule v2
-        # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
         # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
-        windowrulev2 = [
+        windowrule = [
           "fullscreen,class:^(osu!)$,title:^(osu!)$"
           "fullscreen,class:^(fl64.exe)$,initialTitle:^(FL Studio)$"
+          "noanim, title:^(flameshot)$"
+          "float, title:^(flameshot)$"
+          "move 0 0, title:^(flameshot)$"
+          "pin, title:^(flameshot)$"
+          "noinitialfocus, title:^(flameshot)$"
         ];
 
         # See https://wiki.hyprland.org/Configuring/Keywords/ for more
@@ -187,7 +188,7 @@
             "$mainMod, J, togglesplit," # dwindle
             "$mainMod, F, fullscreen,"
             "$mainMod, L, exec, wlogout"
-            ", Print, exec, nu -c \"grim -g (slurp) - | wl-copy\""
+            ", Print, exec, XDG_CURRENT_DESKTOP=sway flameshot gui"
             # Move focus with mainMod + arrow keys
             "$mainMod, left, movefocus, l"
             "$mainMod, right, movefocus, r"
