@@ -44,7 +44,7 @@ rec {
     };
     musnix.url = "github:musnix/musnix";
     musnix.inputs.nixpkgs.follows = "nixpkgs";
-    helix.url = "helix/24.03";
+    helix.url = "helix/25.07.1";
     rust-overlay.url = "github:oxalica/rust-overlay";
     autin.url = "github:atuinsh/atuin";
     # hyprland.url = "github:hyprwm/Hyprland";
