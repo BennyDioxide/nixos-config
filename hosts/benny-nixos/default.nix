@@ -4,6 +4,7 @@
 
 {
   config,
+  options,
   pkgs,
   ...
 }:
@@ -304,6 +305,14 @@
 
   hardware.keyboard.qmk.enable = true;
   services.udev.packages = [ pkgs.via ];
+
+  services.guix.enable = true;
+  services.guix.gc.enable = true;
+  services.guix.substituters.urls = [
+    "https://mirror.sjtu.edu.cn/guix"
+    "https://substitutes.nonguix.org"
+  ]
+  ++ options.services.guix.substituters.urls.default;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

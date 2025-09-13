@@ -61,6 +61,16 @@ in
       fsType = "bcachefs";
     };
 
+  fileSystems."/gnu" = {
+    device = nvme0n1p6;
+    fsType = "btrfs";
+    options = [
+      "subvol=@gnu"
+      "compress=zstd"
+      "noatime"
+    ];
+  };
+
   fileSystems."/home" = {
     device = nvme0n1p6;
     fsType = "btrfs";
