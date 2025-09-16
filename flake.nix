@@ -38,6 +38,9 @@ rec {
       inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence.url = "github:nix-community/impermanence";
+    ragenix.url = "github:yaxitech/ragenix";
+    secrets.url = "git+ssh://git@github.com/BennyDioxide/nix-secrets.git?shallow=1";
+    secrets.flake = false;
     anyrun = {
       url = "github:anyrun-org/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";

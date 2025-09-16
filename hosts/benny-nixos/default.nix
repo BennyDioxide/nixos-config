@@ -13,6 +13,7 @@
   imports = [
     ./hardware-configuration.nix
     ./immich.nix
+    ../../secrets/nixos.nix
   ];
 
   boot = {
