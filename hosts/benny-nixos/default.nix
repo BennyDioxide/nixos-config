@@ -106,8 +106,7 @@
       "audio" # Musnix
       "samba"
     ];
-    shell = pkgs.zsh;
-    # shell = pkgs.nushell; # dataframe was gone
+    shell = pkgs.nushell;
     hashedPassword = "$y$j9T$GMklPzea3Rd5zj48qqJEj0$tZ4IoTGPALA8S5HCtVwkuYvVUkOUmKM7jPiim14kg38";
   };
 
