@@ -198,9 +198,11 @@
   services.syncthing.openDefaultPorts = true;
   programs.kdeconnect.enable = true;
   networking.firewall.allowPing = true;
-  # services.aria2.enable = true;
-  # services.aria2.openPorts = true;
-  # services.aria2.rpcSecretFile = "/run/secrets/aria2-rpc-token.txt";
+  services.aria2.enable = true;
+  services.aria2.openPorts = true;
+  services.aria2.settings.rpc-allow-origin-all = true;
+  services.aria2.settings.dir = "/mnt/segate4t/Downloads";
+  services.aria2.rpcSecretFile = config.age.secrets.aria2.path;
   services.samba = {
     enable = true;
     settings.global.security = "user";

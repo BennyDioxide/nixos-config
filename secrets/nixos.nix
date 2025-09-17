@@ -12,4 +12,6 @@ in
   ];
 
   environment.systemPackages = [ ragenix.packages.${config.nixpkgs.system}.default ];
+
+  age.secrets.aria2.file = "${secrets}/aria2-rpc-token.age";
 }
