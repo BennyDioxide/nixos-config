@@ -3,6 +3,12 @@
 {
   programs.helix = {
     enable = true;
+    package = pkgs.helix.overrideAttrs (prev: {
+      cargoBuildFeatures = [
+        "git"
+        "steel"
+      ];
+    });
     settings = {
       theme = "fleet_dark";
       editor = {

@@ -47,7 +47,7 @@ rec {
     };
     musnix.url = "github:musnix/musnix";
     musnix.inputs.nixpkgs.follows = "nixpkgs";
-    # helix.url = "helix/25.07.1";
+    helix.url = "github:mattwparas/helix/steel-event-system";
     rust-overlay.url = "github:oxalica/rust-overlay";
     autin.url = "github:atuinsh/atuin";
     # hyprland.url = "github:hyprwm/Hyprland";
@@ -70,7 +70,7 @@ rec {
       musnix,
       rust-overlay,
       autin,
-      # helix,
+      helix,
       hyprland,
       niri,
       stylix,
@@ -91,7 +91,7 @@ rec {
         overlays = [
           rust-overlay.overlays.default
           # autin.overlays.default
-          # helix.overlays.default
+          helix.overlays.default
           # hyprland.overlays.default
           niri.overlays.niri
           (import ./pkgs)

@@ -243,6 +243,7 @@ in
       # devenv
       gradle
       sbcl
+      steel
       clojure
       clojure-lsp
       babashka
