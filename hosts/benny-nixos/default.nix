@@ -225,7 +225,7 @@
   };
 
   services.displayManager = {
-    defaultSession = "plasma"; # "hyprland";
+    defaultSession = "hyprland";
     autoLogin = {
       enable = true;
       user = "benny";
