@@ -140,6 +140,7 @@
     nh
     nvtopPackages.nvidia
     duperemove
+    perf
 
     kdePackages.partitionmanager
   ];
