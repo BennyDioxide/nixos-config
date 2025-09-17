@@ -11,5 +11,5 @@ in
     ragenix.nixosModules.default
   ];
 
-  environment.systemPackages = [ ragenix.packages.${config.nixpkgs.hostPlatform}.default ];
+  environment.systemPackages = [ ragenix.packages.${config.nixpkgs.system}.default ];
 }
