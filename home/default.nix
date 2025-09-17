@@ -80,11 +80,11 @@ in
       xmake
       cmake
       boost
-      extra-cmake-modules
+      # extra-cmake-modules
       bazel
       ninja
       gettext
-      mise
+      # mise
       just
       dust
       nixfmt-rfc-style
@@ -94,9 +94,9 @@ in
       # nix-init
       nh
       comma
-      file
+      # file
       gojq
-      inshellisense
+      # inshellisense
       unzip
       p7zip
       trash-cli
@@ -113,7 +113,7 @@ in
       btop
       bottom
       gopass
-      superfile
+      # superfile
 
       android-tools
 
@@ -122,18 +122,18 @@ in
       # (callPackage ../pkgs/kde-material-you-colors {})
       pipx
       uv
-      poetry
-      qmk
+      # poetry
+      # qmk
       # cargo-sweep
       wasm-pack
       fortune
       pipes
-      cmatrix
-      cowsay
-      figlet
-      cbonsai
+      # cmatrix
+      # cowsay
+      # figlet
+      # cbonsai
 
-      imagemagick
+      # imagemagick
 
       aria2
       xh
@@ -141,14 +141,14 @@ in
       ytarchive
       ffmpeg
       (if isDarwin then vlc-bin else vlc)
-      audacity
+      # audacity
       spotube
       # spotify
       # spotifyd
       # spotify-tui # Removed at Mar 12, 2024, 6:14 PM GMT+8
       # davinci-resolve
 
-      pandoc
+      # pandoc
 
     ]
     ++ lib.optionals isDarwin [
@@ -172,8 +172,8 @@ in
       kitty
       anki-bin
       # blender
-      blockbench
-      brave
+      # blockbench
+      # brave
       # geogebra
       telegram-desktop
       # element-desktop
@@ -191,12 +191,12 @@ in
       ferium
       # modrinth-app
 
-      inkscape
+      # inkscape
 
       # Development
 
       # jetbrains.rust-rover
-      # jetbrains.rider
+      jetbrains.rider
       # jetbrains.clion
       # jetbrains.pycharm-professional
       # jetbrains.pycharm-community
@@ -206,10 +206,10 @@ in
       # androidStudioPackages.beta
 
       # lapce
-      neovide
-      warp-terminal
+      # neovide
+      # warp-terminal
       # thefuck
-      sheldon # zsh stuff for using warp
+      # sheldon # zsh stuff for using warp
       colima
       lldb
       vscode-extensions.vadimcn.vscode-lldb
@@ -228,19 +228,19 @@ in
       wasm-bindgen-cli
       pkg-config
       dioxus-cli
-      (hiPrio dotnet-sdk)
-      dotnet-sdk_7
+      # (hiPrio dotnet-sdk)
+      # dotnet-sdk_7
       nodejs
       yarn
       nodePackages.pnpm
       bun
-      ghc
-      haskell-language-server
-      elan
-      nixd
+      # ghc
+      # haskell-language-server
+      # elan
+      # nixd
       nil
       nix-direnv
-      devenv
+      # devenv
       gradle
       sbcl
       clojure
@@ -249,7 +249,7 @@ in
       marksman
       zig
       zls
-      bqn
+      # bqn
       pyright
       # vscode-langservers-extracted # nodePackages.vscode-json-languageserver-bin
       nodePackages.typescript-language-server
@@ -257,8 +257,8 @@ in
 
       musescore
       # (callPackage ../pkgs/pixitracker { })
-      sunvox
-      famistudio
+      # sunvox
+      # famistudio
     ]
     ++ lib.optionals (!isDarwin) [
       appimage-run
@@ -268,10 +268,11 @@ in
       kdePackages.filelight
       krita
       jetbrains-toolbox
+      unityhub
 
       # Broken on macOS
       zed-editor
-      kiwix
+      # kiwix
 
       # (
       #   let
@@ -288,17 +289,15 @@ in
       #   }
       # )
       logseq
-      lilypond # Broken font
+      # lilypond # Broken font
       # macOS framework issues
-      gcc
-      (hiPrio clang)
-      clang-tools
+      # gcc
+      # (hiPrio clang)
+      # clang-tools
       mold-wrapped # making it able to find libraries
-      libGL
+      # libGL
       osu-lazer-bin # network issue or smth
-      prismlauncher
-      ferium
-      modrinth-app
+      # modrinth-app
 
       qpwgraph
       jamesdsp
@@ -311,13 +310,19 @@ in
       bottles
 
       mangohud
-      gamescope
+      # gamescope
 
       ardour
       # lmms
       bespokesynth-with-vst2
       drumgizmo
+      calf
+      dragonfly-reverb
+      vital
       lsp-plugins
+      x42-plugins
+      x42-gmsynth
+      geonkick
       zam-plugins
       yabridge
       yabridgectl

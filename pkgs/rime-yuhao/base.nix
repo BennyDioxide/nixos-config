@@ -8,7 +8,7 @@
 }:
 
 let
-  version = "v3.9.0";
+  version = "v3.10.0";
 in
 stdenvNoCC.mkDerivation {
   inherit version;
