@@ -195,16 +195,6 @@ in
 
       # Development
 
-      # jetbrains.rust-rover
-      jetbrains.rider
-      # jetbrains.clion
-      # jetbrains.pycharm-professional
-      # jetbrains.pycharm-community
-      # jetbrains.idea-professional
-      # jetbrains.idea-community
-      # android-studio-full
-      # androidStudioPackages.beta
-
       # lapce
       # neovide
       # warp-terminal
@@ -263,6 +253,16 @@ in
     ]
     ++ lib.optionals (!isDarwin) [
       appimage-run
+
+      # jetbrains.rust-rover
+      jetbrains.rider
+      # jetbrains.clion
+      # jetbrains.pycharm-professional
+      # jetbrains.pycharm-community
+      # jetbrains.idea-professional
+      # jetbrains.idea-community
+      # android-studio-full
+      # androidStudioPackages.beta
 
       # Not providing macOS ver for some reason
       rustdesk-flutter
