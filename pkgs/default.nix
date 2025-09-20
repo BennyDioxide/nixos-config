@@ -9,4 +9,11 @@ with prev; {
     ];
   };
   mpv-handler = callPackage ./mpv-handler { };
+
+  helix = prev.helix.overrideAttrs (_: {
+    cargoBuildFeatures = [
+      "git"
+      "steel"
+    ];
+  });
 }
