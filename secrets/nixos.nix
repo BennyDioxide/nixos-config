@@ -13,5 +13,9 @@ in
 
   environment.systemPackages = [ ragenix.packages.${config.nixpkgs.system}.default ];
 
+  age.secrets.freshrss = {
+    file = "${secrets}/freshrss.default.age";
+    owner = config.services.freshrss.user;
+  };
   age.secrets.aria2.file = "${secrets}/aria2-rpc-token.age";
 }

@@ -301,10 +301,10 @@
   services.sunshine.capSysAdmin = true;
 
   services.freshrss.enable = true;
-  services.freshrss.authType = "none";
+  # services.freshrss.authType = "none";
   services.freshrss.defaultUser = "benny";
-  services.freshrss.baseUrl = "freshrss";
-  # services.freshrss.passwordFile = config.age.secrets.freshrss.path;
+  services.freshrss.baseUrl = "http://benny-nixos/";
+  services.freshrss.passwordFile = config.age.secrets.freshrss.path;
 
   hardware.keyboard.qmk.enable = true;
   services.udev.packages = [ pkgs.via ];
