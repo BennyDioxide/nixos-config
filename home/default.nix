@@ -331,8 +331,8 @@ in
 
   # programs.mpv-handler.enable = true;
 
-  qt = lib.mkIf (!isDarwin) {
-    enable = true;
+  qt = {
+    enable = !isDarwin;
     platformTheme.name = "qtct";
   };
 
