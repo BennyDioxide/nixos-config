@@ -336,6 +336,8 @@ in
     platformTheme.name = "qtct";
   };
 
+  services.syncthing.enable = isDarwin;
+
   # Enables xembed system tray available on Wayland
   services.xembed-sni-proxy.enable = !isDarwin;
 
