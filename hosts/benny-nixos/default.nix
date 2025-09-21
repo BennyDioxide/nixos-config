@@ -12,7 +12,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./immich.nix
+    # ./immich.nix
     ../../secrets/nixos.nix
   ];
 
