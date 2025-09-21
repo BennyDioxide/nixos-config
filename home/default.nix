@@ -264,6 +264,8 @@ in
       # android-studio-full
       # androidStudioPackages.beta
 
+      blender
+
       # Not providing macOS ver for some reason
       rustdesk-flutter
       kdePackages.filelight
