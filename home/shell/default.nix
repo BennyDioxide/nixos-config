@@ -12,6 +12,13 @@
     };
   };
 
+  programs.btop.enable = true;
+  programs.btop.settings = {
+    swap_disk = false;
+
+    disks_filter = "exclude=/root /swap/swapfile /gnu /nix/persistent /var /var/log /var/cache /srv /etc/ssh /etc/NetworkManager/system-connections /";
+  };
+
   programs.starship.enable = true;
   programs.carapace.enable = true;
   programs.zoxide.enable = true;
