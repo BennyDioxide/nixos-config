@@ -10,6 +10,8 @@
     font.size = 14;
     keybindings = { };
     environment = { };
-    shellIntegration.enableZshIntegration = true;
+    settings = {
+      cursor_trail = 10;
+    };
   };
 }
