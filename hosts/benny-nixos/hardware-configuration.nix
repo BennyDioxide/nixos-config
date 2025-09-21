@@ -148,6 +148,7 @@ in
       "/etc/ssh"
       "/root"
       "/var"
+      "/srv"
     ];
 
     files = [
