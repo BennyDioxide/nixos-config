@@ -47,6 +47,7 @@
         "discord"
         "logseq"
         "vlc"
+        "unityhub"
       ] (s: nameValuePair "x-scheme-handler/${s}" [ "${s}.desktop" ]);
   };
 }
