@@ -10,5 +10,6 @@
   home.packages = with pkgs; [
     (if pkgs.stdenv.isDarwin then libreoffice-bin else libreoffice)
     pandoc
+    presenterm
   ];
 }
