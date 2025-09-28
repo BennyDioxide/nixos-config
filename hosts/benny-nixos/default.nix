@@ -105,6 +105,7 @@
       "adbusers" # Use adb without privileges
       "audio" # Musnix
       "samba"
+      "syncthing"
     ];
     shell = pkgs.nushell;
     hashedPassword = "$y$j9T$GMklPzea3Rd5zj48qqJEj0$tZ4IoTGPALA8S5HCtVwkuYvVUkOUmKM7jPiim14kg38";
@@ -197,6 +198,8 @@
 
   services.syncthing.enable = true;
   services.syncthing.openDefaultPorts = true;
+  services.syncthing.user = "benny";
+  services.syncthing.dataDir = config.users.users.benny.home;
   programs.kdeconnect.enable = true;
   networking.firewall.allowPing = true;
   services.aria2.enable = true;
