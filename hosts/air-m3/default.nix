@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 let
   username = "bennyyang";
@@ -8,6 +8,10 @@ in
     ./aerospace
     ./sketchybar
   ];
+
+  services.emacs.enable = true;
+  services.emacs.package = pkgs.emacs-macport;
+
   users.users."${username}".home = "/Users/${username}";
   system.primaryUser = username;
   system.stateVersion = 5;
