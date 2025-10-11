@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 
@@ -11,11 +12,16 @@ let
   wpctl = lib.getExe' pkgs.wireplumber "wpctl";
 in
 {
+  imports = [ inputs.niri.homeModules.niri ];
+
+  home.packages = [ pkgs.xwayland-satellite-stable ];
+
+  programs.niri.enable = true;
   programs.niri.package = pkgs.niri-stable;
   programs.niri.settings = {
     environment = {
       QT_QPA_PLATFORM = "wayland";
-      DISPLAY = null;
+      # DISPLAY = null;
       GTK_IM_MODULE = "wayland";
       XIM_MODULE = "@im=fcitx";
     };
@@ -98,7 +104,7 @@ in
       "Mod+Shift+Plus".action = set-window-height "+10%";
 
       "Print".action = screenshot;
-      "Ctrl+Print".action = screenshot-screen;
+      # "Ctrl+Print".action = screenshot-screen;
       "Alt+Print".action = screenshot-window;
 
       "Mod+Shift+E".action = quit;

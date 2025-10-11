@@ -139,7 +139,6 @@ rec {
           ./hosts/benny-nixos
           ./modules
           musnix.nixosModules.musnix
-          niri.nixosModules.niri
           # stylix.nixosModules.stylix
           (nixSettings "benny" false)
           home-manager.nixosModules.home-manager
