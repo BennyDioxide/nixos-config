@@ -48,7 +48,7 @@
         monitor = ",preferred,auto,auto,bitdepth,10";
         exec-once = [
           "${getExe pkgs.quickshell} --config end4-ii"
-          (getExe pkgs.fcitx5)
+          "fcitx5"
           # "krunner -d"
           "${getExe pkgs.dex} -as ~/.config/autostart"
           "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
