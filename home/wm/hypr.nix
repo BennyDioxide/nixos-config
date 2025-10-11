@@ -6,8 +6,6 @@
 }:
 
 {
-  imports = [ inputs.hyprland.homeManagerModules.default ];
-
   home.packages = with pkgs; [
     hyprland-qtutils
     hyprland-qt-support
@@ -40,6 +38,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    plugins = [ pkgs.hyprlandPlugins.hyprscrolling ];
     settings =
       let
         inherit (lib) getExe getExe';
@@ -102,7 +101,7 @@
           "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
           "col.inactive_border" = "rgba(595959aa)";
 
-          layout = "dwindle";
+          layout = "scrolling";
         };
         decoration = {
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
@@ -165,6 +164,11 @@
           "noinitialfocus, title:^(flameshot)$"
         ];
 
+        plugin.hyprscrolling = {
+          column_width = 0.7;
+          fullscreen_on_one_column = true;
+        };
+
         # See https://wiki.hyprland.org/Configuring/Keywords/ for more
         "$mainMod" = "SUPER";
         bind =
@@ -211,11 +215,15 @@
           )
           ++ [
             # Scroll through existing workspaces with mainMod + scroll
-            "$mainMod, mouse_up, workspace, +1"
-            "$mainMod, mouse_down, workspace, -1"
+            "$mainMod CTRL, mouse_up, workspace, +1"
+            "$mainMod CTRL, mouse_down, workspace, -1"
+            "$mainMod, mouse_up, layoutmsg, move +col"
+            "$mainMod, mouse_down, layoutmsg, move -col"
 
-            "$mainMod SHIFT, mouse_up, movetoworkspace, -1"
-            "$mainMod SHIFT, mouse_down, movetoworkspace, +1"
+            # "$mainMod SHIFT CTRL, mouse_up, movetoworkspace, +1"
+            # "$mainMod SHIFT CTRL, mouse_down, movetoworkspace, -1"
+            "$mainMod SHIFT, mouse_up, layoutmsg, movewindowto r"
+            "$mainMod SHIFT, mouse_down, layoutmsg, movewindowto l"
 
             ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
             ", XF86AudioPlay, exec, playerctl play-pause"
