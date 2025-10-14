@@ -16,7 +16,7 @@ stdenvNoCC.mkDerivation {
 
   src = fetchzip {
     inherit hash;
-    url = "https://github.com/forfudan/yuhao-ime-release/releases/download/${version}/yuhao_${schemaName}_${alias}_${version}.zip";
+    url = "https://github.com/forfudan/yuhao-ime-release/releases/download/${version}/${schemaName}_${alias}_${version}.zip";
     stripRoot = false;
   };
 
