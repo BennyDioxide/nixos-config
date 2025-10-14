@@ -20,13 +20,18 @@
     jetbrains-mono
     fira-math
     twemoji-color-font
+
+    nasin-nanpa
   ];
 
   fonts = {
     fontconfig = {
       enable = true;
       defaultFonts = {
-        sansSerif = [ "Noto Sans CJK JP" ];
+        sansSerif = [
+          "Noto Sans CJK JP"
+          "nasin-nanpa"
+        ];
         serif = [ "Noto Serif CJK JP" ];
         monospace = [
           "JetBrainsMono Nerd Font"
