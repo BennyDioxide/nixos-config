@@ -14,6 +14,6 @@
       revolt-desktop
     ]
     ++ lib.optionals (!isDarwin) [
-      (discord.override { withVencord = true; })
+      (discord.override { withOpenASAR = true; withVencord = true; })
     ];
 }
