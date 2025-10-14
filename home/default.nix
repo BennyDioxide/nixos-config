@@ -150,6 +150,7 @@ in
 
       # pandoc
 
+      organicmaps
     ]
     ++ lib.optionals isDarwin [
       raycast
