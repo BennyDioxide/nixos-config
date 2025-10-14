@@ -55,8 +55,8 @@ in
     };
 
     xdg.mimeApps.defaultApplications = {
-      "x-scheme-handler/mpv" = [ "mpv-handler.desktop" ];
-      "x-scheme-handler/mpv-debug" = [ "mpv-handler-debug.desktop" ];
+      "x-scheme-handler/mpv-handler" = [ "mpv-handler.desktop" ];
+      "x-scheme-handler/mpv-handler-debug" = [ "mpv-handler-debug.desktop" ];
     };
   };
 }

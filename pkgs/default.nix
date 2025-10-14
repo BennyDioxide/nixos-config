@@ -8,7 +8,6 @@ with prev; {
       final.rime-yuhao-ming
     ];
   };
-  mpv-handler = callPackage ./mpv-handler { };
 
   helix = prev.helix.overrideAttrs (_: {
     cargoBuildFeatures = [

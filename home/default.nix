@@ -331,7 +331,7 @@ in
       yabridgectl
     ];
 
-  # programs.mpv-handler.enable = true;
+  programs.mpv-handler.enable = true;
 
   qt = {
     enable = !isDarwin;
