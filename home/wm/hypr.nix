@@ -57,9 +57,9 @@
         ];
         env = [
           # Nvidia
+          "GBM_BACKEND,nvidia-drm"
           "LIBVA_DRIVER_NAME,nvidia"
           "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-          "NVD_BACKEND,direct" # nvidia-vaapi-driver
 
           # "XDG_CURRENT_DESKTOP,KDE"
           "QT_QPA_PLATFORM,wayland"
