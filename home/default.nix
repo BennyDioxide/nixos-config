@@ -73,6 +73,7 @@ in
   home.packages =
     with pkgs;
     [
+      gitu
       gitui
       gh
       # gitbutler
