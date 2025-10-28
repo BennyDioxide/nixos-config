@@ -1,0 +1,33 @@
+ {:tasks
+  {:requires ([clojure.string :as str])
+   s (run 'switch)
+   sh (run 'switch-home)
+   u (run 'update)
+   ua (run 'update-all-inputs)
+   c (run 'clean-user)
+   ca (run 'clean-all)
+   op (run 'optimize)
+
+   switch (let [os (System/getProperty "os.name")
+                command (case os
+                          "Mac OS X" "darwin"
+                          "Linux" "os")]
+            (shell (str "nh " command " switch . --ask -- --accept-flake-config")))
+   switch-home (shell "nh home switch . --ask")
+   boot (shell "nh os boot")
+   update (do
+            (run 'update-main-inputs)
+            (run 'switch))
+   update-all-inputs (shell "nix flake update")
+   update-main-inputs (let [main-inputs ["nixpkgs" "home-manager" "nix-darwin"]]
+                        (shell (str "nix flake update " (str/join " " main-inputs))))
+   gc-store (shell "nix store gc")
+   gc-legacy (shell "sudo nix-collect-garbage -d")
+   clean-user (shell "nh clean user")
+   clean-all (shell "nh clean all")
+   optimize (shell "nix store optimise")
+   optimise (run 'optimize)
+   wipe-profile (shell "nix profile wipe-history")
+   restart-nix-daemon-darwin (do
+                               (shell "sudo launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist")
+                               (shell "sudo launchctl start org.nixos.nix-daemon"))}}
