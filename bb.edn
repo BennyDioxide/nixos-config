@@ -1,5 +1,14 @@
- {:tasks
-  {:requires ([clojure.string :as str])
+ {:deps {org.clj-commons/pretty {:mvn/version "3.5.0"}}
+  :tasks
+  {:requires ([clojure.string :as str]
+              [clj-commons.ansi :as ansi])
+   :init (defn shell' [c]
+           (do
+             (println
+               (if ansi/*color-enabled*
+                 (ansi/compose [:italic.green "λ> "] [:bold.bright-white c])
+                 (str "$ ")))
+             (shell c)))
    s (run 'switch)
    sh (run 'switch-home)
    u (run 'update)
@@ -12,22 +21,22 @@
                 command (case os
                           "Mac OS X" "darwin"
                           "Linux" "os")]
-            (shell (str "nh " command " switch . --ask -- --accept-flake-config")))
+            (shell' (str "nh " command " switch . --ask -- --accept-flake-config")))
    switch-home (shell "nh home switch . --ask")
-   boot (shell "nh os boot")
+   boot (shell' "nh os boot")
    update (do
             (run 'update-main-inputs)
             (run 'switch))
-   update-all-inputs (shell "nix flake update")
+   update-all-inputs (shell' "nix flake update")
    update-main-inputs (let [main-inputs ["nixpkgs" "home-manager" "nix-darwin"]]
-                        (shell (str "nix flake update " (str/join " " main-inputs))))
-   gc-store (shell "nix store gc")
-   gc-legacy (shell "sudo nix-collect-garbage -d")
-   clean-user (shell "nh clean user")
-   clean-all (shell "nh clean all")
-   optimize (shell "nix store optimise")
+                        (shell' (str "nix flake update " (str/join " " main-inputs))))
+   gc-store (shell' "nix store gc")
+   gc-legacy (shell' "sudo nix-collect-garbage -d")
+   clean-user (shell' "nh clean user")
+   clean-all (shell' "nh clean all")
+   optimize (shell' "nix store optimise")
    optimise (run 'optimize)
-   wipe-profile (shell "nix profile wipe-history")
+   wipe-profile (shell' "nix profile wipe-history")
    restart-nix-daemon-darwin (do
-                               (shell "sudo launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist")
-                               (shell "sudo launchctl start org.nixos.nix-daemon"))}}
+                               (shell' "sudo launchctl load /Library/LaunchDaemons/org.nixos.nix-daemon.plist")
+                               (shell' "sudo launchctl start org.nixos.nix-daemon"))}}
