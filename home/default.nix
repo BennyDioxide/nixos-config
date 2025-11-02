@@ -11,30 +11,28 @@ let
 in
 {
   imports = [
-    ./shell
-    ./mpv
-    ./productivity
-    ./networking
-    ./kitty.nix
-    ./font.nix
-    ./cava.nix
+    ./development
     ./editor
-    ./java.nix
-    ./vcs.nix
+    ./education
+    ./font.nix
+    ./game
+    ./graphics.nix
+    ./kitty.nix
+    ./multimedia
+    ./networking
+    ./productivity
+    ./shell
     ../modules/home
   ]
   ++ lib.optionals (!isDarwin) [
-    ./xdg
-    ./wm
     ./gtk.nix
+    ./wine
+    ./wm
+    ./xdg
   ];
 
   home.username = username;
   home.homeDirectory = homeDirectory;
-
-  # nixpkgs.config.allowUnfree = true;
-
-  programs.direnv.enable = true;
 
   home.sessionVariables = {
     EDITOR = "hx";
@@ -52,40 +50,9 @@ in
     # QT_QPA_PLATFORMTHEME = "xdgdesktopportal";
   };
 
-  home.file.".cargo/config.toml".source =
-    let
-      # linker = lib.getExe pkgs.clang;
-      # rustflags = lib.optionals (!isDarwin) [
-      #   "-C"
-      #   "link-arg=-fuse-ld=${lib.getExe pkgs.mold-wrapped}"
-      # ];
-      format = pkgs.formats.toml { };
-    in
-    format.generate "cargo-config" {
-      # build."rustc-wrapper" = lib.getExe pkgs.sccache;
-
-      # non-existant wasm-pack/bin/wasm-server-runner
-      # target.wasm32-unknown-unknown.runner = lib.getExe' pkgs.wasm-pack "wasm-server-runner";
-      # target.x86_64-unknown-linux-gnu = { inherit linker rustflags; };
-      # target.aarch64-apple-darwin = { inherit linker; };
-    };
-
   home.packages =
     with pkgs;
     [
-      gitu
-      gitui
-      gh
-      # gitbutler
-      gnumake
-      xmake
-      cmake
-      boost
-      # extra-cmake-modules
-      bazel
-      ninja
-      gettext
-      # mise
       just
       dust
       nixfmt-rfc-style
@@ -116,69 +83,20 @@ in
       gopass
       # superfile
 
-      android-tools
-
-      # manim
-      # renpy
-      # (callPackage ../pkgs/kde-material-you-colors {})
-      pipx
-      uv
-      # poetry
-      # qmk
-      # cargo-sweep
-      wasm-pack
       fortune
       pipes
       # cmatrix
       # cowsay
       # figlet
       # cbonsai
-
-      # imagemagick
-
-      aria2
-      xh
-      yt-dlp
-      ytarchive
-      ffmpeg
-      (if isDarwin then vlc-bin else vlc)
-      # audacity
-      spotube
-      # spotify
-      # spotifyd
-      # spotify-tui # Removed at Mar 12, 2024, 6:14 PM GMT+8
-      # davinci-resolve
-
-      # pandoc
     ]
     ++ lib.optionals isDarwin [
       raycast
     ]
-    ++ lib.optionals (!isDarwin) [
-      # wine
-      # wineWowPackages.waylandFull
-      # wineWowPackages.stable
-      # wineWowPackages.stableFull
-      wineWowPackages.stagingFull
-
-      obs-studio
-      dex
-      kdePackages.breeze
-      kdePackages.breeze-icons
-    ]
     ++ [
       # d-spy
       # dfeet
-      kitty
-      anki-bin
-      # blender
-      # blockbench
-      # brave
-      # geogebra
-      telegram-desktop
-      # element-desktop
       scrcpy
-      localsend
       # (callPackage appimageTools.wrapType2 {
       #   name = "oxwu";
       #   src = fetchurl {
@@ -187,149 +105,20 @@ in
       #   };
       # })
 
-      # prismlauncher
-      ferium
-      # modrinth-app
-
-      # inkscape
-
-      # Development
-
-      # lapce
-      # neovide
-      # warp-terminal
-      # thefuck
-      # sheldon # zsh stuff for using warp
-      colima
-      lldb
-      vscode-extensions.vadimcn.vscode-lldb
-      (python3.withPackages (
-        py-pkgs: with py-pkgs; [
-          tkinter
-          # ipython
-          material-color-utilities
-          pywal
-          # transformers
-          # streamlit
-        ]
-      ))
-      # rust-bin
-      rustup
-      wasm-bindgen-cli
-      pkg-config
-      dioxus-cli
-      # dotket-sdk
-      # dotnet-sdk_7
-      nodejs
-      yarn
-      nodePackages.pnpm
-      bun
-      # ghc
-      # haskell-language-server
-      # elan
-      # nixd
-      nil
-      nix-direnv
-      # devenv
-      gradle
-      sbcl
-      steel
-      clojure
-      clojure-lsp
-      babashka
-      marksman
-      zig
-      zls
-      # bqn
-      pyright
-      # vscode-langservers-extracted # nodePackages.vscode-json-languageserver-bin
-      nodePackages.typescript-language-server
-      # lua54Packages.luasocket # For ~/.config/fcitx5/addon/kanata/lib.lua
-
-      musescore
-      # (callPackage ../pkgs/pixitracker { })
-      # sunvox
-      # famistudio
     ]
     ++ lib.optionals (!isDarwin) [
       appimage-run
-
-      # jetbrains.rust-rover
-      jetbrains.rider
-      # jetbrains.clion
-      # jetbrains.pycharm-professional
-      # jetbrains.pycharm-community
-      # jetbrains.idea-professional
-      # jetbrains.idea-community
-      # android-studio-full
-      # androidStudioPackages.beta
-
-      blender
 
       organicmaps
 
       # Not providing macOS ver for some reason
       rustdesk-flutter
       kdePackages.filelight
-      krita
-      jetbrains-toolbox
-      unityhub
-
-      # Broken on macOS
-      zed-editor
       # kiwix
 
-      logseq
       # lilypond # Broken font
       # macOS framework issues
-      # gcc
-      # (lib.hiPrio clang)
-      # clang-tools
-      mold-wrapped # making it able to find libraries
-      # libGL
-      osu-lazer-bin # network issue or smth
-      # modrinth-app
-
-      qpwgraph
-      jamesdsp
-      playerctl
-
-      wayland-utils
-      ydotool
-      vulkan-tools
-      mesa-demos # previously glxinfo
-      bottles
-
-      # electrum # python3-ecdsa-0.19.1 CVE-2024-23342
-
-      mangohud
-      # gamescope
-
-      ardour
-      # lmms
-      bespokesynth-with-vst2
-      drumgizmo
-      calf
-      dragonfly-reverb
-      vital
-      lsp-plugins
-      x42-plugins
-      x42-gmsynth
-      geonkick
-      zam-plugins
-      yabridge
-      yabridgectl
     ];
-
-  qt = {
-    enable = !isDarwin;
-    platformTheme.name = "qtct";
-  };
-
-  services.syncthing.enable = isDarwin;
-
-  # Enables xembed system tray available on Wayland
-  services.xembed-sni-proxy.enable = !isDarwin;
 
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;

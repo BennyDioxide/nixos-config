@@ -24,7 +24,17 @@
       };
 
       keys.normal = {
-
+        n = "move_visual_line_down";
+        e = "move_visual_line_up";
+        i = "move_char_right";
+        s = "insert_mode";
+        G = "select_regex";
+        l = "extend_line_below";
+        space.x.s = ":write";
+        space.x.c = ":quit";
+        "[".l = "goto_line_start";
+        "]".l = "goto_line_end";
+        minus.f = "find_prev_char";
       };
     };
     languages.language = [

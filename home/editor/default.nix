@@ -1,4 +1,4 @@
-{ lib, isDarwin, ... }:
+{ lib, pkgs, isDarwin, ... }:
 
 {
   imports = [
@@ -17,4 +17,22 @@
       always_incomplete = true;
     };
   };
+
+  home.packages = with pkgs; [
+    # jetbrains.rust-rover
+    jetbrains.rider
+    # jetbrains.clion
+    # jetbrains.pycharm-professional
+    # jetbrains.pycharm-community
+    # jetbrains.idea-professional
+    # jetbrains.idea-community
+    # android-studio-full
+    # androidStudioPackages.beta
+  ] ++ lib.optionals (!isDarwin) [
+    jetbrains-toolbox
+    unityhub
+
+    # Broken on macOS
+    zed-editor
+  ];
 }
