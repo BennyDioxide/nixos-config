@@ -1,6 +1,8 @@
-{ pkgs, ... }:
+{ isDarwin, pkgs, ... }:
 
 {
+  programs.mpv-handler.enable = !isDarwin;
+
   programs.mpv = {
     enable = true;
     config = {

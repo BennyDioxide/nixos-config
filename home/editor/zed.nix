@@ -1,8 +1,13 @@
-{ lib, pkgs, ... }:
+{
+  isDarwin,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   programs.zed-editor = {
-    enable = true;
+    enable = !isDarwin;
     # "auto_install_extensions"
     extensions = [
       "nix"

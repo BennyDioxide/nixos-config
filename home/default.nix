@@ -150,8 +150,6 @@ in
       # davinci-resolve
 
       # pandoc
-
-      organicmaps
     ]
     ++ lib.optionals isDarwin [
       raycast
@@ -268,6 +266,8 @@ in
 
       blender
 
+      organicmaps
+
       # Not providing macOS ver for some reason
       rustdesk-flutter
       kdePackages.filelight
@@ -320,8 +320,6 @@ in
       yabridge
       yabridgectl
     ];
-
-  programs.mpv-handler.enable = true;
 
   qt = {
     enable = !isDarwin;
