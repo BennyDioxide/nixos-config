@@ -5,7 +5,7 @@
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     sarasa-gothic
     # After 25.05 nerdfonts has been seperated under nerd-fonts namespace
     # To list all fonts use `builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts)`

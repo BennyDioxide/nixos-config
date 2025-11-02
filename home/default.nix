@@ -216,11 +216,11 @@ in
         ]
       ))
       # rust-bin
-      (hiPrio rustup)
+      rustup
       wasm-bindgen-cli
       pkg-config
       dioxus-cli
-      # (hiPrio dotnet-sdk)
+      # dotket-sdk
       # dotnet-sdk_7
       nodejs
       yarn
@@ -279,25 +279,11 @@ in
       zed-editor
       # kiwix
 
-      # (
-      #   let
-      #     pname = "logseq";
-      #     version = "0.10.10-alpha+nightly.20240815";
-      #   in
-      #   (logseq.override { electron = electron_28; }).overrideAttrs {
-      #     inherit pname version;
-      #     src = fetchurl {
-      #       url = "https://github.com/logseq/logseq/releases/download/nightly/logseq-linux-x64-${version}.AppImage";
-      #       hash = "sha256-SeEBS1wGnHH0dJ9h4sMl+zFiTk2GDZXNItqasFFTcIQ=";
-      #       name = "${pname}-${version}.AppImage";
-      #     };
-      #   }
-      # )
       logseq
       # lilypond # Broken font
       # macOS framework issues
       # gcc
-      # (hiPrio clang)
+      # (lib.hiPrio clang)
       # clang-tools
       mold-wrapped # making it able to find libraries
       # libGL
@@ -311,8 +297,10 @@ in
       wayland-utils
       ydotool
       vulkan-tools
-      glxinfo
+      mesa-demos # previously glxinfo
       bottles
+
+      # electrum # python3-ecdsa-0.19.1 CVE-2024-23342
 
       mangohud
       # gamescope

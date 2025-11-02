@@ -4,7 +4,7 @@
   imports = [
     ./quickshell.nix
     ./hypr.nix
-    ./niri.nix
+    # ./niri.nix
     ./flameshot.nix
   ];
 

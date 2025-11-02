@@ -9,9 +9,10 @@ in
 {
   programs.git = {
     enable = true;
-    userName = name;
-    userEmail = email;
-    extraConfig = {
+    settings = {
+      user = {
+        inherit name email;
+      };
       core.editor = editor;
       core.pager = pager;
       core.autocrlf = "input";
