@@ -144,6 +144,7 @@
     duperemove
     perf
     ddcutil
+    smartmontools
 
     kdePackages.partitionmanager
   ];
