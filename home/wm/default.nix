@@ -21,7 +21,6 @@
     # For ags
     dart-sass
     libnotify
-    ddcutil
     gnome-usage
     brightnessctl
   ];

@@ -106,6 +106,7 @@
       "audio" # Musnix
       "samba"
       "syncthing"
+      config.hardware.i2c.group # ddcutil/brightness control
     ];
     shell = pkgs.nushell;
     hashedPassword = "$y$j9T$GMklPzea3Rd5zj48qqJEj0$tZ4IoTGPALA8S5HCtVwkuYvVUkOUmKM7jPiim14kg38";
@@ -142,6 +143,7 @@
     nvtopPackages.nvidia
     duperemove
     perf
+    ddcutil
 
     kdePackages.partitionmanager
   ];
@@ -281,6 +283,9 @@
   };
 
   hardware.nvidia-container-toolkit.enable = true;
+
+  # For ddcutil/brightness control
+  hardware.i2c.enable = true;
 
   services.ollama = {
     enable = false;
