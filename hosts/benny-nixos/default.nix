@@ -17,7 +17,7 @@
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_cachyos-lto;
     extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
     loader = {
       efi = {
@@ -167,6 +167,7 @@
       addons = with pkgs; [
         fcitx5-rime
         fcitx5-mozc-ut
+        kdePackages.fcitx5-chinese-addons
         fcitx5-lua
         lua53Packages.luasocket # For ~/.config/fcitx5/addon/kanata/lib.lua
       ];
@@ -302,7 +303,7 @@
   virtualisation.libvirtd.qemu.swtpm.enable = true;
   programs.virt-manager.enable = true;
 
-  # virtualisation.waydroid.enable = true;
+  virtualisation.waydroid.enable = true;
 
   programs.steam = {
     enable = true;
@@ -321,6 +322,8 @@
 
   hardware.keyboard.qmk.enable = true;
   services.udev.packages = [ pkgs.via ];
+
+  services.flatpak.enable = true;
 
   services.guix.enable = true;
   services.guix.gc.enable = true;
