@@ -31,6 +31,7 @@ rec {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-master.url = "nixpkgs/master";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager = {
@@ -64,6 +65,7 @@ rec {
     inputs@{
       nixpkgs,
       nixpkgs-master,
+      chaotic,
       nix-darwin,
       impermanence,
       home-manager,
@@ -91,7 +93,7 @@ rec {
         overlays = [
           rust-overlay.overlays.default
           # autin.overlays.default
-          helix.overlays.default
+          #          helix.overlays.default
           # hyprland.overlays.default
           niri.overlays.niri
           (import ./pkgs)
@@ -140,6 +142,7 @@ rec {
 
         system = "x86_64-linux";
         modules = [
+          chaotic.nixosModules.default
           impermanence.nixosModules.impermanence
           ./hosts/benny-nixos
           ./modules
