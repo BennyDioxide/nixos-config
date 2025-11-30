@@ -71,6 +71,15 @@ in
     ];
   };
 
+  fileSystems."/var/lib/flatpak" = {
+    device = nvme0n1p6;
+    fsType = "btrfs";
+    options = [
+      "subvol=@flatpak"
+      "compress=zstd"
+    ];
+  };
+
   fileSystems."/home" = {
     device = nvme0n1p6;
     fsType = "btrfs";
