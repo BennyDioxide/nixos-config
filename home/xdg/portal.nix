@@ -28,7 +28,6 @@
           ];
           "org.freedesktop.impl.portal.FileChooser" = kde;
           "org.freedesktop.impl.portal.AppChooser" = kde;
-          "org.freedesktop.impl.portal.ScreenCast" = kde;
         };
       };
     };
