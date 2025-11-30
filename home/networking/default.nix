@@ -24,6 +24,6 @@
       slack
     ]
     ++ lib.optionals (!isDarwin) [
-      (discord.override { withOpenASAR = true; withVencord = true; })
+       vesktop
     ];
 }
