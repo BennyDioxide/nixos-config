@@ -4,7 +4,7 @@ rec {
 
   nixConfig = {
     builders-use-substitutes = true;
-    trusted-substituters = [
+    extra-trusted-substituters = [
       # cache mirror in China
       # status: https://mirror.sjtu.edu.cn/
       # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
@@ -17,7 +17,7 @@ rec {
       "https://helix.cachix.org"
       "https://niri.cachix.org"
     ];
-    trusted-public-keys = [
+    extra-trusted-public-keys = [
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
@@ -109,8 +109,9 @@ rec {
 
         {
           nix.settings = {
-            inherit (nixConfig) builders-use-substitutes trusted-public-keys;
-            substituters = nixConfig.trusted-substituters;
+            inherit (nixConfig) builders-use-substitutes;
+            trusted-public-keys = nixConfig.extra-trusted-public-keys;
+            substituters = nixConfig.extra-trusted-substituters;
             trusted-users = [ user ];
 
             experimental-features = [
