@@ -26,6 +26,12 @@
       };
       limine.enable = true;
       limine.extraEntries = ''
+        /CachyOS
+            protocol: linux
+            path: boot():/vmlinuz-linux-cachyos
+            cmdline: root=UUID=23a8c46d-b26f-4d98-bedd-d659b0c25413 rootflags=subvol=@cachyos rw
+            module_path: boot():/initramfs-linux-cachyos.img
+
         /Windows
             protocol: efi
             path: boot():/EFI/Microsoft/Boot/bootmgfw.efi
