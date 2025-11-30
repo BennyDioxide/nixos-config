@@ -3,6 +3,7 @@
 {
   imports = [
     ./java.nix
+    ./lua.nix
     ./vcs.nix
   ];
 
