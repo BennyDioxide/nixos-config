@@ -24,14 +24,12 @@
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
       };
-      grub = {
-        enable = true;
-        devices = [ "nodev" ];
-        efiSupport = true;
-        useOSProber = true;
-        theme = pkgs.sleek-grub-theme;
-        configurationLimit = 10;
-      };
+      limine.enable = true;
+      limine.extraEntries = ''
+        /Windows
+            protocol: efi
+            path: boot():/EFI/Microsoft/Boot/bootmgfw.efi
+      '';
     };
     plymouth.enable = true;
     supportedFilesystems = [
