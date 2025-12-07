@@ -72,6 +72,23 @@
     # useXkbConfig = true; # use xkb.options in tty.
   };
 
+  services.kmscon.enable = true;
+  services.kmscon.hwRender = true;
+  services.kmscon.fonts = [
+    {
+      name = "JetBrainsMono Nerd Font";
+      package = pkgs.nerd-fonts.jetbrains-mono;
+    }
+    {
+      name = "ark-pixel-12px-monospaced-ja";
+      package = pkgs.ark-pixel-font;
+    }
+    {
+      name = "Noto Sans Mono CJK JP";
+      package = pkgs.noto-fonts-cjk-sans;
+    }
+  ];
+
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
