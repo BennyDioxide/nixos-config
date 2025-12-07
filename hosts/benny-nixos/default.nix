@@ -161,7 +161,7 @@
     via
     just
     nh
-    # nvtopPackages.nvidia
+    nvtopPackages.nvidia
     duperemove
     perf
     ddcutil
