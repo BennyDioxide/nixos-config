@@ -20,6 +20,7 @@
       gtk3
       harfbuzz
       icu
+      krb5
       libGL
       libappindicator-gtk3
       libdrm
