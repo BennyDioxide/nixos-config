@@ -166,6 +166,7 @@
     perf
     ddcutil
     smartmontools
+    kdiskmark
 
     kdePackages.partitionmanager
   ];
