@@ -1,12 +1,19 @@
-{ lib, pkgs, isDarwin, ... }:
+{
+  lib,
+  pkgs,
+  isDarwin,
+  ...
+}:
 
 {
   imports = [
     ./latex.nix
     ./typst.nix
     ./zathura.nix
-  ] ++ lib.optionals (!isDarwin) [
+  ]
+  ++ lib.optionals (!isDarwin) [
     ./music.nix
+    ./activitywatch.nix
     ./graphics.nix
     ./financial.nix
   ];
