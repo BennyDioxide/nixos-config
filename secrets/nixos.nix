@@ -18,4 +18,5 @@ in
     owner = config.services.freshrss.user;
   };
   age.secrets.aria2.file = "${secrets}/aria2-rpc-token.age";
+  age.secrets.steam.file = "${secrets}/steam-api-key.age";
 }

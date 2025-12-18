@@ -59,6 +59,10 @@ rec {
       url = "github:end-4/dots-hyprland";
       flake = false;
     };
+    steam-presence = {
+      url = "github:JustTemmie/steam-presence";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -76,6 +80,7 @@ rec {
       hyprland,
       niri,
       stylix,
+      steam-presence,
       ...
     }:
     let
@@ -145,6 +150,7 @@ rec {
         modules = [
           chaotic.nixosModules.default
           impermanence.nixosModules.impermanence
+          steam-presence.nixosModules.steam-presence
           ./hosts/benny-nixos
           ./modules
           musnix.nixosModules.musnix

@@ -421,6 +421,24 @@
         "type": "github"
       }
     },
+    "flake-utils_3": {
+      "inputs": {
+        "systems": "systems_6"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "fromYaml": {
       "flake": false,
       "locked": {
@@ -1307,6 +1325,7 @@
         "ragenix": "ragenix",
         "rust-overlay": "rust-overlay_4",
         "secrets": "secrets",
+        "steam-presence": "steam-presence",
         "stylix": "stylix"
       }
     },
@@ -1411,10 +1430,10 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1757796666,
-        "narHash": "sha256-IL81V0MaqVVADWCsFZSFFyWv27YvyhxgHGKn4CR9pJk=",
+        "lastModified": 1766022771,
+        "narHash": "sha256-ZjscJmZcRsJ80D0XPkIb3WHQkyzKIsCjxNe+6fpPH9I=",
         "ref": "refs/heads/master",
-        "rev": "3edcf181b8aff990fcebea035193a08fcb288041",
+        "rev": "4080f428d65712ea1324bdef76af910dbc4d6366",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/BennyDioxide/nix-secrets.git"
@@ -1423,6 +1442,27 @@
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/BennyDioxide/nix-secrets.git"
+      }
+    },
+    "steam-presence": {
+      "inputs": {
+        "flake-utils": "flake-utils_3",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1764674587,
+        "narHash": "sha256-acQiLP/b8yEX0fP/TmG1UdpkYzFA3Jdy8wUMOiPR/yA=",
+        "owner": "JustTemmie",
+        "repo": "steam-presence",
+        "rev": "c70155dffe9448fe98874c79900646e2e3a85a36",
+        "type": "github"
+      },
+      "original": {
+        "owner": "JustTemmie",
+        "repo": "steam-presence",
+        "type": "github"
       }
     },
     "stylix": {
@@ -1439,7 +1479,7 @@
         "home-manager": "home-manager_4",
         "nixpkgs": "nixpkgs_9",
         "nur": "nur",
-        "systems": "systems_6",
+        "systems": "systems_7",
         "tinted-foot": "tinted-foot",
         "tinted-kitty": "tinted-kitty",
         "tinted-schemes": "tinted-schemes",
@@ -1536,6 +1576,21 @@
       }
     },
     "systems_6": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_7": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
