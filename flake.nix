@@ -1,32 +1,6 @@
 # Nix Flake doesn't let me use let-in syntax for some reason
-rec {
+{
   description = "Benny's NixOS configuration";
-
-  nixConfig = {
-    builders-use-substitutes = true;
-    extra-trusted-substituters = [
-      # cache mirror in China
-      # status: https://mirror.sjtu.edu.cn/
-      # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-
-      "https://cache.garnix.io"
-      "https://nix-community.cachix.org"
-
-      "https://hyprland.cachix.org"
-      # "https://anyrun.cachix.org"
-      "https://helix.cachix.org"
-      "https://niri.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      # "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
-      "helix.cachix.org-1:ejp9KQpR1FBI2onstMQ34yogDm4OgU2ru6lIwPvuCVs="
-      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
-    ];
-  };
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
@@ -38,6 +12,8 @@ rec {
       url = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    nixos-unified.url = "github:srid/nixos-unified";
     impermanence.url = "github:nix-community/impermanence";
     ragenix.url = "github:yaxitech/ragenix";
     secrets.url = "git+ssh://git@github.com/BennyDioxide/nix-secrets.git?shallow=1";
@@ -66,111 +42,9 @@ rec {
   };
 
   outputs =
-    inputs@{
-      nixpkgs,
-      nixpkgs-master,
-      chaotic,
-      nix-darwin,
-      impermanence,
-      home-manager,
-      musnix,
-      rust-overlay,
-      autin,
-      helix,
-      hyprland,
-      niri,
-      stylix,
-      steam-presence,
-      ...
-    }:
-    let
-      pkgs-configuration = isDarwin: {
-        hostPlatform = if isDarwin then "aarch64-darwin" else "x86_64-linux";
-        config.allowUnfree = true;
-        config.permittedInsecurePackages = [
-          "electron-27.3.11" # EOL
-          "dotnet-sdk-7.0.410" # EOL
-          "dotnet-sdk-wrapped-7.0.410" # EOL
-          "dotnet-runtime-7.0.20" # EOL
-          "dotnet-runtime-wrapped-7.0.20" # EOL
-        ];
-        # config.permittedInsecurePackages = [ "electron-28.3.3" ];
-        overlays = [
-          rust-overlay.overlays.default
-          # autin.overlays.default
-          #          helix.overlays.default
-          # hyprland.overlays.default
-          niri.overlays.niri
-          (import ./pkgs)
-        ];
-      };
-      specialArgs = isDarwin: {
-        inherit inputs isDarwin;
-        pkgs-master = import nixpkgs-master (pkgs-configuration isDarwin);
-      };
-      nixSettings =
-        user: isDarwin:
-        { pkgs, ... }:
-
-        {
-          nix.settings = {
-            inherit (nixConfig) builders-use-substitutes;
-            trusted-public-keys = nixConfig.extra-trusted-public-keys;
-            substituters = nixConfig.extra-trusted-substituters;
-            trusted-users = [ user ];
-
-            experimental-features = [
-              "nix-command"
-              "flakes"
-            ];
-            # auto-optimise-store = true; # known to corrupt the store
-          };
-          nix.package = pkgs.lix;
-          # optimise.automatic = true;
-          nixpkgs = pkgs-configuration isDarwin;
-        };
-      home = user: isDarwin: {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        extraSpecialArgs = specialArgs isDarwin;
-        users."${user}" = import ./home;
-      };
-      systems = [
-        "x86_64-linux"
-        "aarch64-darwin"
-      ];
-      forAllSystems = nixpkgs.lib.genAttrs systems;
-    in
-    {
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
-      nixosConfigurations."benny-nixos" = nixpkgs.lib.nixosSystem {
-        specialArgs = specialArgs false;
-
-        system = "x86_64-linux";
-        modules = [
-          chaotic.nixosModules.default
-          impermanence.nixosModules.impermanence
-          steam-presence.nixosModules.steam-presence
-          ./hosts/benny-nixos
-          ./modules
-          musnix.nixosModules.musnix
-          # stylix.nixosModules.stylix
-          (nixSettings "benny" false)
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = home "benny" false;
-          }
-        ];
-      };
-      darwinConfigurations."yangshitings-MacBook-Air" = nix-darwin.lib.darwinSystem {
-        modules = [
-          ./hosts/air-m3
-          (nixSettings "bennyyang" true)
-          home-manager.darwinModules.home-manager
-          {
-            home-manager = home "bennyyang" true;
-          }
-        ];
-      };
+    inputs:
+    inputs.nixos-unified.lib.mkFlake {
+      inherit inputs;
+      root = ./.;
     };
 }
