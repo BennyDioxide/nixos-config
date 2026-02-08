@@ -18,6 +18,7 @@ in
         ];
       };
     }
+    self.darwinModules.default
     ./aerospace
     ./sketchybar
   ];

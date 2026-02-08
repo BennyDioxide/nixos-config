@@ -30,7 +30,8 @@ in
 
   home.packages =
     with pkgs;
-    [
+    lib.optionals (!isDarwin) [
+      jetbrains-toolbox
       # jetbrains.rust-rover
       jetbrains.rider
       # jetbrains.clion
@@ -39,9 +40,6 @@ in
       jetbrains.idea
       # android-studio-full
       # androidStudioPackages.beta
-    ]
-    ++ lib.optionals (!isDarwin) [
-      jetbrains-toolbox
       unityhub
 
       # Broken on macOS

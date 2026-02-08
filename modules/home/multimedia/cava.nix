@@ -1,8 +1,7 @@
 { pkgs, ... }:
-
 {
   programs.cava = {
-    enable = true;
+    enable = !pkgs.stdenv.isDarwin;
     settings = {
       general = {
         # Smoothing mode. Can be 'normal', 'scientific' or 'waves'. DEPRECATED as of 0.6.0
