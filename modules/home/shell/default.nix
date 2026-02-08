@@ -26,5 +26,6 @@
   programs.atuin.flags = [ "--disable-up-arrow" ];
   # programs.broot.enable = true;
   programs.yazi.enable = true;
+  programs.yazi.shellWrapperName = "y";
   programs.nix-index.enable = true;
 }

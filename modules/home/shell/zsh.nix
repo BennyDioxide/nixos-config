@@ -15,6 +15,7 @@ in
     autocd = true;
     enableCompletion = true;
     autosuggestion.enable = true;
+    dotDir = "${config.xdg.configHome}/zsh";
     initContent = ''
       autoload -U select-word-style
       select-word-style bash

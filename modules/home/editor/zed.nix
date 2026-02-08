@@ -33,7 +33,7 @@
       };
       languages = {
         Nix = {
-          formatter.external.command = lib.getExe pkgs.nixfmt-rfc-style;
+          formatter.external.command = lib.getExe pkgs.nixfmt;
         };
         Rust = {
           language_servers = [

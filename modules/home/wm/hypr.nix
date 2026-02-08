@@ -30,7 +30,7 @@ in
     "hypr/hyprlock/status.sh"
     "fuzzel/fuzzel.ini"
     "fuzzel/fuzzel_theme.ini"
-  ] (file: lib.nameValuePair file { source = "${end-4_dots-hyprland}/.config/${file}"; });
+  ] (file: lib.nameValuePair file { source = "${end-4_dots-hyprland}/dots/.config/${file}"; });
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -151,13 +151,9 @@ in
 
         # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
         windowrule = [
-          "fullscreen,class:^(osu!)$,title:^(osu!)$"
-          "fullscreen,class:^(fl64.exe)$,initialTitle:^(FL Studio)$"
-          "noanim, title:^(flameshot)$"
-          "float, title:^(flameshot)$"
-          "move 0 0, title:^(flameshot)$"
-          "pin, title:^(flameshot)$"
-          "noinitialfocus, title:^(flameshot)$"
+          "fullscreen on, match:class ^(osu!)$, match:title ^(osu!)$"
+          "fullscreen on, match:class ^(fl64.exe)$, match:initial_title ^(FL Studio)$"
+          "no_anim on, float on, move 0 0, no_initial_focus on, match:title ^(flameshot)$"
         ];
 
         plugin.hyprscrolling = {

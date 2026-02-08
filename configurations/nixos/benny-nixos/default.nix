@@ -138,8 +138,6 @@ in
 
   security.polkit.enable = true;
 
-  programs.adb.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
     isNormalUser = true;
@@ -147,7 +145,6 @@ in
       "wheel" # Enable ‘sudo’ for the user.
       "network"
       "kvm" # Hardware accelerated vm
-      "adbusers" # Use adb without privileges
       "audio" # Musnix
       "samba"
       "syncthing"
@@ -191,6 +188,7 @@ in
     ddcutil
     smartmontools
     kdiskmark
+    android-tools
 
     kdePackages.partitionmanager
   ];
@@ -350,7 +348,7 @@ in
 
   services.ollama = {
     enable = false;
-    acceleration = "cuda";
+    package = pkgs.ollama-cuda;
     models = "/mnt/segate4t/ollama/models";
   };
 

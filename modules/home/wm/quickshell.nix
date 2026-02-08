@@ -1,7 +1,7 @@
 { flake, pkgs, ... }:
 let
   inherit (flake) inputs;
-  inherit (inputs) end-4_dots-hyprland;
+  inherit (inputs) quickshell end-4_dots-hyprland;
 in
 {
   home.packages =
@@ -29,9 +29,10 @@ in
 
   programs.quickshell = {
     enable = true;
+    package = quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
     activeConfig = "end4-ii";
     configs = rec {
-      end4-ii = "${end-4_dots-hyprland}/.config/quickshell/ii";
+      end4-ii = "${end-4_dots-hyprland}/dots/.config/quickshell/ii";
       default = end4-ii;
     };
   };

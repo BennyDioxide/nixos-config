@@ -20,7 +20,7 @@ in
       # linker = lib.getExe pkgs.clang;
       # rustflags = lib.optionals (!isDarwin) [
       #   "-C"
-      #   "link-arg=-fuse-ld=${lib.getExe pkgs.mold-wrapped}"
+      #   "link-arg=-fuse-ld=${lib.getExe pkgs.mold}"
       # ];
       format = pkgs.formats.toml { };
     in
@@ -36,7 +36,7 @@ in
   home.packages =
     with pkgs;
     [
-      gitu
+      # gitu
       gitui
       gh
       # gitbutler
@@ -94,7 +94,7 @@ in
       babashka
       marksman
       zig
-      zls
+      # zls
       # bqn
       pyright
       # vscode-langservers-extracted # nodePackages.vscode-json-languageserver-bin
@@ -116,7 +116,7 @@ in
       # gcc
       # (lib.hiPrio clang)
       # clang-tools
-      mold-wrapped # making it able to find libraries
+      mold
 
       qt6.qtbase # Shitty way to make Qt happy
     ];

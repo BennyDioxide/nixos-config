@@ -14,8 +14,8 @@
     x42-gmsynth
     geonkick
     zam-plugins
-    yabridge
-    yabridgectl
+    # yabridge
+    # yabridgectl
 
     musescore
     # (callPackage ../pkgs/pixitracker { })

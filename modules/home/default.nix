@@ -24,7 +24,7 @@
   home.packages = with pkgs; [
     just
     dust
-    nixfmt-rfc-style
+    nixfmt
     nvd
     nix-tree
     nix-index
