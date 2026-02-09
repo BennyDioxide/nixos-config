@@ -34,7 +34,10 @@ in
     enable = true;
     settings = {
       user = { inherit name email; };
-      ui = { inherit editor; };
+      ui = {
+        inherit editor;
+        default-command = "log";
+      };
     };
   };
 }
