@@ -8,6 +8,7 @@ let
 in
 {
   imports = [
+    ./dotnet.nix
     ./java.nix
     ./lua.nix
     ./vcs.nix
