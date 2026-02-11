@@ -1,7 +1,8 @@
  {:deps {org.clj-commons/pretty {:mvn/version "3.5.0"}}
   :tasks
   {:requires ([clojure.string :as str]
-              [clj-commons.ansi :as ansi])
+              [clj-commons.ansi :as ansi]
+              [babashka.cli :as cli])
    :init (defn shell' [c]
            (do
              (println
@@ -32,7 +33,10 @@
                         (shell' (str "nix flake update " (str/join " " main-inputs))))
    gc-store (shell' "nix store gc")
    gc-legacy (shell' "sudo nix-collect-garbage -d")
-   clean-user (shell' "nh clean user")
+   clean-user (let [options (cli/parse-opts *command-line-args* {:alias {:k :keep}})]
+                (shell' (if (contains? options :keep)
+                          (str "nh clean user --keep-since " (:keep options))
+                          "nh clean user")))
    clean-all (shell' "nh clean all")
    optimize (shell' "nix store optimise")
    optimise (run 'optimize)
