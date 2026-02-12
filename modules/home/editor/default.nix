@@ -36,8 +36,7 @@ in
       # jetbrains.clion
       # jetbrains.pycharm-professional
       # jetbrains.pycharm-community
-      # jetbrains.idea-professional
-      # jetbrains.idea-community
+      jetbrains.idea
       # android-studio-full
       # androidStudioPackages.beta
     ]
