@@ -213,6 +213,7 @@ in
         })
         fcitx5-mozc-ut
         kdePackages.fcitx5-chinese-addons
+        fcitx5-hangul
         fcitx5-lua
         lua53Packages.luasocket # For ~/.config/fcitx5/addon/kanata/lib.lua
       ];
