@@ -1,13 +1,8 @@
 {
-  flake,
   lib,
   pkgs,
   ...
 }:
-let
-  inherit (flake) inputs;
-  inherit (inputs) end-4_dots-hyprland;
-in
 {
   home.packages = with pkgs; [
     hyprland-qtutils
@@ -22,28 +17,19 @@ in
   services.hyprsunset.enable = true;
   programs.hyprlock.enable = true;
 
-  xdg.configFile = lib.genAttrs' [
-    "hypr/hypridle.conf"
-    "hypr/hyprlock.conf"
-    "hypr/hyprlock/check-capslock.sh"
-    "hypr/hyprlock/colors.conf"
-    "hypr/hyprlock/status.sh"
-    "fuzzel/fuzzel.ini"
-    "fuzzel/fuzzel_theme.ini"
-  ] (file: lib.nameValuePair file { source = "${end-4_dots-hyprland}/dots/.config/${file}"; });
-
   wayland.windowManager.hyprland = {
     enable = true;
     plugins = [ pkgs.hyprlandPlugins.hyprscrolling ];
     settings =
       let
         inherit (lib) getExe getExe';
+        noctaliactl = "noctalia-shell ipc call";
       in
       {
         # See https://wiki.hyprland.org/Configuring/Monitors/
         monitor = ",preferred,auto,auto,bitdepth,10";
         exec-once = [
-          "${getExe pkgs.quickshell} --config end4-ii"
+          "noctalia-shell"
           "fcitx5"
           # "krunner -d"
           "${getExe pkgs.dex} -as ~/.config/autostart"
@@ -134,26 +120,21 @@ in
           ];
         };
 
-        dwindle = {
-          # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-          pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-          preserve_split = true; # you probably want this
-        };
-
-        master = {
-          # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-          # new_is_master = true;
-        };
-
-        gestures = {
-          # See https://wiki.hyprland.org/Configuring/Variables/ for more
-        };
-
         # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
         windowrule = [
           "fullscreen on, match:class ^(osu!)$, match:title ^(osu!)$"
           "fullscreen on, match:class ^(fl64.exe)$, match:initial_title ^(FL Studio)$"
           "no_anim on, float on, move 0 0, no_initial_focus on, match:title ^(flameshot)$"
+        ];
+
+        layerrule = [
+          {
+            name = "noctalia";
+            "match:namespace" = "noctalia-background-.*$";
+            ignore_alpha = 0.5;
+            blur = true;
+            blur_popups = true;
+          }
         ];
 
         plugin.hyprscrolling = {
@@ -164,7 +145,9 @@ in
         # See https://wiki.hyprland.org/Configuring/Keywords/ for more
         "$mainMod" = "SUPER";
         bind =
-          with lib.lists;
+          let
+            inherit (lib.lists) flatten range;
+          in
           [
             "$mainMod, Q, exec, ghostty"
             "$mainMod, C, killactive"
@@ -173,15 +156,13 @@ in
             "$mainMod, V, togglefloating"
           ]
           ++ flatten (
-            # map (key: "${key}, exec, nu -c \"GTK_IM_MODULE=fcitx anyrun\"") [
-            map (key: "${key}, exec, ${getExe pkgs.fuzzel}") [
+            map (key: "${key}, exec, ${noctaliactl} launcher toggle") [
               "$mainMod, R"
               "ALT, space"
             ]
           )
           ++ [
-            "$mainMod, P, pseudo," # dwindle
-            "$mainMod, J, togglesplit," # dwindle
+            "$mainMod, S, exec, ${noctaliactl} controlCenter toggle"
             "$mainMod, F, fullscreen,"
             "$mainMod, L, exec, wlogout"
             ", Print, exec, XDG_CURRENT_DESKTOP=sway flameshot gui"
@@ -217,15 +198,17 @@ in
             "$mainMod SHIFT, mouse_up, layoutmsg, movewindowto r"
             "$mainMod SHIFT, mouse_down, layoutmsg, movewindowto l"
 
-            ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
             ", XF86AudioPlay, exec, playerctl play-pause"
             ", XF86AudioPauce, exec, playerctl play-pause"
             ", XF86AudioPrev, exec, playerctl previous"
             ", XF86AudioNext, exec, playerctl next"
           ];
-        binde = [
-          ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%+"
-          ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"
+        bindl = [
+          ", XF86AudioMute, exec, ${noctaliactl} volume muteOutput"
+        ];
+        bindel = [
+          ", XF86AudioRaiseVolume, exec, ${noctaliactl} volume increase"
+          ", XF86AudioLowerVolume, exec, ${noctaliactl} volume decrease"
         ];
         bindm = [
           # Move/resize windows with mainMod + LMB/RMB and dragging

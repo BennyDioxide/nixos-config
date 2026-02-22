@@ -1,8 +1,4 @@
-{ flake, pkgs, ... }:
-let
-  inherit (flake) inputs;
-  inherit (inputs) quickshell end-4_dots-hyprland;
-in
+{ pkgs, ... }:
 {
   home.packages =
     with pkgs.kdePackages;
@@ -27,13 +23,5 @@ in
       ydotool
     ]);
 
-  programs.quickshell = {
-    enable = true;
-    package = quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
-    activeConfig = "end4-ii";
-    configs = rec {
-      end4-ii = "${end-4_dots-hyprland}/dots/.config/quickshell/ii";
-      default = end4-ii;
-    };
-  };
+  programs.quickshell.enable = true;
 }

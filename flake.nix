@@ -31,11 +31,8 @@
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     stylix.url = "github:danth/stylix";
     niri.url = "github:sodiboo/niri-flake";
-    quickshell.url = "https://git.outfoxxed.me/quickshell/quickshell/archive/staging.tar.gz";
-    end-4_dots-hyprland = {
-      url = "github:end-4/dots-hyprland";
-      flake = false;
-    };
+    noctalia.url = "github:noctalia-dev/noctalia-shell";
+    noctalia.inputs.nixpkgs.follows = "nixpkgs";
     steam-presence = {
       url = "github:JustTemmie/steam-presence";
       inputs.nixpkgs.follows = "nixpkgs";

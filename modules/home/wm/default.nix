@@ -4,7 +4,8 @@ let
 in
 {
   imports = [
-    ./quickshell.nix
+    # ./quickshell.nix
+    ./noctalia.nix
     ./hypr.nix
     # ./niri.nix
     ./flameshot.nix
