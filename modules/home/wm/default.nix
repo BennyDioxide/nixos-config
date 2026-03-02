@@ -19,6 +19,8 @@ in
   # Enables xembed system tray available on Wayland
   services.xembed-sni-proxy.enable = !isDarwin;
 
+  services.kdeconnect.enable = true;
+
   home.packages = with pkgs; [
     dex
     fuzzel
