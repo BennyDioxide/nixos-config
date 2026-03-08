@@ -209,6 +209,8 @@
         bindel = [
           ", XF86AudioRaiseVolume, exec, ${noctaliactl} volume increase"
           ", XF86AudioLowerVolume, exec, ${noctaliactl} volume decrease"
+          ", XF86MonBrightnessUp, exec, ${noctaliactl} brightness increase"
+          ", XF86MonBrightnessDown, exec, ${noctaliactl} brightness decrease"
         ];
         bindm = [
           # Move/resize windows with mainMod + LMB/RMB and dragging
