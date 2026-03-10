@@ -19,7 +19,6 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    plugins = [ pkgs.hyprlandPlugins.hyprscrolling ];
     settings =
       let
         inherit (lib) getExe getExe';
