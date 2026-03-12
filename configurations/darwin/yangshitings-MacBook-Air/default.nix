@@ -23,7 +23,7 @@ in
     ./sketchybar
   ];
 
-  services.emacs.enable = true;
+  services.emacs.enable = false;
   services.emacs.package = pkgs.emacs-macport;
   launchd.user.agents.emacs.environment.TERMINFO_DIRS =
     map (path: path + "/share/terminfo") config.environment.profiles
