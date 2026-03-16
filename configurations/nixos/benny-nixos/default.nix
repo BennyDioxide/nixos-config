@@ -229,6 +229,8 @@ in
       "dom.webgpu.enabled" = true;
       "gfx.webgpu.force-enabled" = true;
       "media.hardware-video-decoding.force-enabled" = true;
+      "gfx.webrender.overlay-vp-super-resolution" = true;
+      "gfx.webrender.overlay-vp-auto-hdr" = true;
     };
   };
 
