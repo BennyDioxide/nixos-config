@@ -96,6 +96,8 @@ in
       marksman
       zig
       # zls
+      odin
+      ols
       # bqn
       pyright
       # vscode-langservers-extracted # nodePackages.vscode-json-languageserver-bin
