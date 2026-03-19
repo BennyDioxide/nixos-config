@@ -138,6 +138,8 @@ in
 
   security.polkit.enable = true;
 
+  services.clamav.daemon.settings.OnAccessIncludePath = "/mnt/segate4t/Installers";
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
     isNormalUser = true;
