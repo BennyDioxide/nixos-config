@@ -145,6 +145,12 @@ in
 
   security.polkit.enable = true;
 
+  services.clamav.scanner.scanDirectories = [
+    "/var/lib"
+    "/tmp"
+    "/etc"
+    "/var/tmp"
+  ];
   services.clamav.daemon.settings.OnAccessIncludePath = "/mnt/segate4t/Installers";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
