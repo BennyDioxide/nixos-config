@@ -2,7 +2,7 @@
 
 {
   services.immich.enable = true;
-  services.immich.mediaLocation = "/mnt/segate4t/Pictures/immich";
+  services.immich.mediaLocation = "/run/media/segate4t/Pictures/immich";
   services.immich.openFirewall = true;
   services.immich.host = "0.0.0.0";
 

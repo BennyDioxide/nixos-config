@@ -151,7 +151,7 @@ in
     "/etc"
     "/var/tmp"
   ];
-  services.clamav.daemon.settings.OnAccessIncludePath = "/mnt/segate4t/Installers";
+  services.clamav.daemon.settings.OnAccessIncludePath = "/run/media/segate4t/Installers";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
@@ -277,7 +277,7 @@ in
   services.aria2.enable = true;
   services.aria2.openPorts = true;
   services.aria2.settings.rpc-allow-origin-all = true;
-  services.aria2.settings.dir = "/mnt/segate4t/Downloads";
+  services.aria2.settings.dir = "/run/media/segate4t/Downloads";
   services.aria2.rpcSecretFile = config.age.secrets.aria2.path;
   services.samba = {
     enable = true;
@@ -368,7 +368,7 @@ in
   services.ollama = {
     enable = false;
     package = pkgs.ollama-cuda;
-    models = "/mnt/segate4t/ollama/models";
+    models = "/run/media/segate4t/ollama/models";
   };
 
   virtualisation.libvirtd.enable = true;

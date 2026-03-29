@@ -131,17 +131,17 @@ in
     fsType = "vfat";
   };
 
-  fileSystems."/mnt/windows" = {
+  fileSystems."/run/media/windows" = {
     device = "/dev/disk/by-uuid/DA0294B802949AD9";
     fsType = "ntfs";
   };
 
-  fileSystems."/mnt/segate4t" = {
+  fileSystems."/run/media/segate4t" = {
     device = "/dev/disk/by-uuid/3034D2CA34D29268";
     fsType = "ntfs";
   };
 
-  fileSystems."/vol/games" = {
+  fileSystems."/run/media/games" = {
     device = "/dev/disk/by-uuid/c0e4678d-4925-43d4-95be-8e258c51ca08";
     fsType = "btrfs";
     options = [ "compress=zstd" ];
