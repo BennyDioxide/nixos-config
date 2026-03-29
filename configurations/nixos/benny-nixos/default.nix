@@ -163,6 +163,7 @@ in
       "audio" # Musnix
       "samba"
       "syncthing"
+      "input" # input monitoring
       config.hardware.i2c.group # ddcutil/brightness control
     ];
     shell = pkgs.nushell;

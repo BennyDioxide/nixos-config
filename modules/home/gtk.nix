@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   gtk = rec {
@@ -22,6 +22,7 @@
       gtk-application-prefer-dark-theme = true;
       gtk-im-module = "fcitx";
     };
+    gtk4.theme = config.gtk.theme; # Home Manager pre-26.05 behaviour
     gtk4.extraConfig = gtk3.extraConfig;
     gtk4.extraCss = "@import 'colors.css'"; # Required by KDE Material You Colors
   };

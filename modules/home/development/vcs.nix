@@ -9,6 +9,7 @@ in
 {
   programs.git = {
     enable = true;
+    signing.format = null; # 25.05+ behaviour, let git/gpg decide
     settings = {
       user = {
         inherit name email;

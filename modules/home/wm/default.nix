@@ -24,7 +24,7 @@ in
   home.packages = with pkgs; [
     dex
     fuzzel
-    swww
+    awww
     wl-clipboard
     # xwayland-run
     grim

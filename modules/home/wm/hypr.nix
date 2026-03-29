@@ -34,7 +34,7 @@
           "${getExe pkgs.dex} -as ~/.config/autostart"
           "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1"
           "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init"
-          (getExe' pkgs.swww "swww-daemon")
+          (getExe' pkgs.awww "awww-daemon")
         ];
         env = [
           # Nvidia

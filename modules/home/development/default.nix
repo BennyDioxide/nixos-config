@@ -78,7 +78,7 @@ in
       # dotnet-sdk_7
       nodejs
       yarn
-      nodePackages.pnpm
+      pnpm # nodePackages removed
       bun
       # ghc
       # haskell-language-server
@@ -98,8 +98,8 @@ in
       # zls
       # bqn
       pyright
-      # vscode-langservers-extracted # nodePackages.vscode-json-languageserver-bin
-      nodePackages.typescript-language-server
+      # vscode-langservers-extracted # vscode-json-languageserver-bin
+      typescript-language-server
 
       android-tools
 
