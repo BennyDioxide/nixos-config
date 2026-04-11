@@ -338,7 +338,7 @@ in
   hardware.i2c.enable = true;
 
   services.ollama = {
-    enable = false;
+    enable = true;
     package = pkgs.ollama-cuda;
     models = "/run/media/segate4t/ollama/models";
   };
