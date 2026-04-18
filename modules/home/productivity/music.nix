@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     ardour
     # lmms
+    reaper
     bespokesynth-with-vst2
     drumgizmo
     calf
