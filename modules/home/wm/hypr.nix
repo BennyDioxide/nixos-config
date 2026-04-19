@@ -27,6 +27,9 @@
       {
         # See https://wiki.hyprland.org/Configuring/Monitors/
         monitor = ",preferred,auto,auto,bitdepth,10";
+        source = [
+          "~/.config/hypr/noctalia/noctalia-colors.conf"
+        ];
         exec-once = [
           "noctalia-shell"
           "fcitx5"
@@ -79,8 +82,6 @@
           gaps_in = 5;
           gaps_out = 20;
           border_size = 2;
-          "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-          "col.inactive_border" = "rgba(595959aa)";
 
           layout = "scrolling";
         };
