@@ -14,6 +14,7 @@
     ./shell
     ./programs/rime-ls.nix
     ./programs/mpv-handler.nix
+    ./secret/keepassxc.nix
   ];
 
   home.sessionVariables = {
