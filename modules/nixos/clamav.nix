@@ -6,6 +6,7 @@
   ];
   services.clamav.daemon.enable = true;
   services.clamav.scanner.enable = true;
+  services.clamav.scanner.interval = "weekly";
   services.clamav.updater.enable = true;
   services.clamav.fangfrisch.enable = true;
 
