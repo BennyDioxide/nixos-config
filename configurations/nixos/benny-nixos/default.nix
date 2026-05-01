@@ -14,7 +14,6 @@ let
   inherit (inputs)
     chaotic
     impermanence
-    steam-presence
     musnix
     ;
   username = "benny";
@@ -33,8 +32,8 @@ in
     self.nixosModules.common
     chaotic.nixosModules.default
     impermanence.nixosModules.impermanence
-    steam-presence.nixosModules.steam-presence
     musnix.nixosModules.musnix
+    self.nixosModules.steam
     ./hardware-configuration.nix
     ./immich.nix
     ../../../modules/nixos/secret.nix
@@ -349,16 +348,6 @@ in
 
   virtualisation.waydroid.enable = true;
   virtualisation.waydroid.package = pkgs.waydroid-nftables;
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-
-    presence.enable = true;
-    presence.userIds = [ "76561199228879259" ];
-    presence.steamApiKeyFile = config.age.secrets.steam.path;
-  };
 
   services.sunshine.enable = true;
   services.sunshine.capSysAdmin = true;
