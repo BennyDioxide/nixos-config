@@ -5,6 +5,7 @@
     ./clamav.nix
     ./i18n.nix
     ./fonts.nix
+    ./zerotier.nix
     # ./secret.nix # FIXME
   ];
 }
