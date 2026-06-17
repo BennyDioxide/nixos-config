@@ -13,17 +13,13 @@
     hyprwayland-scanner
   ];
 
-  services.hypridle.enable = true;
-  services.hyprsunset.enable = true;
-  programs.hyprlock.enable = true;
-
   wayland.windowManager.hyprland = {
     enable = true;
     configType = "lua";
     settings =
       let
         inherit (lib) getExe getExe';
-        noctaliactl = "noctalia-shell ipc call";
+        noctaliactl = "noctalia msg";
       in
       {
         # See https://wiki.hyprland.org/Configuring/Monitors/
@@ -32,7 +28,7 @@
           "~/.config/hypr/noctalia/noctalia-colors.conf"
         ];
         exec-once = [
-          "noctalia-shell"
+          "noctalia"
           "fcitx5"
           # "krunner -d"
           "${getExe pkgs.dex} -as ~/.config/autostart"
@@ -131,7 +127,7 @@
         layerrule = [
           {
             name = "noctalia";
-            "match:namespace" = "noctalia-background-.*$";
+            "match:namespace" = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd)$";
             ignore_alpha = 0.5;
             blur = true;
             blur_popups = true;
@@ -157,13 +153,14 @@
             "$mainMod, V, togglefloating"
           ]
           ++ flatten (
-            map (key: "${key}, exec, ${noctaliactl} launcher toggle") [
+            map (key: "${key}, exec, ${noctaliactl} panel-toggle launcher") [
               "$mainMod, R"
               "ALT, space"
             ]
           )
           ++ [
-            "$mainMod, S, exec, ${noctaliactl} controlCenter toggle"
+            "$mainMod, S, exec, ${noctaliactl} panel-toggle control-center"
+            "$mainMod, comma, exec, ${noctaliactl} settings-toggle"
             "$mainMod, F, fullscreen,"
             "$mainMod, L, exec, wlogout"
             ", Print, exec, XDG_CURRENT_DESKTOP=sway flameshot gui"
@@ -205,13 +202,13 @@
             ", XF86AudioNext, exec, playerctl next"
           ];
         bindl = [
-          ", XF86AudioMute, exec, ${noctaliactl} volume muteOutput"
+          ", XF86AudioMute, exec, ${noctaliactl} volume-mute"
         ];
         bindel = [
-          ", XF86AudioRaiseVolume, exec, ${noctaliactl} volume increase"
-          ", XF86AudioLowerVolume, exec, ${noctaliactl} volume decrease"
-          ", XF86MonBrightnessUp, exec, ${noctaliactl} brightness increase"
-          ", XF86MonBrightnessDown, exec, ${noctaliactl} brightness decrease"
+          ", XF86AudioRaiseVolume, exec, ${noctaliactl} volume-up"
+          ", XF86AudioLowerVolume, exec, ${noctaliactl} volume-down"
+          ", XF86MonBrightnessUp, exec, ${noctaliactl} brightness-up"
+          ", XF86MonBrightnessDown, exec, ${noctaliactl} brightness-down"
         ];
         bindm = [
           # Move/resize windows with mainMod + LMB/RMB and dragging
