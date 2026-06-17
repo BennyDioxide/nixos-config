@@ -6,7 +6,7 @@ in
   imports = [
     # ./quickshell.nix
     ./noctalia.nix
-    ./hypr.nix
+    ./hypr
     # ./niri.nix
     ./flameshot.nix
   ];
