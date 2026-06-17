@@ -19,6 +19,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "lua";
     settings =
       let
         inherit (lib) getExe getExe';

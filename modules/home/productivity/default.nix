@@ -9,7 +9,7 @@
   home.packages = with pkgs; [
     (if pkgs.stdenv.isDarwin then libreoffice-bin else libreoffice)
     pandoc
-    logseq
+    # logseq
     presenterm
   ];
 }

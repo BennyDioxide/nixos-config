@@ -95,21 +95,8 @@ in
   };
 
   services.kmscon.enable = true;
-  services.kmscon.hwRender = true;
-  services.kmscon.fonts = [
-    {
-      name = "JetBrainsMono Nerd Font";
-      package = pkgs.nerd-fonts.jetbrains-mono;
-    }
-    {
-      name = "ark-pixel-12px-monospaced-ja";
-      package = pkgs.ark-pixel-font;
-    }
-    {
-      name = "Noto Sans Mono CJK JP";
-      package = pkgs.noto-fonts-cjk-sans;
-    }
-  ];
+  services.kmscon.config.hwaccel = true;
+  services.kmscon.config.font-name = "JetBrainsMono Nerd Font, ark-pixel-12px-monospaced-ja, Noto Sans Mono CJK JP";
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
