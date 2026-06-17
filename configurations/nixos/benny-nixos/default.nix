@@ -40,7 +40,7 @@ in
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
     extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
     kernelParams = [
       "zswap.enabled=1" # enables zswap
@@ -312,7 +312,7 @@ in
 
     nvidiaSettings = true;
 
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
 
   hardware.nvidia-container-toolkit.enable = true;
