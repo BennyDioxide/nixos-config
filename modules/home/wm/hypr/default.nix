@@ -53,7 +53,7 @@
           numlock_by_default = true;
         };
         cursor = {
-          no_hardware_cursors = true;
+          no_hardware_cursors = 0;
         };
         general = {
           # See https://wiki.hyprland.org/Configuring/Variables/ for more
