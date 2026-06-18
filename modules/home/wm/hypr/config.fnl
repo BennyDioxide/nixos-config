@@ -13,12 +13,13 @@
 (hl.animation {:leaf "fade" :enabled true :speed 7 :bezier "default"})
 (hl.animation {:leaf "workspaces" :enabled true :speed 6 :bezier "default"})
 
-(let [envs {:XCURSOR_SIZE    "24"
-            :LC_ALL          "zh_TW.UTF-8"
-            :LANG            "zh_TW.UTF-8"
-            :SDL_VIDEODRIVER "wayland"
-            :GTK_IM_MODULE   "wayland"
-            :XIM_MODULE      "@im=fcitx"}]
+(let [envs {:XCURSOR_SIZE         "24"
+            :LC_ALL               "zh_TW.UTF-8"
+            :LANG                 "zh_TW.UTF-8"
+            :QT_QPA_PLATFORMTHEME "qt6ct"
+            :SDL_VIDEODRIVER      "wayland"
+            :GTK_IM_MODULE        "wayland"
+            :XIM_MODULE           "@im=fcitx"}]
   (each [key value (pairs envs)]
     (hl.env key value)))
 
