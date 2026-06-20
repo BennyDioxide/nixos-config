@@ -3,6 +3,7 @@
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk-sans
+    dejavu_fonts
     ark-pixel-font
     fira-math
     jetbrains-mono
