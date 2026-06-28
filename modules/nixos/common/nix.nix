@@ -17,14 +17,6 @@
       # cache mirror in China
       # status: https://mirror.sjtu.edu.cn/
       # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-
-      "https://cache.garnix.io"
-      "https://nix-community.cachix.org"
-
-      "https://hyprland.cachix.org"
-      # "https://anyrun.cachix.org"
-      "https://helix.cachix.org"
-      "https://niri.cachix.org"
     ];
     trusted-users = [
       "root"

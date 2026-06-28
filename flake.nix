@@ -2,6 +2,16 @@
 {
   description = "Benny's NixOS configuration";
 
+  nixConfig.extra-substituters = [
+    "https://cache.garnix.io"
+    "https://nix-community.cachix.org"
+
+    "https://hyprland.cachix.org"
+    # "https://anyrun.cachix.org"
+    "https://helix.cachix.org"
+    "https://niri.cachix.org"
+  ];
+
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-master.url = "nixpkgs/master";
