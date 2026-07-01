@@ -27,10 +27,10 @@
       terminal    "ghostty"
       fileManager "dolphin"
       noctaliactl #(hl.dsp.exec_cmd (.. "noctalia msg " $))]
-  (hl.bind (.. mainMod " + Q") (hl.dsp.exec_cmd "ghostty"))
+  (hl.bind (.. mainMod " + Q") (hl.dsp.exec_cmd terminal))
   (hl.bind (.. mainMod " + C") (hl.dsp.window.close))
   (hl.bind (.. mainMod " + M") (hl.dsp.exit))
-  (hl.bind (.. mainMod " + E") (hl.dsp.exec_cmd "dolphin"))
+  (hl.bind (.. mainMod " + E") (hl.dsp.exec_cmd fileManager))
   (hl.bind (.. mainMod " + V") (hl.dsp.window.float))
   (each [_ keys (ipairs [(.. mainMod " + R") "ALT + space"])]
     (hl.bind keys (noctaliactl "panel-toggle launcher")))
