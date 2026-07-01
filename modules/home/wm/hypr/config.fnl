@@ -26,18 +26,17 @@
 (let [mainMod     "SUPER"
       terminal    "ghostty"
       fileManager "dolphin"
-      noctaliactl "noctalia msg"
-      menu        (.. noctaliactl " panel-toggle launcher")]
+      noctaliactl #(hl.dsp.exec_cmd (.. "noctalia msg " $))]
   (hl.bind (.. mainMod " + Q") (hl.dsp.exec_cmd "ghostty"))
   (hl.bind (.. mainMod " + C") (hl.dsp.window.close))
   (hl.bind (.. mainMod " + M") (hl.dsp.exit))
   (hl.bind (.. mainMod " + E") (hl.dsp.exec_cmd "dolphin"))
   (hl.bind (.. mainMod " + V") (hl.dsp.window.float))
   (each [_ keys (ipairs [(.. mainMod " + R") "ALT + space"])]
-    (hl.bind keys (hl.dsp.exec_cmd menu)))
-  (hl.bind (.. mainMod " + comma") (hl.dsp.exec_cmd (.. noctaliactl " panel-toggle control-center")))
+    (hl.bind keys (noctaliactl "panel-toggle launcher")))
+  (hl.bind (.. mainMod " + comma") (noctaliactl "panel-toggle control-center"))
   (hl.bind (.. mainMod " + F") (hl.dsp.window.fullscreen {:mode "fullscreen"}))
-  (hl.bind (.. mainMod " + L") (hl.dsp.exec_cmd (.. noctaliactl " session lock")))
+  (hl.bind (.. mainMod " + L") (noctaliactl "session lock"))
   (hl.bind "Print" (hl.dsp.exec_cmd "flameshot gui"))
   (each [_ direction (ipairs ["left" "right" "up" "down"])]
     (hl.bind (.. mainMod " + " direction) (hl.dsp.focus {: direction})))
@@ -55,11 +54,11 @@
   (hl.bind "XF86AudioPause" (hl.dsp.exec_cmd "playerctl play-pause") {:locked true})
   (hl.bind "XF86AudioPrev" (hl.dsp.exec_cmd "playerctl pervious") {:locked true})
   (hl.bind "XF86AudioNext" (hl.dsp.exec_cmd "playerctl next") {:locked true})
-  (hl.bind "XF86AudioMute" (hl.dsp.exec_cmd (.. noctaliactl " volume-mute")) {:locked true})
-  (hl.bind "XF86AudioRaiseVolume" (hl.dsp.exec_cmd (.. noctaliactl " volume-up")) {:locked true :repeating true})
-  (hl.bind "XF86AudioLowerVolume" (hl.dsp.exec_cmd (.. noctaliactl " volume-down")) {:locked true :repeating true})
-  (hl.bind "XF86MonBrightnessUp" (hl.dsp.exec_cmd (.. noctaliactl " brightness-up")) {:locked true :repeating true})
-  (hl.bind "XF86MonBrightnessDown" (hl.dsp.exec_cmd (.. noctaliactl " brightness-down")) {:locked true :repeating true})
+  (hl.bind "XF86AudioMute" (noctaliactl "volume-mute") {:locked true})
+  (hl.bind "XF86AudioRaiseVolume" (noctaliactl "volume-up") {:locked true :repeating true})
+  (hl.bind "XF86AudioLowerVolume" (noctaliactl "volume-down") {:locked true :repeating true})
+  (hl.bind "XF86MonBrightnessUp" (noctaliactl "brightness-up") {:locked true :repeating true})
+  (hl.bind "XF86MonBrightnessDown" (noctaliactl "brightness-down") {:locked true :repeating true})
   (hl.bind (.. mainMod " + mouse:272") (hl.dsp.window.drag) {:mouse true})
   (hl.bind (.. mainMod " + mouse:273") (hl.dsp.window.resize) {:mouse true}))
 
