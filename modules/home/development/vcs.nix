@@ -7,6 +7,10 @@ let
   pager = lib.getExe pkgs.delta;
 in
 {
+  home.packages = [
+    pkgs.lazyjj
+  ];
+
   programs.git = {
     enable = true;
     signing.format = null; # 25.05+ behaviour, let git/gpg decide
