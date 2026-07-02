@@ -1,8 +1,15 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  home.packages = with pkgs; [
-    anki
-    # geogebra
-  ];
+  home.packages =
+    with pkgs;
+    lib.optionals (!stdenv.isDarwin) [
+      anki
+      # geogebra
+    ];
 }

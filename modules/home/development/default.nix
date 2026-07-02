@@ -96,6 +96,11 @@ in
       marksman
       zig
       # zls
+
+      # broken :(
+      # odin
+      # ols
+
       # bqn
       pyright
       # vscode-langservers-extracted # vscode-json-languageserver-bin

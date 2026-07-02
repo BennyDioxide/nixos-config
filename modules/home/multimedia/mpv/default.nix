@@ -1,11 +1,13 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   programs.mpv = {
     enable = true;
-    scripts = with pkgs.mpvScripts; [
-      mpris
-    ];
+    scripts =
+      with pkgs.mpvScripts;
+      lib.optionals (!pkgs.stdenv.isDarwin) [
+        mpris
+      ];
     config = {
       keep-open = "yes";
       sub-auto = "fuzzy";
