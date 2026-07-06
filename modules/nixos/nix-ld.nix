@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.nix-ld = {
@@ -48,6 +48,8 @@
       libxcb
       libxi
       zlib
+
+      config.boot.kernelPackages.nvidia_x11
     ];
   };
 }
