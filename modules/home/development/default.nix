@@ -11,6 +11,7 @@ in
     ./dotnet.nix
     ./java.nix
     ./lua.nix
+    ./unison.nix
     ./vcs.nix
   ];
 
