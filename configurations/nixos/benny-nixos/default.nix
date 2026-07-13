@@ -208,6 +208,9 @@ in
     };
   };
 
+  environment.variables.LIBVA_DRIVER_NAME = "nvidia";
+  environment.variables.MOZ_DISABLE_RDD_SANDBOX = "1";
+
   programs.wireshark.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
