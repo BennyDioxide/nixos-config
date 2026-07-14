@@ -10,6 +10,7 @@
     calf
     dragonfly-reverb
     vital
+    surge-xt
     lsp-plugins
     x42-plugins
     x42-gmsynth
