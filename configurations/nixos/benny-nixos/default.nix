@@ -184,6 +184,7 @@ in
     smartmontools
     kdiskmark
     android-tools
+    nixos-firewall-tool
 
     kdePackages.partitionmanager
   ];
