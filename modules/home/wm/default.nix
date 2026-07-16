@@ -24,7 +24,9 @@ in
   home.packages = with pkgs; [
     dex
     fuzzel
-    awww
+    (awww.overrideAttrs (_: {
+      cargoBuildFeatures = [ "jxl" ];
+    }))
     wl-clipboard
     # xwayland-run
     grim
