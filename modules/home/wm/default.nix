@@ -21,12 +21,14 @@ in
 
   services.kdeconnect.enable = true;
 
+  services.awww.enable = true;
+  services.awww.package = pkgs.awww.overrideAttrs (_: {
+    cargoBuildFeatures = [ "jxl" ];
+  });
+
   home.packages = with pkgs; [
     dex
     fuzzel
-    (awww.overrideAttrs (_: {
-      cargoBuildFeatures = [ "jxl" ];
-    }))
     wl-clipboard
     # xwayland-run
     grim

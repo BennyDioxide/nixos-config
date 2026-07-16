@@ -29,7 +29,6 @@
             "${lib.getExe pkgs.dex} -as ~/.config/autostart",
             -- "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1",
             "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init",
-            "${lib.getExe' pkgs.awww "awww-daemon"}"
           }
           for _, v in ipairs(commands) do
             hl.exec_cmd(v)
