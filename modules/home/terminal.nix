@@ -1,7 +1,10 @@
 { lib, pkgs, ... }:
 
 let
-  shell = lib.getExe pkgs.nushell;
+  inherit (pkgs) nushell ghostty ghostty-bin;
+  inherit (pkgs.stdenv) isDarwin;
+  nuExe = lib.getExe nushell;
+  shell = if isDarwin then ''${lib.getExe pkgs.zsh} -c "exec ${nuExe}"'' else nuExe;
 in
 {
   programs.kitty = {
@@ -20,6 +23,6 @@ in
   };
 
   programs.ghostty.enable = true;
-  programs.ghostty.package = if pkgs.stdenv.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
+  programs.ghostty.package = if isDarwin then ghostty-bin else ghostty;
   programs.ghostty.settings.command = shell;
 }
