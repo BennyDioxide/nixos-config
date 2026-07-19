@@ -5,7 +5,7 @@
     ardour
     # lmms
     reaper
-    bespokesynth-with-vst2
+    # bespokesynth-with-vst2
     drumgizmo
     calf
     dragonfly-reverb

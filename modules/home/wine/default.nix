@@ -8,7 +8,7 @@
     # wineWow64Packages.stableFull
     wineWow64Packages.stagingFull
 
-    bottles
+    # bottles
   ];
 
 }

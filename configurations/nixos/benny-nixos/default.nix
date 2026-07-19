@@ -331,7 +331,7 @@ in
   services.ollama = {
     enable = true;
     package = pkgs.ollama-cuda;
-    models = "/run/media/segate4t/ollama/models";
+    modelsDir = "/run/media/segate4t/ollama/models";
   };
 
   virtualisation.libvirtd.enable = true;

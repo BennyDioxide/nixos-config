@@ -16,6 +16,7 @@ in
   ];
 
   programs.direnv.enable = true;
+  programs.devenv.enable = true;
 
   home.file.".cargo/config.toml".source =
     let
@@ -87,7 +88,6 @@ in
       # nixd
       nil
       nix-direnv
-      # devenv
       gradle
       sbcl
       steel
