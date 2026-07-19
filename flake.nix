@@ -5,6 +5,7 @@
   nixConfig.extra-substituters = [
     "https://cache.garnix.io"
     "https://nix-community.cachix.org"
+    "https://cache.nixos-cuda.org"
 
     "https://hyprland.cachix.org"
     # "https://anyrun.cachix.org"
@@ -15,6 +16,7 @@
 
   nixConfig.extra-trusted-public-keys = [
     "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+    "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
   ];
 
   inputs = {

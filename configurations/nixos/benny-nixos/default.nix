@@ -322,6 +322,8 @@ in
 
   hardware.nvidia-container-toolkit.enable = true;
 
+  nixpkgs.config.cudaSupport = true;
+
   programs.gamemode.enable = true;
   programs.gamescope.enable = true;
 
@@ -330,7 +332,6 @@ in
 
   services.ollama = {
     enable = true;
-    package = pkgs.ollama-cuda;
     modelsDir = "/run/media/segate4t/ollama/models";
   };
 
