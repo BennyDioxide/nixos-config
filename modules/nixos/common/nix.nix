@@ -26,6 +26,8 @@
       "nix-command"
       "flakes"
     ];
+    auto-optimise-store = true;
   };
+
   nix.package = pkgs.lix;
 }
