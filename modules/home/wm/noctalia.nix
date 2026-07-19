@@ -5,4 +5,5 @@
   ];
 
   programs.noctalia.enable = true;
+  programs.ghostty.settings.theme = "noctalia";
 }
