@@ -10,5 +10,8 @@
     shellAliases = {
       bottles-cli = "flatpak run --command=bottles-cli com.usebottles.bottles";
     };
+    settings = {
+      highlight_resolved_externals = true;
+    };
   };
 }

@@ -1,0 +1,23 @@
+System.DllNotFoundException: Unable to load shared library 'libICE.so.6' or one of its dependencies. In order to help diagnose loading problems, consider using a tool like strace. If you're using glibc, consider setting the LD_DEBUG environment variable: 
+/run/media/games/Unity/Mods/uabea-ubuntu/runtimes/linux-x64/native/libICE.so.6: cannot open shared object file: No such file or directory
+/nix/store/ahznczwl09v9bz5blw8kac7lvmg8pq4v-dotnet-combined/share/dotnet/shared/Microsoft.NETCore.App/8.0.28/libICE.so.6: cannot open shared object file: No such file or directory
+/run/media/games/Unity/Mods/uabea-ubuntu/libICE.so.6: cannot open shared object file: No such file or directory
+/run/media/games/Unity/Mods/uabea-ubuntu/runtimes/linux-x64/native/liblibICE.so.6: cannot open shared object file: No such file or directory
+/nix/store/ahznczwl09v9bz5blw8kac7lvmg8pq4v-dotnet-combined/share/dotnet/shared/Microsoft.NETCore.App/8.0.28/liblibICE.so.6: cannot open shared object file: No such file or directory
+/run/media/games/Unity/Mods/uabea-ubuntu/liblibICE.so.6: cannot open shared object file: No such file or directory
+/run/media/games/Unity/Mods/uabea-ubuntu/runtimes/linux-x64/native/libICE.so.6.so: cannot open shared object file: No such file or directory
+/nix/store/ahznczwl09v9bz5blw8kac7lvmg8pq4v-dotnet-combined/share/dotnet/shared/Microsoft.NETCore.App/8.0.28/libICE.so.6.so: cannot open shared object file: No such file or directory
+/run/media/games/Unity/Mods/uabea-ubuntu/libICE.so.6.so: cannot open shared object file: No such file or directory
+/run/media/games/Unity/Mods/uabea-ubuntu/runtimes/linux-x64/native/liblibICE.so.6.so: cannot open shared object file: No such file or directory
+/nix/store/ahznczwl09v9bz5blw8kac7lvmg8pq4v-dotnet-combined/share/dotnet/shared/Microsoft.NETCore.App/8.0.28/liblibICE.so.6.so: cannot open shared object file: No such file or directory
+/run/media/games/Unity/Mods/uabea-ubuntu/liblibICE.so.6.so: cannot open shared object file: No such file or directory
+
+   at Avalonia.X11.ICELib.IceAddConnectionWatch(IntPtr watchProc, IntPtr clientData)
+   at Avalonia.X11.X11PlatformLifetimeEvents..ctor(AvaloniaX11Platform platform)
+   at Avalonia.X11.AvaloniaX11Platform.Initialize(X11PlatformOptions options)
+   at Avalonia.AvaloniaX11PlatformExtensions.<>c.<UseX11>b__0_0()
+   at Avalonia.AppBuilder.SetupUnsafe()
+   at Avalonia.AppBuilder.Setup()
+   at Avalonia.AppBuilder.SetupWithLifetime(IApplicationLifetime lifetime)
+   at Avalonia.ClassicDesktopStyleApplicationLifetimeExtensions.StartWithClassicDesktopLifetime(AppBuilder builder, String[] args, Action`1 lifetimeBuilder)
+   at UABEANext4.Desktop.Program.Main(String[] args) in /home/runner/work/UABEANext/UABEANext/UABEANext4.Desktop/Program.cs:line 21
