@@ -81,6 +81,14 @@
         };
       };
 
+      permission = [
+        {
+          binary = lib.getExe pkgs.flameshot;
+          type = "screencopy";
+          mode = "allow";
+        }
+      ];
+
       # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
       window_rule = [
         {

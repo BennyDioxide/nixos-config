@@ -30,7 +30,8 @@
   (hl.bind (.. mainMod " + comma") (noctaliactl "panel-toggle control-center"))
   (hl.bind (.. mainMod " + F") (hl.dsp.window.fullscreen {:mode "fullscreen"}))
   (hl.bind (.. mainMod " + L") (noctaliactl "session lock"))
-  (hl.bind "Print" (appWrapper screenshot))
+  ;; FIXME: uwsm app broken wtf
+  (hl.bind "Print" (hl.dsp.exec_cmd screenshot))
   (each [_ direction (ipairs ["left" "right" "up" "down"])]
     (hl.bind (.. mainMod " + " direction) (hl.dsp.focus {: direction})))
   (for [workspace 1 10]
