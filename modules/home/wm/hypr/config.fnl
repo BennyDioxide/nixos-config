@@ -13,31 +13,24 @@
 (hl.animation {:leaf "fade" :enabled true :speed 7 :bezier "default"})
 (hl.animation {:leaf "workspaces" :enabled true :speed 6 :bezier "default"})
 
-(let [envs {:XCURSOR_SIZE         "24"
-            :LC_ALL               "zh_TW.UTF-8"
-            :LANG                 "zh_TW.UTF-8"
-            :QT_QPA_PLATFORMTHEME "qt6ct"
-            :SDL_VIDEODRIVER      "wayland"
-            :GTK_IM_MODULE        "wayland"
-            :XIM_MODULE           "@im=fcitx"}]
-  (each [key value (pairs envs)]
-    (hl.env key value)))
-
 (let [mainMod     "SUPER"
       terminal    "ghostty"
       fileManager "dolphin"
+      screenshot  "flameshot gui"
+      ;; FIXME: This doesn't launch apps into systemd units
+      appWrapper  #(hl.dsp.exec_cmd (.. "uwsm app -- " $))
       noctaliactl #(hl.dsp.exec_cmd (.. "noctalia msg " $))]
-  (hl.bind (.. mainMod " + Q") (hl.dsp.exec_cmd terminal))
+  (hl.bind (.. mainMod " + Q") (appWrapper terminal))
   (hl.bind (.. mainMod " + C") (hl.dsp.window.close))
   (hl.bind (.. mainMod " + M") (hl.dsp.exit))
-  (hl.bind (.. mainMod " + E") (hl.dsp.exec_cmd fileManager))
+  (hl.bind (.. mainMod " + E") (appWrapper fileManager))
   (hl.bind (.. mainMod " + V") (hl.dsp.window.float))
   (each [_ keys (ipairs [(.. mainMod " + R") "ALT + space"])]
     (hl.bind keys (noctaliactl "panel-toggle launcher")))
   (hl.bind (.. mainMod " + comma") (noctaliactl "panel-toggle control-center"))
   (hl.bind (.. mainMod " + F") (hl.dsp.window.fullscreen {:mode "fullscreen"}))
   (hl.bind (.. mainMod " + L") (noctaliactl "session lock"))
-  (hl.bind "Print" (hl.dsp.exec_cmd "flameshot gui"))
+  (hl.bind "Print" (appWrapper screenshot))
   (each [_ direction (ipairs ["left" "right" "up" "down"])]
     (hl.bind (.. mainMod " + " direction) (hl.dsp.focus {: direction})))
   (for [workspace 1 10]

@@ -9,6 +9,7 @@ in
     ./hypr
     # ./niri.nix
     ./flameshot.nix
+    ./uwsm.nix
   ];
 
   qt = {

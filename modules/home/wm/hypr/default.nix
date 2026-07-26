@@ -24,14 +24,11 @@
       "01-startup" = ''
         hl.on("hyprland.start", function ()
           local commands = {
-            "noctalia",
             "fcitx5",
-            "${lib.getExe pkgs.dex} -as ~/.config/autostart",
-            -- "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1",
             "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init",
           }
           for _, v in ipairs(commands) do
-            hl.exec_cmd(v)
+            hl.exec_cmd("${lib.getExe pkgs.uwsm} app -- " .. v)
           end
         end)
       '';

@@ -264,7 +264,7 @@ in
   };
 
   services.displayManager = {
-    defaultSession = "hyprland";
+    defaultSession = "hyprland-uwsm";
     autoLogin = {
       enable = true;
       user = username;
@@ -286,6 +286,7 @@ in
 
   # Enable Hyprland in sddm
   programs.hyprland.enable = true;
+  programs.hyprland.withUWSM = true;
 
   # https://nixos.wiki/wiki/KDE#GTK_themes_are_not_applied_in_Wayland_applications_.2F_Window_Decorations_missing_.2F_Cursor_looks_different
   programs.dconf.enable = true;
