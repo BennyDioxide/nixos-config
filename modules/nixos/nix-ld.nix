@@ -49,6 +49,10 @@
       libxi
       zlib
 
+      # Avalonia
+      libice
+      libsm
+
       config.boot.kernelPackages.nvidia_x11
     ];
   };
