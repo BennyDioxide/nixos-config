@@ -42,7 +42,6 @@
     musnix.url = "github:musnix/musnix";
     musnix.inputs.nixpkgs.follows = "nixpkgs";
     helix.url = "github:mattwparas/helix/steel-event-system";
-    rust-overlay.url = "github:oxalica/rust-overlay";
     autin.url = "github:atuinsh/atuin";
     # hyprland.url = "github:hyprwm/Hyprland";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";

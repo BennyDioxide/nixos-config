@@ -58,7 +58,7 @@ in
       # warp-terminal
       # thefuck
       # sheldon # zsh stuff for using warp
-      colima
+      # colima
       lldb
       vscode-extensions.vadimcn.vscode-lldb
       (python3.withPackages (
@@ -112,7 +112,7 @@ in
       # manim
       # renpy
       # (callPackage ../pkgs/kde-material-you-colors {})
-      pipx
+      # pipx
       uv
       # poetry
       # qmk
@@ -120,9 +120,6 @@ in
       wasm-pack
     ]
     ++ lib.optionals (!isDarwin) [
-      # gcc
-      # (lib.hiPrio clang)
-      # clang-tools
       mold
 
       qt6.qtbase # Shitty way to make Qt happy

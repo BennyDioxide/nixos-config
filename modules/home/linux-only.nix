@@ -17,7 +17,6 @@
   systemd.user.sessionVariables = {
     NIXPKGS_ALLOW_UNFREE = 1;
     NIX_BUILD_SHELL = "zsh";
-    LIBCLANG_PATH = "${pkgs.libclang.lib}/lib";
     GTK_USE_PORTAL = 1;
     # QT_QPA_PLATFORMTHEME = "xdgdesktopportal";
   };

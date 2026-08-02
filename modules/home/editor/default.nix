@@ -38,11 +38,11 @@ in
     lib.optionals (!isDarwin) [
       jetbrains-toolbox
       # jetbrains.rust-rover
-      jetbrains.rider
+      # jetbrains.rider
       # jetbrains.clion
       # jetbrains.pycharm-professional
       # jetbrains.pycharm-community
-      jetbrains.idea
+      # jetbrains.idea
       # android-studio-full
       # androidStudioPackages.beta
       unityhub

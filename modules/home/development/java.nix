@@ -2,7 +2,7 @@
 
 {
   programs.java = {
-    enable = true;
+    # enable = true;
     package = pkgs.graalvmPackages.graalvm-ce; # pkgs.temurin-bin;
   };
 

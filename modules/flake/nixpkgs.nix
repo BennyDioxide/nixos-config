@@ -19,7 +19,6 @@ in
         ];
         # config.permittedInsecurePackages = [ "electron-28.3.3" ];
         overlays = lib.attrValues self.overlays ++ [
-          inputs.rust-overlay.overlays.default
           inputs.niri.overlays.niri
         ];
       };
