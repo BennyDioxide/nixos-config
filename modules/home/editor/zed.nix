@@ -5,6 +5,7 @@
 }:
 
 {
+  xdg.mimeApps.associations.added."inode/directory" = [ "dev.zed.Zed.desktop" ];
   programs.zed-editor = {
     enable = true;
     # "auto_install_extensions"

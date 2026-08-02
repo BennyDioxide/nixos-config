@@ -1,6 +1,7 @@
 { lib, pkgs, ... }:
 
 {
+  xdg.mimeApps.associations.added."inode/directory" = [ "Helix.desktop" ];
   programs.helix = {
     enable = true;
     settings = {

@@ -14,6 +14,11 @@ in
     ./helix.nix
   ];
 
+  xdg.mimeApps.associations.added."inode/directory" = [
+    "rider.desktop"
+    "idea.desktop"
+  ];
+
   programs.rime-ls = {
     enable = !isDarwin;
     rimePackage = pkgs.fcitx5-rime.override {
@@ -41,8 +46,5 @@ in
       # android-studio-full
       # androidStudioPackages.beta
       unityhub
-
-      # Broken on macOS
-      zed-editor
     ];
 }
