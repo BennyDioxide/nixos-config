@@ -43,6 +43,22 @@ in
         inherit editor;
         default-command = "log";
       };
+      /*nixfmt:disable*/
+      aliases = {
+        n = [ "new" ];
+        e = [ "edit" ];
+        s = [ "show" ];
+        d = [ "desc" ];
+        f = [ "git" "fetch" ];
+        p = [ "git" "push" ];
+        r = [ "rebase" ];
+        blame = [ "file" "annotate" ];
+        # https://shaddy.dev/notes/jj-tug
+        # https://www.jj-vcs.dev/latest/cli-reference/#jj-bookmark-advance
+        tug = [ "bookmark" "advance" ];
+        "-" = [ "edit" "@-" ];
+        "+" = [ "edit" "@+" ];
+      };
     };
   };
 }
