@@ -284,7 +284,11 @@ in
     elisa
   ];
 
-  # Enable Hyprland in sddm
+  # Fix Dolphin file associations on non-Plasma desktop environments
+  # https://github.com/NixOS/nixpkgs/issues/409986
+  environment.etc."xdg/menus/applications.menu".source =
+    "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu"; # Enable Hyprland in sddm
+
   programs.hyprland.enable = true;
   programs.hyprland.withUWSM = true;
 
