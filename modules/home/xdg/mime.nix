@@ -14,9 +14,12 @@
         inherit (lib) genAttrs' nameValuePair;
         # browser = [ "brave-browser.desktop" ];
         browser = [ "firefox.desktop" ];
+        fileManager = "org.kde.dolphin.desktop";
         osuLazer = "osu!.desktop";
       in
       {
+        "inode/directory" = fileManager;
+
         "text/html" = browser;
         "application/xhtml+xml" = browser;
 
