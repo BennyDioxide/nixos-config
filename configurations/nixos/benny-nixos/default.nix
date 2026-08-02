@@ -306,7 +306,7 @@ in
   };
 
   services.xserver.windowManager.xmonad = {
-    enable = true;
+    # enable = true;
     enableContribAndExtras = true;
   };
 
