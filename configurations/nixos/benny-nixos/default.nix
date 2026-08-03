@@ -369,6 +369,9 @@ in
   ]
   ++ options.services.guix.substituters.urls.default;
 
+  services.hardware.openrgb.enable = true;
+  services.hardware.openrgb.package = pkgs.openrgb-with-all-plugins;
+
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
   #
