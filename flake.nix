@@ -48,6 +48,7 @@
     stylix.url = "github:danth/stylix";
     niri.url = "github:sodiboo/niri-flake";
     noctalia.url = "github:noctalia-dev/noctalia/v5.0.0-beta.7";
+    pano-scrobbler-flake.url = "github:kawaiiDango/pano-scrobbler-flake";
     steam-presence = {
       url = "github:JustTemmie/steam-presence";
       inputs.nixpkgs.follows = "nixpkgs";

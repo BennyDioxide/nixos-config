@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  flake,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (pkgs.stdenv) isDarwin;
 in
@@ -29,6 +34,7 @@ in
       # davinci-resolve
 
       tauon
+      flake.inputs.pano-scrobbler-flake.packages.${stdenv.hostPlatform.system}.default
       picard
     ]
     ++ lib.optionals (!isDarwin) [
