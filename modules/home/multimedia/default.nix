@@ -28,6 +28,7 @@ in
       # spotify-tui # Removed at Mar 12, 2024, 6:14 PM GMT+8
       # davinci-resolve
 
+      tauon
       picard
     ]
     ++ lib.optionals (!isDarwin) [
