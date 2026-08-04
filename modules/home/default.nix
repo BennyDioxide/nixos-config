@@ -71,6 +71,7 @@
     #   };
     # })
 
+    kdePackages.dolphin
   ];
 
   home.stateVersion = "23.11";
