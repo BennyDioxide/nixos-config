@@ -143,6 +143,7 @@ in
       "samba"
       "syncthing"
       "input" # input monitoring
+      "aria2"
       config.hardware.i2c.group # ddcutil/brightness control
     ];
     shell = pkgs.nushell;
