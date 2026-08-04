@@ -229,7 +229,9 @@ in
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [
+    7814 # Tauon remote control
+  ];
   # networking.firewall.allowedUDPPorts = [ ... ];
 
   services.syncthing.enable = true;
