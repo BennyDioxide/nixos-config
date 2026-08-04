@@ -5,7 +5,6 @@
     export LANG=zh_TW.UTF-8
     export QT_QPA_PLATFORMTHEME=qt6ct
     export SDL_VIDEODRIVER=wayland
-    export GTK_IM_MODULE=wayland
     export XIM_MODULE=@im=fcitx
   '';
 

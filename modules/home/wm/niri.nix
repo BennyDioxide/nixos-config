@@ -25,7 +25,6 @@ in
     environment = {
       QT_QPA_PLATFORM = "wayland";
       # DISPLAY = null;
-      GTK_IM_MODULE = "wayland";
       XIM_MODULE = "@im=fcitx";
     };
     spawn-at-startup = [
