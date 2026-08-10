@@ -1,12 +1,15 @@
 { pkgs, ... }:
 let
   inherit (pkgs.stdenv) isDarwin;
+  prismlauncher' = pkgs.prismlauncher.override {
+    additionalPrograms = [ pkgs.zenity ];
+  };
 in
 {
   home.packages =
     with pkgs;
     [
-      prismlauncher
+      prismlauncher'
       ferium
       # modrinth-app
     ]
