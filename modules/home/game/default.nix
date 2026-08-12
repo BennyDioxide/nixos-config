@@ -3,6 +3,12 @@ let
   inherit (pkgs.stdenv) isDarwin;
   prismlauncher' = pkgs.prismlauncher.override {
     additionalPrograms = [ pkgs.zenity ];
+    jdks = [
+      pkgs.graalvmPackages.graalvm-ce
+      pkgs.temurin-bin-25
+      pkgs.zulu25
+      pkgs.zulu8
+    ];
   };
 in
 {
