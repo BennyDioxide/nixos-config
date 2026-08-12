@@ -1,7 +1,7 @@
 { inputs, ... }:
-let
-  inherit (inputs) self;
-in
+# let
+#   inherit (inputs) self;
+# in
 {
   debug = true;
   perSystem =
@@ -18,9 +18,9 @@ in
           "dotnet-runtime-wrapped-7.0.20" # EOL
         ];
         # config.permittedInsecurePackages = [ "electron-28.3.3" ];
-        overlays = lib.attrValues self.overlays ++ [
-          inputs.niri.overlays.niri
-        ];
+        # overlays = lib.attrValues self.overlays ++ [
+        #   inputs.niri.overlays.niri
+        # ];
       };
     };
 }
