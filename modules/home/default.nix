@@ -28,10 +28,8 @@
     nixfmt
     nvd
     nix-tree
-    nix-index
     # nix-init
     nh
-    comma
     # file
     gojq
     # inshellisense

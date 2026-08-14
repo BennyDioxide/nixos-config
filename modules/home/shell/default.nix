@@ -1,10 +1,14 @@
-{ ... }:
-
+{ flake, pkgs, ... }:
+let
+  inherit (flake.inputs) nix-index-database;
+in
 {
   imports = [
+    nix-index-database.homeModules.default
     ./nu
     ./zsh.nix
   ];
+
   programs.zellij = {
     enable = true;
     settings = {
@@ -27,5 +31,10 @@
   # programs.broot.enable = true;
   programs.yazi.enable = true;
   programs.yazi.shellWrapperName = "y";
+
+  # FIXME: Why is the fatty index-x86_64-linux still there?
   programs.nix-index.enable = true;
+  programs.nix-index.package =
+    nix-index-database.packages.${pkgs.stdenv.hostPlatform.system}.nix-index-with-small-db;
+  programs.nix-index-database.comma.enable = true;
 }
