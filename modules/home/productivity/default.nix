@@ -11,5 +11,7 @@
     pandoc
     # logseq
     presenterm
+
+    davinci-resolve
   ];
 }
