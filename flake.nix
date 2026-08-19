@@ -51,6 +51,8 @@
       url = "github:JustTemmie/steam-presence";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    waydroid-nvidia-nix.url = "github:yigexuanmu/waydroid-nvidia-nix";
+    waydroid-nvidia-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =

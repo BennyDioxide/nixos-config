@@ -36,6 +36,7 @@ in
     self.nixosModules.steam
     ./hardware-configuration.nix
     ./immich.nix
+    ./waydroid.nix
     ../../../modules/nixos/secret.nix
   ];
 
@@ -346,9 +347,6 @@ in
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd.qemu.swtpm.enable = true;
   programs.virt-manager.enable = true;
-
-  virtualisation.waydroid.enable = true;
-  virtualisation.waydroid.package = pkgs.waydroid-nftables;
 
   services.sunshine.enable = true;
   services.sunshine.capSysAdmin = true;
