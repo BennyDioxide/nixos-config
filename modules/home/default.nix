@@ -68,8 +68,6 @@
     #     sha256 = "sha256-UthNGrFT6G09UkCwirjH9jgd1+ExRmt6KnD43JdkaDE=";
     #   };
     # })
-
-    kdePackages.dolphin
   ];
 
   home.stateVersion = "23.11";
