@@ -134,11 +134,13 @@ in
   fileSystems."/run/media/windows" = {
     device = "/dev/disk/by-uuid/DA0294B802949AD9";
     fsType = "ntfs";
+    noCheck = true;
   };
 
   fileSystems."/run/media/segate4t" = {
     device = "/dev/disk/by-uuid/3034D2CA34D29268";
     fsType = "ntfs";
+    noCheck = true;
   };
 
   fileSystems."/run/media/games" = {
