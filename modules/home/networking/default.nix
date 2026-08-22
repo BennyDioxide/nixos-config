@@ -13,8 +13,6 @@ in
 
   services.syncthing.enable = isDarwin;
 
-  services.arrpc.enable = true;
-
   home.packages =
     with pkgs;
     [
