@@ -14,7 +14,7 @@
         # Auto save to this path
         savePath = "${config.home.homeDirectory}/Pictures/Screenshots";
         savePathFixed = true;
-        saveAsFileExtension = ".jpg";
+        saveAsFileExtension = ".jxl";
         filenamePattern = "%F_%H-%M";
         drawThickness = 1;
         copyPathAfterSave = true;
