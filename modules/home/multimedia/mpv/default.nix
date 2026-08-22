@@ -5,7 +5,7 @@
     enable = true;
     scripts =
       with pkgs.mpvScripts;
-      lib.optionals (!pkgs.stdenv.isDarwin) [
+      lib.optionals (!pkgs.stdenv.hostPlatform.isDarwin) [
         mpris
       ];
     config = {

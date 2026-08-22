@@ -31,7 +31,7 @@ in
       # spotify
       # spotifyd
       # spotify-tui # Removed at Mar 12, 2024, 6:14 PM GMT+8
-      # davinci-resolve
+      davinci-resolve
 
       tauon
       flake.inputs.pano-scrobbler-flake.packages.${stdenv.hostPlatform.system}.default

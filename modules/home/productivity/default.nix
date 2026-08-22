@@ -7,11 +7,9 @@
   ];
 
   home.packages = with pkgs; [
-    (if pkgs.stdenv.isDarwin then libreoffice-bin else libreoffice)
+    (if pkgs.stdenv.hostPlatform.isDarwin then libreoffice-bin else libreoffice)
     pandoc
     # logseq
     presenterm
-
-    davinci-resolve
   ];
 }

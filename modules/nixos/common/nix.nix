@@ -21,7 +21,7 @@
     ];
     trusted-users = [
       "root"
-      (if pkgs.stdenv.isDarwin then "bennyyang" else "@wheel") # FIXME
+      (if pkgs.stdenv.hostPlatform.isDarwin then "bennyyang" else "@wheel") # FIXME
     ];
     experimental-features = [
       "nix-command"

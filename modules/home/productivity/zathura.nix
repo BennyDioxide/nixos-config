@@ -1,5 +1,5 @@
 { pkgs, ... }:
 
 {
-  programs.zathura.enable = !pkgs.stdenv.isDarwin;
+  programs.zathura.enable = !pkgs.stdenv.hostPlatform.isDarwin;
 }

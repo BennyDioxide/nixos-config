@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   programs.cava = {
-    enable = !pkgs.stdenv.isDarwin;
+    enable = !pkgs.stdenv.hostPlatform.isDarwin;
     settings = {
       general = {
         # Smoothing mode. Can be 'normal', 'scientific' or 'waves'. DEPRECATED as of 0.6.0
@@ -69,7 +69,7 @@
         # method = pulse
         # source = auto
 
-        method = if pkgs.stdenv.isDarwin then "portaudio" else "pipewire";
+        method = if pkgs.stdenv.hostPlatform.isDarwin then "portaudio" else "pipewire";
         # source = auto
 
         # method = alsa
