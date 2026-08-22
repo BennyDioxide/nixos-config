@@ -43,6 +43,7 @@ in
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
     extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+    kernel.sysctl."kernel.sysrq" = 1;
     kernelModules = [ "ntsync" ];
     kernelParams = [
       "zswap.enabled=1" # enables zswap
