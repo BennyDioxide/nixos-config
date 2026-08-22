@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   xdg.autostart.enable = true;
   programs.keepassxc = {
@@ -6,6 +5,7 @@
     autostart = true;
     settings = {
       FdoSecrets.Enabled = true;
+      Browser.Enabled = true;
     };
   };
 }

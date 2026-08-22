@@ -210,6 +210,11 @@ in
       "gfx.webrender.overlay-vp-super-resolution" = true;
       "gfx.webrender.overlay-vp-auto-hdr" = true;
     };
+    policies = {
+      ExtensionSettings = {
+        "keepassxc-browser@keepassxc.org".installation_mode = "force_installed";
+      };
+    };
   };
 
   environment.variables.LIBVA_DRIVER_NAME = "nvidia";
