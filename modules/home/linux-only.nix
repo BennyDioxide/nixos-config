@@ -36,4 +36,5 @@
   ];
 
   programs.mpv-handler.enable = true;
+  programs.mpv-handler.ytdlPackage = pkgs.yt-dlp_git;
 }

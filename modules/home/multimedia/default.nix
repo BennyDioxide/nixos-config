@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (pkgs.stdenv) isDarwin;
+  inherit (pkgs.stdenv.hostPlatform) isDarwin;
 in
 {
   imports = [
@@ -22,7 +22,7 @@ in
 
       aria2
       xh
-      yt-dlp
+      yt-dlp_git
       ytarchive
       ffmpeg
       (if isDarwin then vlc-bin else vlc)
