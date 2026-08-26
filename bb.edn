@@ -22,6 +22,7 @@
    b (run 'boot)
    u (run 'update)
    ua (run 'update-all-inputs)
+   udb (run 'update-nix-index-db)
    c (run 'clean-user)
    ca (run 'clean-all)
    op (run 'optimize)
@@ -35,6 +36,10 @@
    update-all-inputs (shell' "nix flake update")
    update-main-inputs (let [main-inputs ["nixpkgs" "home-manager" "nix-darwin"]]
                         (shell' (str "nix flake update " (str/join " " main-inputs))))
+   update-nix-index-db (do
+                         (shell' "jj new -m \"chore(deps): Update nix-index-database\"")
+                         (shell' "nix flake update nix-index-database")
+                         (run 'switch))
    gc-store (shell' "nix store gc")
    gc-legacy (shell' "sudo nix-collect-garbage -d")
    clean-user (let [options (cli/parse-opts *command-line-args* {:alias {:k :keep}})]
