@@ -3,6 +3,9 @@
 {
   programs.mpv = {
     enable = true;
+    package = pkgs.mpv.override {
+      yt-dlp = pkgs.yt-dlp_git;
+    };
     scripts =
       with pkgs.mpvScripts;
       lib.optionals (!pkgs.stdenv.hostPlatform.isDarwin) [
