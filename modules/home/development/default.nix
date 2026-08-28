@@ -1,10 +1,11 @@
 {
+  flake,
   lib,
   pkgs,
   ...
 }:
 let
-  inherit (pkgs.stdenv.hostPlatform) isDarwin;
+  inherit (pkgs.stdenv.hostPlatform) isDarwin system;
 in
 {
   imports = [
@@ -45,6 +46,7 @@ in
       gnumake
       xmake
       # mise
+      flake.inputs.magix.packages.${system}.magix
 
       (python3.withPackages (
         py-pkgs: with py-pkgs; [

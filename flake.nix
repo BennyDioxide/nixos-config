@@ -53,6 +53,7 @@
     };
     waydroid-nvidia-nix.url = "github:yigexuanmu/waydroid-nvidia-nix";
     waydroid-nvidia-nix.inputs.nixpkgs.follows = "nixpkgs";
+    magix.url = "github:dschrempf/magix";
   };
 
   outputs =
