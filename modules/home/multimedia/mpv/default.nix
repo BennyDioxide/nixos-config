@@ -1,23 +1,28 @@
 { lib, pkgs, ... }:
+let
+  inherit (pkgs) anime4k;
+  inherit (pkgs.stdenv.hostPlatform) isDarwin;
 
+  scripts =
+    with pkgs.mpvScripts;
+    lib.optionals (!isDarwin) [
+      mpris
+    ];
+in
 {
   programs.mpv = {
     enable = true;
     package = pkgs.mpv.override {
+      inherit scripts;
       yt-dlp = pkgs.yt-dlp_git;
     };
-    scripts =
-      with pkgs.mpvScripts;
-      lib.optionals (!pkgs.stdenv.hostPlatform.isDarwin) [
-        mpris
-      ];
     config = {
       keep-open = "yes";
       sub-auto = "fuzzy";
       hwdec-codecs = "all";
       profile = "gpu-hq";
     };
-    bindings = with pkgs; {
+    bindings = {
       "CTRL+1" =
         ''no-osd change-list glsl-shaders set "${anime4k}/Anime4K_Clamp_Highlights.glsl:${anime4k}/Anime4K_Restore_CNN_VL.glsl:${anime4k}/Anime4K_Upscale_CNN_x2_VL.glsl:${anime4k}/Anime4K_AutoDownscalePre_x2.glsl:${anime4k}/Anime4K_AutoDownscalePre_x4.glsl:${anime4k}/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode A (HQ)"'';
       "CTRL+2" =
