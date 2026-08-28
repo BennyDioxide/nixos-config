@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ flake, pkgs, ... }:
 {
 
   imports = [
@@ -33,6 +33,8 @@
 
     # lilypond # Broken font
     # macOS framework issues
+
+    flake.self.packages.${stdenv.hostPlatform.system}.wsu
   ];
 
   programs.mpv-handler.enable = true;
