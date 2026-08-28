@@ -1,4 +1,4 @@
-{ flake, pkgs, ... }:
+{ pkgs, ... }:
 {
   home.sessionVariables = {
     LIBRARY_PATH = "$LIBRARY_PATH:${pkgs.libiconv}/lib";
