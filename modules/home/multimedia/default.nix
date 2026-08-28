@@ -15,6 +15,9 @@ in
 
   programs.obs-studio.enable = !isDarwin;
 
+  programs.yt-dlp.enable = true;
+  programs.yt-dlp.package = pkgs.yt-dlp_git;
+
   home.packages =
     with pkgs;
     [
@@ -22,7 +25,6 @@ in
 
       aria2
       xh
-      yt-dlp_git
       ytarchive
       ffmpeg
       (if isDarwin then vlc-bin else vlc)

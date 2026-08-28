@@ -9,6 +9,10 @@ with lib;
 
 let
   cfg = config.programs.mpv-handler;
+  package = cfg.package.override {
+    mpv = cfg.mpvPackage;
+    yt-dlp = cfg.ytdlPackage;
+  };
   settingsFormat = pkgs.formats.toml { };
 in
 {
@@ -18,6 +22,15 @@ in
     package = mkOption {
       type = types.package;
       default = pkgs.mpv-handler;
+    };
+
+    finalPackage = mkOption {
+      type = types.package;
+      readOnly = true;
+      visible = false;
+      description = ''
+        Resulting mpv-handler package;
+      '';
     };
 
     mpvPackage = mkOption {
@@ -46,7 +59,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ cfg.package ];
+    home.packages = [ cfg.finalPackage ];
+    programs.mpv-handler.finalPackage = package;
 
     xdg.configFile."mpv-handler/config.toml".source = settingsFormat.generate "config.toml" {
       mpv = meta.getExe cfg.mpvPackage;

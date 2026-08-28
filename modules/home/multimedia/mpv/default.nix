@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (pkgs) anime4k;
   inherit (pkgs.stdenv.hostPlatform) isDarwin;
@@ -14,7 +19,7 @@ in
     enable = true;
     package = pkgs.mpv.override {
       inherit scripts;
-      yt-dlp = pkgs.yt-dlp_git;
+      yt-dlp = config.programs.yt-dlp.package;
     };
     config = {
       keep-open = "yes";

@@ -1,4 +1,9 @@
-{ flake, pkgs, ... }:
+{
+  flake,
+  config,
+  pkgs,
+  ...
+}:
 {
 
   imports = [
@@ -38,5 +43,6 @@
   ];
 
   programs.mpv-handler.enable = true;
-  programs.mpv-handler.ytdlPackage = pkgs.yt-dlp_git;
+  programs.mpv-handler.mpvPackage = config.programs.mpv.package;
+  programs.mpv-handler.ytdlPackage = config.programs.yt-dlp.package;
 }
