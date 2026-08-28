@@ -9,7 +9,6 @@
         zlib
         openssl.dev
         pkg-config
-        clang-tools
       ]
     );
   };

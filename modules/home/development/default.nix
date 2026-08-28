@@ -42,25 +42,10 @@ in
       # gitu
       gitui
       gh
-      # gitbutler
       gnumake
       xmake
-      cmake
-      boost
-      # extra-cmake-modules
-      bazel
-      ninja
-      gettext
       # mise
 
-      # lapce
-      # neovide
-      # warp-terminal
-      # thefuck
-      # sheldon # zsh stuff for using warp
-      # colima
-      lldb
-      vscode-extensions.vadimcn.vscode-lldb
       (python3.withPackages (
         py-pkgs: with py-pkgs; [
           tkinter
@@ -71,53 +56,21 @@ in
           # streamlit
         ]
       ))
-      # rust-bin
-      rustup
-      wasm-bindgen-cli
-      pkg-config
-      dioxus-cli
-      # dotket-sdk
-      # dotnet-sdk_7
-      nodejs
       yarn
       pnpm # nodePackages removed
-      bun
-      # ghc
-      # haskell-language-server
       # elan
-      # nixd
       nil
-      nix-direnv
-      gradle
-      sbcl
-      steel
-      clojure
-      clojure-lsp
       babashka
       marksman
-      zig
-      # zls
-
-      # broken :(
-      # odin
-      # ols
-
-      # bqn
-      pyright
-      # vscode-langservers-extracted # vscode-json-languageserver-bin
-      typescript-language-server
 
       android-tools
 
       # manim
       # renpy
       # (callPackage ../pkgs/kde-material-you-colors {})
-      # pipx
       uv
-      # poetry
       # qmk
       # cargo-sweep
-      wasm-pack
     ]
     ++ lib.optionals (!isDarwin) [
       mold
