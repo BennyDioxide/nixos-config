@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  inherit (pkgs.stdenv) isDarwin;
+  inherit (pkgs.stdenv.hostPlatform) isDarwin;
   prismlauncher' = pkgs.prismlauncher.override {
     additionalPrograms = [ pkgs.zenity ];
     jdks = [

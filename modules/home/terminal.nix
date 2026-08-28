@@ -2,7 +2,7 @@
 
 let
   inherit (pkgs) nushell ghostty ghostty-bin;
-  inherit (pkgs.stdenv) isDarwin;
+  inherit (pkgs.stdenv.hostPlatform) isDarwin;
   nuExe = lib.getExe nushell;
   shell = if isDarwin then ''${lib.getExe pkgs.zsh} -c "exec ${nuExe}"'' else nuExe;
 in

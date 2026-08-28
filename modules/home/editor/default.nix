@@ -6,7 +6,7 @@
 }:
 let
   inherit (flake) self;
-  inherit (pkgs.stdenv) isDarwin hostPlatform;
+  inherit (pkgs.stdenv.hostPlatform) isDarwin system;
 in
 {
   imports = [
@@ -24,7 +24,7 @@ in
     rimePackage = pkgs.fcitx5-rime.override {
       rimeDataPkgs = [
         pkgs.rime-data
-        self.packages.${hostPlatform.system}.rime-yuhao-ming
+        self.packages.${system}.rime-yuhao-ming
       ];
     };
     settings = {
