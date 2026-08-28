@@ -20,16 +20,16 @@ in
 
       localsend
 
-      revolt-desktop
       telegram-desktop
+      # revolt-desktop
       # element-desktop
-      slack
+      # slack
     ]
     ++ lib.optionals (!isDarwin) [
-      (discord.override {
-        # withOpenASAR = true;
-        withVencord = true;
-      })
+      # (discord.override {
+      #   # withOpenASAR = true;
+      #   withVencord = true;
+      # })
       vesktop
     ];
 }
