@@ -363,7 +363,7 @@ in
 
   services.flatpak.enable = true;
 
-  services.guix.enable = true;
+  # services.guix.enable = true;
   services.guix.gc.enable = true;
   services.guix.substituters.urls = [
     "https://mirror.sjtu.edu.cn/guix"
