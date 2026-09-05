@@ -5,7 +5,7 @@
     configFile.source = ./config.nu;
     envFile.source = ./env.nu;
     environmentVariables = {
-      CARAPACE_BRIDGE = "zsh,bash";
+      CARAPACE_BRIDGES = "zsh,bash";
       EDITOR = "${lib.getExe pkgs.helix}";
     };
     shellAliases = {
