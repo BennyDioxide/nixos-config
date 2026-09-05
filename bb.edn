@@ -34,7 +34,7 @@
             (run 'update-main-inputs)
             (run 'switch))
    update-all-inputs (shell' "nix flake update")
-   update-main-inputs (let [main-inputs ["nixpkgs" "home-manager" "nix-darwin"]]
+   update-main-inputs (let [main-inputs ["nixpkgs" "home-manager" "nix-darwin" "chaotic"]]
                         (shell' (str "nix flake update " (str/join " " main-inputs))))
    update-nix-index-db (do
                          (shell' "jj new -m \"chore(deps): Update nix-index-database\"")
