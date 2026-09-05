@@ -28,9 +28,10 @@
    op (run 'optimize)
 
    switch (nh-os "switch")
-   switch-home (shell "nh home switch . --ask")
+   switch-home (shell' "nh home switch . --ask")
    boot (nh-os "boot")
    update (do
+            (shell' "jj new -m \"chore(deps): Update main inputs\"")
             (run 'update-main-inputs)
             (run 'switch))
    update-all-inputs (shell' "nix flake update")
