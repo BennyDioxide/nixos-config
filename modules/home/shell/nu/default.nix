@@ -12,6 +12,7 @@
       bottles-cli = "flatpak run --command=bottles-cli com.usebottles.bottles";
     };
     settings = {
+      edit_mode = "helix";
       highlight_resolved_externals = true;
     };
   };
