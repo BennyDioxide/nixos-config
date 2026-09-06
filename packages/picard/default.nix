@@ -3,10 +3,12 @@
   stdenv,
   python3Packages,
   fetchFromGitHub,
+  callPackage, # FIXME
 
   cacert,
   gettext,
   qt6,
+  darwin, # FIXME
 
   gst_all_1,
 
@@ -16,6 +18,17 @@
 
 let
   pythonPackages = python3Packages;
+  pyobjc-framework-MediaPlayer = callPackage ../pyobjc-framework-MediaPlayer {
+    inherit (pythonPackages)
+      buildPythonPackage
+      pyobjc-core
+      pyobjc-framework-CoreAudio
+      pyobjc-framework-Cocoa
+      pyobjc-framework-Quartz
+      setuptools
+      ;
+    inherit callPackage darwin;
+  }; # FIXME
 in
 pythonPackages.buildPythonApplication (finalAttrs: {
   pname = "picard";
