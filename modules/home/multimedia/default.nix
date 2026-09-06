@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (pkgs.stdenv.hostPlatform) isDarwin;
+  inherit (pkgs.stdenv.hostPlatform) isDarwin system;
 in
 {
   imports = [
@@ -34,7 +34,7 @@ in
       # spotifyd
       # spotify-tui # Removed at Mar 12, 2024, 6:14 PM GMT+8
 
-      picard
+      flake.self.packages.${system}.picard
     ]
     ++ lib.optionals (!isDarwin) [
       qpwgraph
