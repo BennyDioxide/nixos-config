@@ -19,6 +19,9 @@ in
   programs.yt-dlp.package = pkgs.yt-dlp_git;
 
   home.packages =
+    let
+      inherit (flake.self.packages.${system}) picard spun;
+    in
     with pkgs;
     [
       # imagemagick
@@ -34,14 +37,15 @@ in
       # spotifyd
       # spotify-tui # Removed at Mar 12, 2024, 6:14 PM GMT+8
 
-      flake.self.packages.${system}.picard
+      picard
     ]
     ++ lib.optionals (!isDarwin) [
       qpwgraph
       jamesdsp
       playerctl
       tauon
-      flake.inputs.pano-scrobbler-flake.packages.${stdenv.hostPlatform.system}.default
+      flake.inputs.pano-scrobbler-flake.packages.${system}.default
+      spun
 
       davinci-resolve
     ];
