@@ -18,8 +18,7 @@ in
       user = {
         inherit name email;
       };
-      core.editor = editor;
-      core.pager = pager;
+      core = { inherit editor pager; };
       core.autocrlf = "input";
       credential.helper = "store";
       interactive.diffFilter = "${pager} --color-only";
@@ -40,9 +39,15 @@ in
     settings = {
       user = { inherit name email; };
       ui = {
-        inherit editor;
+        inherit editor pager;
+        diff-formatter = pager;
         default-command = "log";
       };
+      # For some reason delta would exit with return code 1
+      merge-tools.delta.diff-expected-exit-codes = [
+        0
+        1
+      ];
       /*nixfmt:disable*/
       aliases = {
         n = [ "new" ];
