@@ -349,7 +349,7 @@ in
   virtualisation.libvirtd.qemu.swtpm.enable = true;
   programs.virt-manager.enable = true;
 
-  services.sunshine.enable = true;
+  services.sunshine.enable = false;
   services.sunshine.capSysAdmin = true;
 
   services.freshrss.enable = true;

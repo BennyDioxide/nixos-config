@@ -4,6 +4,6 @@
     blender
     blockbench
     inkscape
-    krita
+    # krita
   ];
 }
