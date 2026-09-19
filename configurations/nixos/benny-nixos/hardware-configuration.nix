@@ -112,17 +112,7 @@ in
     fsType = "btrfs";
     options = [
       "subvol=@swap"
-      "ro"
-    ];
-  };
-
-  fileSystems."${swapfile}" = {
-    depends = [ "/swap" ];
-    device = swapfile;
-    fsType = "none";
-    options = [
-      "bind"
-      "rw"
+      "noatime"
     ];
   };
 
@@ -149,7 +139,12 @@ in
     options = [ "compress=zstd" ];
   };
 
-  swapDevices = [ { device = swapfile; } ];
+  swapDevices = [
+    {
+      device = swapfile;
+      size = 8 * 1024;
+    }
+  ];
 
   environment.persistence.${persistent} = {
     hideMounts = true;

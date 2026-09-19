@@ -3,10 +3,12 @@
   stdenv,
   python3Packages,
   fetchFromGitHub,
+  callPackage, # FIXME
 
   cacert,
   gettext,
   qt6,
+  darwin, # FIXME
 
   gst_all_1,
 
@@ -16,6 +18,17 @@
 
 let
   pythonPackages = python3Packages;
+  pyobjc-framework-MediaPlayer = callPackage ../pyobjc-framework-MediaPlayer {
+    inherit (pythonPackages)
+      buildPythonPackage
+      pyobjc-core
+      pyobjc-framework-CoreAudio
+      pyobjc-framework-Cocoa
+      pyobjc-framework-Quartz
+      setuptools
+      ;
+    inherit callPackage darwin;
+  }; # FIXME
 in
 pythonPackages.buildPythonApplication (finalAttrs: {
   pname = "picard";
@@ -78,7 +91,12 @@ pythonPackages.buildPythonApplication (finalAttrs: {
   disabledTestPaths = [
     "test/test_util_filenaming.py::ShortFilenameTest::test_bmp_unicode_on_nix" # - AssertionError: 'ßßßß[191 chars]ßßßßß/ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß...
     "test/test_util_filenaming.py::ShortFilenameTest::test_nonbmp_unicode_on_nix" # - AssertionError: '𝄞𝄞𝄞𝄞[91 chars]𝄞𝄞𝄞𝄞𝄞/𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞...
-    "ShortFilenameTest::test_nonbmp_unicode_on_nix_with_windows_compat" # - AssertionError: '𝄞𝄞𝄞𝄞[85 chars]𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞/𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞' != '𝄞𝄞𝄞𝄞...
+    "test/test_util_filenaming.py::ShortFilenameTest::test_nonbmp_unicode_on_nix_with_windows_compat" # - AssertionError: '𝄞𝄞𝄞𝄞[85 chars]𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞/𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞𝄞' != '𝄞𝄞𝄞𝄞...
+    "test/test_const_appdirs.py::AppPathsTest::test_cache_folder_macos" # - AssertionError: '/nix/var/nix/b/4fwrcxszlv1kc3j267wrxcdy9n/[35 chars]card' ...
+    "test/test_const_appdirs.py::AppPathsTest::test_config_folder_macos" # - AssertionError: '/nix/var/nix/b/4fwrcxszlv1kc3j267wrxcdy9n/[40 chars]card' ...
+    "test/test_const_appdirs.py::AppPathsTest::test_plugin_folder_macos" # - AssertionError: '/nix/var/nix/b/4fwrcxszlv1kc3j267wrxcdy9n/[57 chars]ins3' ...
+    "test/test_player_listenbrainz.py::TestListenQueue" # Various PermissionError for /var/empty/Library - hopefully will be resolved in the next release.
+    "test/test_utils.py::HiddenFileTest::test_macos" # - FileNotFoundError: [Errno 2] No such file or directory: 'SetFile'
   ];
 
   setupPyGlobalFlags = [
