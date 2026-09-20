@@ -59,6 +59,10 @@ in
       device = "/dev/disk/by-uuid/99049b36-481b-42a6-abc8-a77008840a18";
       #  { device = "/dev/disk/by-uuid/ac1b57a3-e188-49ec-9cd7-0ecdf5dd77ed";
       fsType = "bcachefs";
+      options = [
+        "noatime"
+        "compress=zstd"
+      ];
     };
 
   fileSystems."/gnu" = {
