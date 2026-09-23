@@ -23,7 +23,7 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-master.url = "nixpkgs/master";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.url = "nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager = {
       url = "home-manager";
@@ -31,7 +31,7 @@
     };
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts.url = "flake-parts";
     nixos-unified.url = "github:srid/nixos-unified";
     impermanence.url = "github:nix-community/impermanence";
     ragenix.url = "github:yaxitech/ragenix";

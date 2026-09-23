@@ -28,6 +28,7 @@
       "flakes"
     ];
     auto-optimise-store = true;
+    flake-registry = ./flake-registry.json;
   };
 
   nix.package = pkgs.lix;
