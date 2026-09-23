@@ -43,7 +43,6 @@
     # helix.url = "github:mattwparas/helix/steel-event-system";
     # hyprland.url = "github:hyprwm/Hyprland";
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    stylix.url = "github:danth/stylix";
     # niri.url = "github:sodiboo/niri-flake";
     noctalia.url = "github:noctalia-dev/noctalia/v5.0.1";
     pano-scrobbler-flake.url = "github:kawaiiDango/pano-scrobbler-flake";
