@@ -71,11 +71,14 @@ in
       '';
     };
     plymouth.enable = true;
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
     supportedFilesystems = [
       "ntfs"
       "bcachefs"
     ];
   };
+
+  nix.settings.extra-platforms = config.boot.binfmt.emulatedSystems;
 
   networking.hostName = "benny-nixos"; # Define your hostname.
   # Pick only one of the below networking options.
