@@ -1,59 +1,67 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   programs.nix-ld = {
     enable = true;
-    libraries = with pkgs; [
-      alsa-lib
-      atk
-      cairo
-      cups
-      curl
-      dbus
-      ffmpeg_7
-      fontconfig
-      freetype
-      fuse2
-      fuse3
-      gdk-pixbuf
-      glib
-      gtk2
-      gtk3
-      harfbuzz
-      icu
-      krb5
-      libGL
-      libappindicator-gtk3
-      libdrm
-      libnotify
-      libpulseaudio
-      librsvg
-      libsoup_3
-      libunwind
-      libxkbcommon
-      mesa
-      openssl
-      pango
-      pipewire
-      stdenv.cc.cc
-      systemd
-      wayland
-      # webkitgtk_4_0
-      webkitgtk_4_1
-      vulkan-loader
-      vips
-      xdotool
-      libx11
-      libxcursor
-      libxcb
-      libxi
-      zlib
+    libraries =
+      with pkgs;
+      [
+        alsa-lib
+        atk
+        cairo
+        cups
+        curl
+        dbus
+        ffmpeg_7
+        fontconfig
+        freetype
+        fuse2
+        fuse3
+        gdk-pixbuf
+        glib
+        gtk2
+        gtk3
+        harfbuzz
+        icu
+        krb5
+        libGL
+        libappindicator-gtk3
+        libdrm
+        libnotify
+        libpulseaudio
+        librsvg
+        libsoup_3
+        libunwind
+        libxkbcommon
+        mesa
+        openssl
+        pango
+        pipewire
+        stdenv.cc.cc
+        systemd
+        wayland
+        # webkitgtk_4_0
+        webkitgtk_4_1
+        vulkan-loader
+        vips
+        xdotool
+        libx11
+        libxcursor
+        libxcb
+        libxi
+        zlib
 
-      # Avalonia
-      libice
-      libsm
-
-      config.boot.kernelPackages.nvidia_x11
-    ];
+        # Avalonia
+        libice
+        libsm
+      ]
+      ++ lib.optionals (builtins.elem "nvidia" config.services.xserver.videoDrivers) [
+        config.boot.kernelPackages.nvidia_x11
+      ];
   };
 }
