@@ -474,20 +474,6 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"
       }
     },
-    "nixpkgs-2605": {
-      "locked": {
-        "lastModified": 1790533781,
-        "narHash": "sha256-hzJtu90JIQXnmgxKeP23CAx86G4L+dcQ+GHB1JK04qA=",
-        "rev": "cf5e76507c6e23b59f7e0ffcc7baa2a39ddd8442",
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.10769.cf5e76507c6e/nixexprs.tar.zst?lastModified=1790533781&rev=cf5e76507c6e23b59f7e0ffcc7baa2a39ddd8442"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "ref": "nixos-26.05",
-        "type": "indirect"
-      }
-    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1785031560,
@@ -552,11 +538,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1790533781,
-        "narHash": "sha256-F+b8u43BVF5DlM0pz7JQSbtbwKy5PrHIT5zQUekXsD0=",
+        "lastModified": 1784856561,
+        "narHash": "sha256-J+Bx1Z6Oeoj2FgnBhRMKyUhhtDoOpTgXYaVLZpDjW4A=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "cf5e76507c6e23b59f7e0ffcc7baa2a39ddd8442",
+        "rev": "597283ad8aa0b331c788e97c4c262d58877074ef",
         "type": "github"
       },
       "original": {
@@ -699,7 +685,6 @@
         "nixos-raspberrypi": "nixos-raspberrypi",
         "nixos-unified": "nixos-unified",
         "nixpkgs": "nixpkgs_5",
-        "nixpkgs-2605": "nixpkgs-2605",
         "nixpkgs-master": "nixpkgs-master",
         "noctalia": "noctalia",
         "pano-scrobbler-flake": "pano-scrobbler-flake",

@@ -71,7 +71,7 @@ in
     };
 
   flake.nixosConfigurations.cryogenic-pi = lib.mkForce (
-    inputs.nixpkgs-2605.lib.nixosSystem {
+    inputs.nixos-raspberrypi.inputs.nixpkgs.lib.nixosSystem {
       inherit specialArgs;
 
       modules = [
