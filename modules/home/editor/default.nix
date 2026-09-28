@@ -10,7 +10,7 @@ let
 in
 {
   imports = [
-    ./emacs.nix
+    # ./emacs.nix
     ./helix.nix
   ];
 
