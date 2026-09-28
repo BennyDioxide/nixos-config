@@ -45,7 +45,7 @@ in
       config.hardware.i2c.group # ddcutil/brightness control
     ];
     shell = pkgs.nushell;
-    initialHashedPassword = ""; # FIXME
+    initialHashedPassword = "$6$/szlskJfM4YH8E/I$SbAytLxeFq.lK2yKcLw0J0CkhcygGi/uwpj3EP6xhD4KUv3X7c0lB5nbbPkNN8cENZEQ3JaPcbwB/F0uVmeWM.";
   };
   users.users.root.initialHashedPassword = ""; # FIXME
   environment.systemPackages = with pkgs; [
