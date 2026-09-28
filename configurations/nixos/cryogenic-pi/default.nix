@@ -47,6 +47,7 @@ in
   security.polkit.enable = true;
   services.openssh.enable = true;
 
+  hardware.graphics.enable = true;
   # For ddcutil/brightness control
   hardware.i2c.enable = true;
 
