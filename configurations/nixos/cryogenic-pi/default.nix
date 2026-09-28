@@ -42,6 +42,8 @@ in
       "wheel"
       "networkmanager"
       "video"
+      "gpio"
+      "input"
       config.hardware.i2c.group # ddcutil/brightness control
     ];
     shell = pkgs.nushell;
