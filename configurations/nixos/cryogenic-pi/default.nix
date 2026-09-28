@@ -46,6 +46,17 @@ in
     initialHashedPassword = ""; # FIXME
   };
   users.users.root.initialHashedPassword = ""; # FIXME
+  environment.systemPackages = with pkgs; [
+    helix
+    btop
+    yazi
+    bat
+    ripgrep
+    fd
+    nh
+    ddcutil
+    nixos-firewall-tool
+  ];
 
   services.getty.autologinUser = username;
   security.polkit.enable = true;
