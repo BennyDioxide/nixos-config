@@ -22,6 +22,7 @@ in
     flake.self.nixosModules.default
     flake.self.nixosModules.common
     ./hardware-configuration.nix
+    ./overlay.nix
     ./networking.nix
     # ./overlay.nix
     ./preservation.nix

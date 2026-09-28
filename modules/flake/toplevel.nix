@@ -67,7 +67,7 @@ in
     inputs.nixpkgs-2605.lib.nixosSystem {
       specialArgs = {
         inherit (inputs) nixos-raspberrypi;
-        unstablePkgs = import inputs.nixpkgs { };
+        unstablePkgs = import inputs.nixpkgs { system = "aarch64-linux"; };
       };
       specialArgs.flake = { inherit self inputs config; };
 

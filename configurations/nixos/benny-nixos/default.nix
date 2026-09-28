@@ -24,6 +24,7 @@ in
         imports = [
           self.homeModules.default
           self.homeModules.linux-only
+          ../../../modules/home/multimedia/editor.nix
         ];
       };
     }

@@ -46,7 +46,5 @@ in
       tauon
       flake.inputs.pano-scrobbler-flake.packages.${system}.default
       spun
-
-      davinci-resolve
     ];
 }
