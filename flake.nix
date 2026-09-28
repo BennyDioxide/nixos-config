@@ -6,6 +6,7 @@
     "https://cache.garnix.io"
     "https://nix-community.cachix.org"
     "https://cache.nixos-cuda.org"
+    "https://nixos-raspberrypi.cachix.org"
 
     "https://hyprland.cachix.org"
     # "https://anyrun.cachix.org"
@@ -17,6 +18,7 @@
   nixConfig.extra-trusted-public-keys = [
     "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
     "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+    "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
   ];
 
   inputs = {
@@ -25,6 +27,7 @@
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     nix-darwin.url = "nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
     home-manager = {
       url = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
