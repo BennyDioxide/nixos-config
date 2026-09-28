@@ -1,6 +1,7 @@
 {
   flake,
   config,
+  lib,
   pkgs,
   ...
 }:
@@ -25,6 +26,8 @@ in
     # ./overlay.nix
     ./preservation.nix
   ];
+
+  nix.package = lib.mkForce pkgs.nix;
 
   boot.tmp.useTmpfs = true;
 
