@@ -27,7 +27,7 @@
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     nix-darwin.url = "nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
+    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/nixos-unstable";
     home-manager = {
       url = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
