@@ -30,6 +30,7 @@ in
     }
     self.nixosModules.default
     self.nixosModules.common
+    self.nixosModules.kmscon
     chaotic.nixosModules.default
     impermanence.nixosModules.impermanence
     musnix.nixosModules.musnix

@@ -23,11 +23,12 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs-2605.url = "nixpkgs/nixos-26.05";
     nixpkgs-master.url = "nixpkgs/master";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     nix-darwin.url = "nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/nixos-unstable";
+    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
     home-manager = {
       url = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

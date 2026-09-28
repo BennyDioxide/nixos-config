@@ -6,7 +6,7 @@
     ./podman.nix
     # ./clamav.nix
     ./dolphin.nix
-    ./kmscon.nix
+    # ./kmscon.nix
     ./i18n.nix
     ./fonts.nix
     ./zerotier.nix
