@@ -42,7 +42,7 @@ in
   };
   users.users.root.initialHashedPassword = ""; # FIXME
 
-  services.getty.autoLoginUser = username;
+  services.getty.autologinUser = username;
   security.polkit.enable = true;
   services.openssh.enable = true;
 

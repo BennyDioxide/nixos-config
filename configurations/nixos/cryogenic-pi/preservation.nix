@@ -3,7 +3,7 @@ let
   root = "/nix/persistent";
 in
 {
-  imports = [ flake.input.preservation.nixosModules.default ];
+  imports = [ flake.inputs.preservation.nixosModules.default ];
   preservation.enable = true;
   preservation.preserveAt.${root} = {
     files = [
