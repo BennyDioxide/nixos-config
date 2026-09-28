@@ -31,7 +31,7 @@ in
 
   nix.package = lib.mkForce pkgs.nix;
 
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages;
+  # boot.kernelPackages = lib.mkForce pkgs.linuxPackages;
   boot.tmp.useTmpfs = true;
 
   time.timeZone = "Asia/Taipei";
