@@ -10,6 +10,7 @@ in
       homeModules.terminal
       homeModules.shell
       homeModules.wm
+      ../../../modules/home/development/vcs.nix
     ];
 
     home.stateVersion = "26.11";
