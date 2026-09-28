@@ -24,6 +24,7 @@ in
     ];
     directories = [
       "/etc/NetworkManager/system-connections"
+      "/var/lib/iwd"
       "/var/lib/systemd/timers"
       # NixOS user state
       "/var/lib/nixos"
