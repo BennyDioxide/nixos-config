@@ -22,7 +22,7 @@ in
 
   services.kdeconnect.enable = true;
 
-  services.awww.enable = true;
+  services.awww.enable = false;
   services.awww.package = pkgs.awww.overrideAttrs (_: {
     cargoBuildFeatures = [ "jxl" ];
   });
