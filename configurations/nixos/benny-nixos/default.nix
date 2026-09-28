@@ -12,7 +12,6 @@
 let
   inherit (flake) self inputs;
   inherit (inputs)
-    chaotic
     impermanence
     musnix
     ;
@@ -31,7 +30,6 @@ in
     self.nixosModules.default
     self.nixosModules.common
     self.nixosModules.kmscon
-    chaotic.nixosModules.default
     impermanence.nixosModules.impermanence
     musnix.nixosModules.musnix
     self.nixosModules.steam
