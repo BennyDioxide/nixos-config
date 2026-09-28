@@ -15,8 +15,6 @@ in
   imports = [
     rpiModules.raspberry-pi-4.base
     rpiModules.raspberry-pi-4.bluetooth
-    rpiModules.trusted-nix-caches
-    nixos-raspberrypi.lib.int.default-nixos-raspberrypi-config # I'm using nixos-unified lol
     disko.nixosModules.disko
     ./disk-config.nix # WARNING DESTRUCTIVE operation
     self.nixosModules.default

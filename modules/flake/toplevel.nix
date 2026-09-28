@@ -8,7 +8,6 @@
 }:
 let
   specialArgs = {
-    inherit (inputs) nixos-raspberrypi;
     unstablePkgs = import inputs.nixpkgs { system = "aarch64-linux"; };
     flake = { inherit self inputs config; };
   };
@@ -71,7 +70,7 @@ in
     };
 
   flake.nixosConfigurations.cryogenic-pi = lib.mkForce (
-    inputs.nixos-raspberrypi.inputs.nixpkgs.lib.nixosSystem {
+    inputs.nixos-raspberrypi.lib.nixosSystem {
       inherit specialArgs;
 
       modules = [
