@@ -12,6 +12,7 @@ in
   imports = [
     # ./emacs.nix
     ./helix.nix
+    ../programs/rime-ls.nix
   ];
 
   xdg.mimeApps.associations.added."inode/directory" = [
@@ -35,7 +36,7 @@ in
 
   home.packages =
     with pkgs;
-    lib.optionals (!isDarwin) [
+    lib.optionals (system == "x86_64-linux") [
       jetbrains-toolbox
       # jetbrains.rust-rover
       # jetbrains.rider

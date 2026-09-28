@@ -7,6 +7,12 @@
   ...
 }:
 let
+  specialArgs = {
+    inherit (inputs) nixos-raspberrypi;
+    unstablePkgs = import inputs.nixpkgs { system = "aarch64-linux"; };
+    flake = { inherit self inputs config; };
+  };
+
   nixosModules = {
     # Linux home-manager module
     home-manager = {
@@ -15,6 +21,7 @@ let
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = specialArgs;
           home-manager.sharedModules = [ homeModules.common ];
         }
       ];
@@ -65,11 +72,7 @@ in
 
   flake.nixosConfigurations.cryogenic-pi = lib.mkForce (
     inputs.nixpkgs-2605.lib.nixosSystem {
-      specialArgs = {
-        inherit (inputs) nixos-raspberrypi;
-        unstablePkgs = import inputs.nixpkgs { system = "aarch64-linux"; };
-      };
-      specialArgs.flake = { inherit self inputs config; };
+      inherit specialArgs;
 
       modules = [
         ../../configurations/nixos/cryogenic-pi

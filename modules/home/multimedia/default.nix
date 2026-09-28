@@ -13,7 +13,7 @@ in
     ./mpv
   ];
 
-  programs.obs-studio.enable = !isDarwin;
+  programs.obs-studio.enable = system == "x86_64-linux";
 
   programs.yt-dlp.enable = true;
   programs.yt-dlp.package = pkgs.yt-dlp_git;
@@ -36,15 +36,16 @@ in
       # spotify
       # spotifyd
       # spotify-tui # Removed at Mar 12, 2024, 6:14 PM GMT+8
-
-      picard
     ]
     ++ lib.optionals (!isDarwin) [
       qpwgraph
-      jamesdsp
       playerctl
       tauon
       flake.inputs.pano-scrobbler-flake.packages.${system}.default
       spun
+    ]
+    ++ lib.optionals (system == "x86_64-linux") [
+      picard
+      jamesdsp
     ];
 }

@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (flake) inputs;
+  inherit (flake) inputs self;
   inherit (inputs) disko nixos-raspberrypi;
   rpiModules = nixos-raspberrypi.nixosModules;
   username = "benny";
@@ -19,9 +19,10 @@ in
     nixos-raspberrypi.lib.int.default-nixos-raspberrypi-config # I'm using nixos-unified lol
     disko.nixosModules.disko
     ./disk-config.nix # WARNING DESTRUCTIVE operation
-    flake.self.nixosModules.default
-    flake.self.nixosModules.common
+    self.nixosModules.default
+    self.nixosModules.common
     ./hardware-configuration.nix
+    ./home.nix
     ./overlay.nix
     ./networking.nix
     # ./overlay.nix
