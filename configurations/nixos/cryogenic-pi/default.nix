@@ -16,7 +16,7 @@ in
     rpiModules.raspberry-pi-4.base
     rpiModules.raspberry-pi-4.bluetooth
     rpiModules.trusted-nix-caches
-    nixos-raspberrypi.lib.int.full-nixos-raspberrypi-config # I'm using nixos-unified lol
+    nixos-raspberrypi.lib.int.default-nixos-raspberrypi-config # I'm using nixos-unified lol
     disko.nixosModules.disko
     ./disk-config.nix # WARNING DESTRUCTIVE operation
     flake.self.nixosModules.default
