@@ -56,6 +56,15 @@ in
 {
   fileSystems."/var/log".neededForBoot = true;
 
+  disko.devices.nodev."/" = {
+    fsType = "tmpfs";
+    mountOptions = [
+      "size=2G"
+      "defaults"
+      "mode=755"
+    ];
+  };
+
   disko.devices.disk.sdcard1 = {
     device = "/dev/sda";
     content = {

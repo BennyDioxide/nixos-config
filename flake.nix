@@ -38,6 +38,7 @@
     nixos-unified.url = "github:srid/nixos-unified";
     disko.url = "disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+    preservation.url = "github:nix-community/preservation";
     impermanence.url = "github:nix-community/impermanence";
     ragenix.url = "github:yaxitech/ragenix";
     ragenix.inputs.nixpkgs.follows = "nixpkgs"; # deprecated "or"

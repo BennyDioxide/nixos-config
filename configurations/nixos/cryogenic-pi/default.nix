@@ -21,6 +21,7 @@ in
     flake.self.nixosModules.default
     flake.self.nixosModules.common
     ./networking.nix
+    ./preservation.nix
   ];
 
   boot.tmp.useTmpfs = true;
