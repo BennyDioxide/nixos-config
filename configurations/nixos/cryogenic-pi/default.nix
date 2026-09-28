@@ -20,6 +20,7 @@ in
     ./disk-config.nix # WARNING DESTRUCTIVE operation
     flake.self.nixosModules.default
     flake.self.nixosModules.common
+    ./hardware-configuration.nix
     ./networking.nix
     ./preservation.nix
   ];
