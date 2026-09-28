@@ -12,6 +12,7 @@ let
 in
 {
   imports = [
+    { _module.args = { inherit nixos-raspberrypi; }; }
     rpiModules.raspberry-pi-4.base
     rpiModules.raspberry-pi-4.bluetooth
     rpiModules.trusted-nix-caches
