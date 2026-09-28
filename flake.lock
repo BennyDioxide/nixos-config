@@ -83,6 +83,25 @@
         "type": "github"
       }
     },
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789770686,
+        "narHash": "sha256-uZkBR7yHdIKUFB5SZdfgh1qkGfI3XmYmI/lTiquxbck=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "725ea35e410ad83be4931d1bff7e090eacaf3563",
+        "type": "github"
+      },
+      "original": {
+        "id": "disko",
+        "type": "indirect"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -545,6 +564,7 @@
     "root": {
       "inputs": {
         "chaotic": "chaotic",
+        "disko": "disko",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager_2",
         "impermanence": "impermanence",

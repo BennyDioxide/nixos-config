@@ -33,6 +33,8 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     flake-parts.url = "flake-parts";
     nixos-unified.url = "github:srid/nixos-unified";
+    disko.url = "disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.url = "github:nix-community/impermanence";
     ragenix.url = "github:yaxitech/ragenix";
     ragenix.inputs.nixpkgs.follows = "nixpkgs"; # deprecated "or"
