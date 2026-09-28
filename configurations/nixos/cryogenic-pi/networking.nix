@@ -6,6 +6,7 @@
     "1.1.1.1"
     "100.100.100.100"
   ]; # 100.100.100.100 for Tailscale
+  services.tailscale.enable = true;
 
   networking.wireless.iwd.enable = true;
   networking.wireless.iwd.settings = {
