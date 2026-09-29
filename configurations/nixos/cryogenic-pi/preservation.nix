@@ -29,6 +29,7 @@ in
       # NixOS user state
       "/var/lib/nixos"
       "/var/lib/bluetooth"
+      "/var/lib/tailscale"
     ];
     users.root = {
       home = "/root";
