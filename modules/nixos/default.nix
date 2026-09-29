@@ -10,6 +10,7 @@
     ./i18n.nix
     ./fonts.nix
     ./zerotier.nix
+    ./sound.nix
     # ./secret.nix # FIXME
     flake.inputs.chaotic.nixosModules.default
   ];
