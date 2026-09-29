@@ -6,6 +6,7 @@ in
   home-manager.users.benny = {
     imports = [
       homeModules.editor
+      homeModules.font
       homeModules.multimedia
       homeModules.terminal
       homeModules.shell
