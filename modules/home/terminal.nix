@@ -26,5 +26,5 @@ in
   programs.ghostty.package = if isDarwin then ghostty-bin else ghostty;
   programs.ghostty.settings.command = shell;
 
-  programs.foot.enable = true;
+  programs.foot.enable = !isDarwin;
 }
