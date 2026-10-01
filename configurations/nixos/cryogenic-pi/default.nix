@@ -61,6 +61,18 @@ in
   ];
 
   services.getty.autologinUser = username;
+
+  services.displayManager = {
+    ly.enable = true;
+    defaultSession = "hyprland-uwsm";
+    autoLogin = {
+      enable = true;
+      user = username;
+    };
+  };
+  programs.hyprland.enable = true;
+  programs.hyprland.withUWSM = true;
+
   security.polkit.enable = true;
   services.openssh.enable = true;
 
