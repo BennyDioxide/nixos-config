@@ -4,6 +4,11 @@
   pkgs,
   ...
 }:
+let
+  mainMod = "SUPER";
+  appWrapper =
+    app: lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${lib.getExe pkgs.uwsm} app -- ${app}\")";
+in
 {
   options.wayland.windowManager.hyprland.terminal = lib.mkOption {
     type = lib.types.str;
@@ -27,17 +32,6 @@
         "00-fennel" = ''
           package.path = package.path .. ";${pkgs.lua55Packages.fennel}/share/lua/5.5/?.lua"
           require("fennel").install().dofile("${./config.fnl}")
-        '';
-        "01-startup" = ''
-          hl.on("hyprland.start", function ()
-            local commands = {
-              "fcitx5",
-              "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init",
-            }
-            for _, v in ipairs(commands) do
-              hl.exec_cmd("${lib.getExe pkgs.uwsm} app -- " .. v)
-            end
-          end)
         '';
       };
       settings = {
@@ -91,8 +85,6 @@
         bind =
           let
             inherit (config.wayland.windowManager.hyprland) terminal;
-            mainMod = "SUPER";
-            appWrapper = app: lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${app}\")";
           in
           [
             {
@@ -143,6 +135,23 @@
             blur_popups = true;
           }
         ];
+
+        on = {
+          _args = [
+            "hyprland.start"
+            (lib.generators.mkLuaInline ''
+               function ()
+                local commands = {
+                  "fcitx5",
+                  "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init",
+                }
+                for _, v in ipairs(commands) do
+                  hl.exec_cmd("${lib.getExe pkgs.uwsm} app -- " .. v)
+                end
+              end
+            '')
+          ];
+        };
       };
     };
   };
