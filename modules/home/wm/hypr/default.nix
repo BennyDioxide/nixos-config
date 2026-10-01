@@ -1,126 +1,149 @@
 {
+  config,
   lib,
   pkgs,
   ...
 }:
 {
-  home.packages = with pkgs; [
-    hyprland-qtutils
-    hyprland-qt-support
-    hyprcursor
-    hyprpicker
-    hyprutils
-    hyprwayland-scanner
-  ];
+  options.wayland.windowManager.hyprland.terminal = lib.mkOption {
+    type = lib.types.str;
+    default = lib.getExe pkgs.ghostty;
+  };
 
-  wayland.windowManager.hyprland = {
-    enable = true;
-    configType = "lua";
-    extraLuaFiles = {
-      "00-fennel" = ''
-        package.path = package.path .. ";${pkgs.lua55Packages.fennel}/share/lua/5.5/?.lua"
-        require("fennel").install().dofile("${./config.fnl}")
-      '';
-      "01-startup" = ''
-        hl.on("hyprland.start", function ()
-          local commands = {
-            "fcitx5",
-            "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init",
-          }
-          for _, v in ipairs(commands) do
-            hl.exec_cmd("${lib.getExe pkgs.uwsm} app -- " .. v)
-          end
-        end)
-      '';
-    };
-    settings = {
-      # See https://wiki.hyprland.org/Configuring/Monitors/
-      # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
-      config = {
-        input = {
-          # See /usr/share/X11/xkb/rules/base.lst
-          kb_layout = "us";
-          # kb_variant = "colemak_dh";
+  config = {
+    home.packages = with pkgs; [
+      hyprland-qtutils
+      hyprland-qt-support
+      hyprcursor
+      hyprpicker
+      hyprutils
+      hyprwayland-scanner
+    ];
 
-          follow_mouse = 0;
-
-          natural_scroll = false;
-
-          numlock_by_default = true;
-        };
-        cursor = {
-          no_hardware_cursors = 0;
-        };
-        general = {
-          # See https://wiki.hyprland.org/Configuring/Variables/ for more
-
-          gaps_in = 5;
-          gaps_out = 20;
-          border_size = 2;
-
-          layout = "scrolling";
-        };
-        scrolling = {
-          column_width = 0.7;
-          fullscreen_on_one_column = true;
-        };
-        decoration = {
-          # See https://wiki.hyprland.org/Configuring/Variables/ for more
-          rounding = 10;
-          blur = {
-            enabled = true;
-            size = 3;
-            passes = 1;
-          };
-          shadow = {
-            enabled = true; # previously `drow_shadow`
-            range = 4;
-            render_power = 3;
-            color = "0xee1a1a1a";
-          };
-        };
+    wayland.windowManager.hyprland = {
+      enable = true;
+      configType = "lua";
+      extraLuaFiles = {
+        "00-fennel" = ''
+          package.path = package.path .. ";${pkgs.lua55Packages.fennel}/share/lua/5.5/?.lua"
+          require("fennel").install().dofile("${./config.fnl}")
+        '';
+        "01-startup" = ''
+          hl.on("hyprland.start", function ()
+            local commands = {
+              "fcitx5",
+              "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init",
+            }
+            for _, v in ipairs(commands) do
+              hl.exec_cmd("${lib.getExe pkgs.uwsm} app -- " .. v)
+            end
+          end)
+        '';
       };
+      settings = {
+        # See https://wiki.hyprland.org/Configuring/Monitors/
+        # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
+        config = {
+          input = {
+            # See /usr/share/X11/xkb/rules/base.lst
+            kb_layout = "us";
+            # kb_variant = "colemak_dh";
 
-      permission = [
-        {
-          binary = lib.getExe pkgs.flameshot;
-          type = "screencopy";
-          mode = "allow";
-        }
-      ];
+            follow_mouse = 0;
 
-      # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
-      window_rule = [
-        {
-          match.class = "^(osu!)$";
-          match.title = "^(osu!)$";
-          fullscreen = true;
-        }
-        {
-          match.class = "^(fl64.exe)";
-          match.initial_title = "^(FL Studio)$";
-          fullscreen = true;
-        }
-        {
-          match.title = "^(flameshot)$";
-          no_anim = true;
-          float = true;
-          move = [
-            0
-            0
+            natural_scroll = false;
+
+            numlock_by_default = true;
+          };
+          cursor = {
+            no_hardware_cursors = 0;
+          };
+          general = {
+            # See https://wiki.hyprland.org/Configuring/Variables/ for more
+
+            gaps_in = 5;
+            gaps_out = 20;
+            border_size = 2;
+
+            layout = "scrolling";
+          };
+          scrolling = {
+            column_width = 0.7;
+            fullscreen_on_one_column = true;
+          };
+          decoration = {
+            # See https://wiki.hyprland.org/Configuring/Variables/ for more
+            rounding = 10;
+            blur = {
+              enabled = true;
+              size = 3;
+              passes = 1;
+            };
+            shadow = {
+              enabled = true; # previously `drow_shadow`
+              range = 4;
+              render_power = 3;
+              color = "0xee1a1a1a";
+            };
+          };
+        };
+
+        bind =
+          let
+            inherit (config.wayland.windowManager.hyprland) terminal;
+            mainMod = "SUPER";
+            appWrapper = app: lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${app}\")";
+          in
+          [
+            {
+              _args = [
+                "${mainMod} + Q"
+                (appWrapper terminal)
+              ];
+            }
           ];
-        }
-      ];
 
-      layer_rule = [
-        {
-          name = "noctalia";
-          match.namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd)$";
-          ignore_alpha = 0.5;
-          blur = true;
-          blur_popups = true;
-        }
-      ];
+        permission = [
+          {
+            binary = lib.getExe pkgs.flameshot;
+            type = "screencopy";
+            mode = "allow";
+          }
+        ];
+
+        # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
+        window_rule = [
+          {
+            match.class = "^(osu!)$";
+            match.title = "^(osu!)$";
+            fullscreen = true;
+          }
+          {
+            match.class = "^(fl64.exe)";
+            match.initial_title = "^(FL Studio)$";
+            fullscreen = true;
+          }
+          {
+            match.title = "^(flameshot)$";
+            no_anim = true;
+            float = true;
+            move = [
+              0
+              0
+            ];
+          }
+        ];
+
+        layer_rule = [
+          {
+            name = "noctalia";
+            match.namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd)$";
+            ignore_alpha = 0.5;
+            blur = true;
+            blur_popups = true;
+          }
+        ];
+      };
     };
   };
 }

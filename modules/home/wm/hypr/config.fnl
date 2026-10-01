@@ -14,13 +14,11 @@
 (hl.animation {:leaf "workspaces" :enabled true :speed 6 :bezier "default"})
 
 (let [mainMod     "SUPER"
-      terminal    "ghostty"
       fileManager "dolphin"
       screenshot  "flameshot gui"
       ;; FIXME: This doesn't launch apps into systemd units
       appWrapper  #(hl.dsp.exec_cmd (.. "uwsm app -- " $))
       noctaliactl #(hl.dsp.exec_cmd (.. "noctalia msg " $))]
-  (hl.bind (.. mainMod " + Q") (appWrapper terminal))
   (hl.bind (.. mainMod " + C") (hl.dsp.window.close))
   (hl.bind (.. mainMod " + M") (hl.dsp.exit))
   (hl.bind (.. mainMod " + E") (appWrapper fileManager))
